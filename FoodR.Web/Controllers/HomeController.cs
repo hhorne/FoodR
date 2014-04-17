@@ -8,6 +8,10 @@ namespace FoodR.Web.Controllers
 {
     public class HomeController : FoodRController
     {
+		public HomeController()
+		{
+		}
+
         public ActionResult Index()
         {
             return View();
