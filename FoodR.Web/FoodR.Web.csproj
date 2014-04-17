@@ -85,7 +85,19 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="App\foodr.js" />
+    <Content Include="App\css\bootstrap-theme.css" />
+    <Content Include="App\css\bootstrap-theme.min.css" />
+    <Content Include="App\css\bootstrap.css" />
+    <Content Include="App\css\bootstrap.min.css" />
+    <Content Include="App\css\styles.css" />
     <Content Include="packages.config" />
+    <Content Include="App\css\bootstrap-theme.css.map" />
+    <Content Include="App\css\bootstrap.css.map" />
+    <Content Include="App\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="App\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="App\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -96,13 +108,27 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\angular-resource.js" />
+    <Content Include="Scripts\angular-resource.min.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Templates\home.html" />
+    <Content Include="Templates\locate.html" />
+    <Content Include="Templates\login.html" />
+    <Content Include="Templates\map.html" />
+    <Content Include="Templates\schedule.html" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -120,7 +146,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App\js\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

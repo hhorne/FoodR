@@ -1,0 +1,31 @@
+<div class="row">
+	<div class="col-md-4 center">
+		<h3><a href="#/schedule">Yesterday</a></h3>
+	</div>
+	<div class="col-md-4 center">
+		<h1>Today</h1>
+	</div>
+	<div class="col-md-4 center">
+		<h3><a href="#/schedule">Tomorrow</a></h3>
+	</div>
+</div>
+<div class="row">
+	<div class="provider" ng-repeat="entry in entries">
+		<div class="provider-name">
+			<h5><strong>{{entry.name}}</strong></h5>
+			<label>Stars: {{entry.rating}} / 5</label>
+			<div>{{entry.comments}}</div>
+		</div>
+		<div class="schedule-entry" ng-repeat="sched in entry.schedules">
+			<label>Where</label>
+			<div class="schedule-where">
+				{{sched.where}}
+			</div>
+			<label>When</label>
+			<div class="schedule-when">
+				{{sched.from}} - {{sched.to}}
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
