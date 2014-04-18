@@ -4,9 +4,6 @@
 .jumbotron {
   text-align: center;
 }
-.navbar-static-top {
-  margin-bottom: 19px;
-}
 .form-signin {
   max-width: 330px;
   padding: 15px;
@@ -70,42 +67,36 @@ body {
 .footer .container .text-muted {
   margin: 20px 0;
 }
-.welcome-btn-group {
-  width: 350px;
-}
 .row {
   margin: 15px 0 15px 0;
 }
-.vendor {
+.provider {
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 12px;
 }
-.vendor .vendor-details {
+.provider-name {
   display: inline;
   float: left;
+  width: 400px;
 }
-.vendor .vendor-actions {
-  /*float:right;*/
-  margin-top: 15px;
-  width: 110px;
-}
-.vendor .schedule-entry {
+.schedule-entry {
   padding: 5px;
   display: inline;
   float: right;
+  width: 240px;
   /*background-color: #ccc;*/
 }
-.vendor .schedule-entry li {
+.schedule-entry li {
   padding: 5px;
 }
-.vendor .schedule-entry label {
+.schedule-entry label {
   font-size: 9px;
   font-weight: bold;
 }
-.vendor .schedule-entry .schedule-where,
-.vendor .schedule-entry .schedule-when {
+.schedule-entry .schedule-where,
+.schedule-entry .schedule-when {
   border: 1px solid #000;
   border-radius: 2px;
   /*background-color: #5bc0de;*/
@@ -113,6 +104,9 @@ body {
   display: block;
   width: 200px;
   font-size: 14px;
-  font-weight: bold;
+  font_weight: bold;
   text-align: center;
+}
+.schedule-entry .schedule-where:hover {
+  background-color: #39b3d7;
 }

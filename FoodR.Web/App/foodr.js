@@ -44,7 +44,7 @@ app.controller('MapCtrl', function($scope, $routeParams) {
 })
 
 app.controller('ScheduleCtrl', function($scope) {
-	$scope.entries = [
+    $scope.vendors = [
 		{
 			name: 'Happy Grilled Cheese',
 			rating: 3,

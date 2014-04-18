@@ -130,19 +130,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\css\styles.css">
+      <DependentUpon>styles.less</DependentUpon>
+    </Content>
+    <Content Include="App\css\styles.min.css">
+      <DependentUpon>styles.css</DependentUpon>
+    </Content>
+    <Content Include="App\css\styles2.css">
+      <DependentUpon>styles.less</DependentUpon>
+    </Content>
+    <Content Include="App\css\styles2.min.css">
+      <DependentUpon>styles2.css</DependentUpon>
+    </Content>
     <Content Include="App\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="App\foodr.js" />
     <Content Include="App\css\bootstrap-theme.css" />
     <Content Include="App\css\bootstrap-theme.min.css" />
     <Content Include="App\css\bootstrap.css" />
     <Content Include="App\css\bootstrap.min.css" />
-    <Content Include="App\css\styles.css" />
     <Content Include="packages.config" />
     <Content Include="App\css\bootstrap-theme.css.map" />
     <Content Include="App\css\bootstrap.css.map" />
     <Content Include="App\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="App\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="App\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="App\css\styles.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

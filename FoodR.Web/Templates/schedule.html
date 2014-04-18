@@ -10,22 +10,27 @@
 	</div>
 </div>
 <div class="row">
-	<div class="provider" ng-repeat="entry in entries">
-		<div class="provider-name">
-			<h5><strong>{{entry.name}}</strong></h5>
-			<label>Stars: {{entry.rating}} / 5</label>
-			<div>{{entry.comments}}</div>
-		</div>
-		<div class="schedule-entry" ng-repeat="sched in entry.schedules">
-			<label>Where</label>
-			<div class="schedule-where">
-				{{sched.where}}
-			</div>
-			<label>When</label>
-			<div class="schedule-when">
-				{{sched.from}} - {{sched.to}}
-			</div>
-		</div>
-		<div class="clearfix"></div>
-	</div>
+    <div class="vendor" ng-repeat="vendor in vendors">
+        <div class="vendor-details">
+            <h5><strong>{{vendor.name}}</strong></h5>
+            <label>Stars: {{vendor.rating}} / 5</label>
+            <div>{{vendor.comments}}</div>
+        </div>
+        <div class="schedule-entry pull-right" ng-repeat="sched in vendor.schedules">
+            <label>Where</label>
+            <div class="schedule-where">
+                {{sched.where}}
+            </div>
+            <label>When</label>
+            <div class="schedule-when">
+                {{sched.from}} - {{sched.to}}
+            </div>
+        </div>
+        <div class="vendor-actions pull-right">
+            <a type="button" class="btn btn-success btn-xs btn-block" href="#/map">Map</a>
+            <a type="button" class="btn btn-primary btn-xs btn-block" href="#/truck">Trucks Page</a>
+            <a type="button" class="btn btn-warning btn-xs btn-block" href="#/reportproblem">Report Problem</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
 </div>
