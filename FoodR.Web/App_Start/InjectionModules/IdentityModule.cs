@@ -11,9 +11,9 @@ namespace FoodR.Web.InjectionModules
 		public override void Load()
 		{
 			Bind<IUserStore<FoodRUser>>().To<UserStore<FoodRUser>>();
-			Bind<UserManager<FoodRUser>>().ToSelf();
+			Bind<FoodRUserManager>().ToSelf();
 			Bind<IRoleStore<IdentityRole, string>>().To<RoleStore<IdentityRole, string, IdentityUserRole>>();
-			Bind<RoleManager<IdentityRole>>().ToSelf();
+			Bind<FoodRRoleManager>().ToSelf();
 		}
 	}
 }
