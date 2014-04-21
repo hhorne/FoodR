@@ -3,31 +3,31 @@ var app = angular.module('foodr', ['ngRoute']);
 app.config(function($routeProvider) {
   $routeProvider
     .when('/', {
-      controller:'HomeCtrl',
-      templateUrl:'/Templates/home.html'
+        controller:'HomeCtrl',
+        templateUrl:'/Templates/home.html'
     })
 	.when('/locate', {
-      controller:'LocateCtrl',
-      templateUrl: '/Templates/locate.html'
-    })
-    .when('/map/:address', {
-      controller:'MapCtrl',
-      templateUrl: '/Templates/map.html'
+        controller:'LocateCtrl',
+        templateUrl: '/Templates/locate.html'
     })
 	.when('/map', {
-      controller:'MapCtrl',
-      templateUrl: '/Templates/map.html'
+        controller:'MapCtrl',
+        templateUrl: '/Templates/map.html'
     })
     .when('/schedule', {
-      controller:'ScheduleCtrl',
-      templateUrl: '/Templates/schedule.html'
+        controller:'ScheduleCtrl',
+        templateUrl: '/Templates/schedule.html'
     })
 	.when('/login', {
-      controller:'LoginCtrl',
-      templateUrl: '/Templates/login.html'
+        controller:'LoginCtrl',
+        templateUrl: '/Templates/login.html'
+	})
+    .when('/vendor', {
+        controller: 'VendorCtrl',
+        templateUrl: '/Templates/vendor.html'
     })
     .otherwise({
-      redirectTo:'/'
+        redirectTo:'/'
     });
 })
 
@@ -126,3 +126,60 @@ app.controller('LoginCtrl', function($scope) {
 	
 })
 
+app.controller('VendorCtrl', function ($scope, $routeParams) {
+    
+
+    $scope.vendor = {
+        id: $routeParams.vendorid,
+        name: 'Happy Grilled Cheese',
+        rating: 3,
+        comments: 'Some comments from the food truck',
+        schedules: [
+            {
+                where: 'Av Med Building',
+                address: '1234 Main Street',
+                from: '11:00 AM',
+                to: '2:00 PM',
+                colspan: 4
+            },
+            {
+                where: 'Arrd Wolf',
+                address: '1234 Other Street',
+                from: '6:00 PM',
+                to: '10:00 PM',
+                colspan: 5
+            }
+        ]
+    };
+
+    $scope.timeBlocks2 = function () {
+        var timeBlocks = [];
+
+        angular.forEach($scope.vendor.schedules, function (schedule) {
+
+        });
+
+        return timeBlocks;
+    };
+
+    $scope.timeBlocks = [
+        {
+            type: 'open',
+            colspan: 1
+        },
+        {
+            type: 'booked',
+            where: 'Av Med Building',
+            colspan: 4
+        },
+        {
+            type: 'open',
+            colspan: 3
+        },
+        {
+            type: 'booked',
+            where: 'Arrd Wolf',
+            colspan: 5
+        }
+    ];
+})

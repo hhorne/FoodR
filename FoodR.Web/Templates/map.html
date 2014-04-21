@@ -11,7 +11,7 @@
     <div class="pull-left" id="map-canvas" style="height: 600px; width: 900px;"></div>
     <div class="list-group pull-right">
         <h4>Trucks near you</h4>
-        <a href="#/map" class="list-group-item" ng-repeat="vendor in vendors">{{vendor.name}}</a>
+        <a href="#/vendor?vendorid={{vendor.id}}" class="list-group-item" ng-repeat="vendor in vendors">{{vendor.name}}</a>
     </div>
     <div class="clearfix"></div>
 </div>
