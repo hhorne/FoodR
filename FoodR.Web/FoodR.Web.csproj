@@ -205,6 +205,7 @@
     <Content Include="Templates\login.html" />
     <Content Include="Templates\map.html" />
     <Content Include="Templates\schedule.html" />
+    <Content Include="Templates\vendor.html" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -224,8 +225,12 @@
     <Compile Include="Data\EntityTypeConfiguration\FoodTruckConfig.cs" />
     <Compile Include="Data\FoodRContext.cs" />
     <Compile Include="Data\FoodRDbInitializer.cs" />
+    <Compile Include="Data\Models\Badge.cs" />
     <Compile Include="Data\Models\FoodRUser.cs" />
     <Compile Include="Data\Models\FoodTruck.cs" />
+    <Compile Include="Data\Models\Location.cs" />
+    <Compile Include="Data\Models\ScheduleEntry.cs" />
+    <Compile Include="Data\Models\Vendor.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

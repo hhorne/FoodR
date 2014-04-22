@@ -116,3 +116,9 @@ body {
   font-weight: bold;
   text-align: center;
 }
+.table .open {
+  border: 0;
+}
+.table .booked {
+  background-color: #f2dede;
+}

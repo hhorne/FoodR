@@ -1,0 +1,62 @@
+﻿
+<h4>ID</h4>
+<p>{{vendor.id}}</p>
+
+<h4>Name</h4>
+<p>{{vendor.name}}</p>
+
+<h4>Description</h4>
+<p>{{vendor.comments}}</p>
+
+<h4>Rating</h4>
+<p>{{vendor.rating}} / 5</p>
+
+<h4>Contact Info</h4>
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">email@example.com</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Phone</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">(904) 555-5555</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Website</label>
+        <div class="col-sm-10">
+            <p class="form-control-static"><a href="http://www.google.com">www.google.com</a></p>
+        </div>
+    </div>
+</form>
+<h4>Schedule</h4>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tr>
+                <th>10 AM</th>
+                <th>11 AM</th>
+                <th>12 AM</th>
+                <th>1 PM</th>
+                <th>2 PM</th>
+                <th>3 PM</th>
+                <th>4 PM</th>
+                <th>5 PM</th>
+                <th>6 PM</th>
+                <th>7 PM</th>
+                <th>8 PM</th>
+                <th>9 PM</th>
+                <th>10 PM</th>
+            </tr>
+            <tr>
+                <td colspan="{{timeBlock.colspan}}" ng-repeat="timeBlock in timeBlocks" class="{{timeBlock.type}}">
+                    {{timeBlock.where}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
