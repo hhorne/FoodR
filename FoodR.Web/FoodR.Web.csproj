@@ -155,6 +155,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\InjectionModules\ServiceModule.cs" />
     <Compile Include="Data\EntityTypeConfiguration\AddressConfig.cs" />
     <Compile Include="Data\EntityTypeConfiguration\BadgeConfig.cs" />
     <Compile Include="Data\EntityTypeConfiguration\EarnedBadgeConfig.cs" />
