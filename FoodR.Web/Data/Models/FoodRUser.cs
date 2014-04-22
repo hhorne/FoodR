@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -7,6 +8,8 @@ namespace FoodR.Web.Data.Models
 {
 	public class FoodRUser : IdentityUser
 	{
+		public virtual ICollection<Badge> Badges { get; set; }
+
 		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<FoodRUser> manager)
 		{
 			// Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

@@ -156,7 +156,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\EntityTypeConfiguration\AddressConfig.cs" />
+    <Compile Include="Data\EntityTypeConfiguration\BadgeConfig.cs" />
     <Compile Include="Data\EntityTypeConfiguration\LocationConfig.cs" />
+    <Compile Include="Data\EntityTypeConfiguration\ScheduleEntryConfig.cs" />
     <Compile Include="Data\Models\Address.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Content Include="App\css\styles.css">
@@ -247,7 +249,6 @@
     <Compile Include="Data\Models\FoodTruck.cs" />
     <Compile Include="Data\Models\Location.cs" />
     <Compile Include="Data\Models\ScheduleEntry.cs" />
-    <Compile Include="Data\Models\Vendor.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
