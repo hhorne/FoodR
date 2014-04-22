@@ -157,9 +157,11 @@
   <ItemGroup>
     <Compile Include="Data\EntityTypeConfiguration\AddressConfig.cs" />
     <Compile Include="Data\EntityTypeConfiguration\BadgeConfig.cs" />
+    <Compile Include="Data\EntityTypeConfiguration\EarnedBadgeConfig.cs" />
     <Compile Include="Data\EntityTypeConfiguration\LocationConfig.cs" />
     <Compile Include="Data\EntityTypeConfiguration\ScheduleEntryConfig.cs" />
     <Compile Include="Data\Models\Address.cs" />
+    <Compile Include="Data\Models\EarnedBadge.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Content Include="App\css\styles.css">
       <DependentUpon>styles.less</DependentUpon>
