@@ -7,7 +7,7 @@ using System.Web;
 
 namespace FoodR.Web.Data.EntityTypeConfiguration
 {
-	public abstract class EntityConfig<T> :  EntityTypeConfiguration<T> where T : class
+	public abstract class EntityConfig<T> :  EntityTypeConfiguration<T>, IEntityConfig where T : class
 	{
 		public void AddConfiguration(ConfigurationRegistrar registrar)
 		{
