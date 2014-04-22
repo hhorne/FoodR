@@ -7,11 +7,11 @@ using System.Web;
 
 namespace FoodR.Web.Data.Models
 {
-	public class ScheduleEntry
+	public class Event
 	{
-		[ForeignKey("Vendor")]
-		public int VendorId { get; set; }
-		public virtual Vendor Vendor { get; set; }
+		[ForeignKey("FoodTruck")]
+		public int Id { get; set; }
+		public virtual FoodTruck Truck { get; set; }
 
 		[ForeignKey("Location")]
 		public int LocationId { get; set; }

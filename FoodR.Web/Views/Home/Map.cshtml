@@ -1,0 +1,30 @@
+﻿@model FoodR.Web.Data.Models.MapModel
+    @{
+    ViewBag.Title = " FoodR - Map";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+<div ng-controller="MapCtrl">
+    <h3>Map</h3>
+    <form class="form-inline" role="form" ng-submit="search()">
+        <div class="form-group">
+            <label class="sr-only" for="address">Enter a location</label>
+            <input type="text" class="form-control" id="address" placeholder="Address or Zipcode" value="">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+    </form>
+
+    <div class="row">
+        <div class="pull-left" id="map-canvas" style="height: 600px; width: 900px;"></div>
+        <div class="list-group pull-right">
+            <h4>Trucks near you</h4>
+            <a href="Truck?vendorid={{vendor.id}}" class="list-group-item" ng-repeat="vendor in vendors">{{vendor.name}}</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+@section scripts {
+
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+    <script src="/App/map.js"></script>
+}

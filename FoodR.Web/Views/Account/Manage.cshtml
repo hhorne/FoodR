@@ -1,0 +1,72 @@
+﻿@model FoodR.Web.Data.Models.FoodTruck
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <link href="/App/css/schedule.css" rel="stylesheet">
+}
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#truck" data-toggle="tab">Truck</a></li>
+    <li><a href="#schedule" data-toggle="tab">Schedule</a></li>
+    <li><a href="#menu" data-toggle="tab">Menu</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane active" id="truck">
+        <div class="col-md-8">
+            <h2>Manage Truck</h2>
+        </div>
+        <div class="col-md-8">
+            @Html.LabelFor(m => m.Id)
+            <p>@Model.Id</p>
+
+            @Html.LabelFor(m => m.Name)
+            <p>@Html.TextBoxFor(m => m.Name, new { @class = "form-control" })</p>
+
+            @Html.LabelFor(m => m.Description)
+            <p>@Html.TextAreaFor(m => m.Description, new { @class = "form-control" })</p>
+
+            <h3>Contact Info</h3>
+
+            @Html.LabelFor(m => m.Email)
+            <p>@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })</p>
+
+            @Html.LabelFor(m => m.Phone)
+            <p>@Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })</p>
+
+            @Html.LabelFor(m => m.Website)
+            <p>@Html.TextBoxFor(m => m.Website, new { @class = "form-control" })</p>
+
+            <div>
+                <button class="btn btn-success btn-lg center-block">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="schedule">
+        <div class="col-md-8">
+            <h2>Manage Schedule</h2>
+        </div>
+        <div class="col-md-8">
+            @Html.Partial("ManageSchedule")
+        </div>
+    </div>
+    <div class="tab-pane" id="menu">
+        <div class="col-md-8">
+            <h2>Manage Menu</h2>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="/Scripts/tab.js"></script>
+    <script type="text/javascript">
+        $('.nav-tabs a').click(function (e) {
+            //e.preventDefault()
+            $(this).tab('show')
+        })
+    </script>
+}

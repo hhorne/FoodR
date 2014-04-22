@@ -2,49 +2,23 @@
     ViewBag.Title = "FoodR";
 }
 
-@section styles {
-    <link href="App/css/bootstrap.min.css" rel="stylesheet">
-    <link href="App/css/styles.css" rel="stylesheet">
-}
-<nav class="navbar navbar-default nav-static-top" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#/">FoodR</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="#/schedule">Schedule</a></li>
-                <li><a href="#/map">Map</a></li>
-                <li><a href="#/login">Login</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
-<div class="container">
-    
-    <div ng-view></div>
-
-</div> <!-- /container -->
-<div class="footer">
-    <div class="container">
-        <p class="text-muted">&copy; FoodR 2014</p>
+<div class="jumbotron">
+    <h1>Welcome to FoodR!</h1>
+    <p>A place to quicky find food trucks and other street food in the Jacksonville area.</p>
+    <div class="welcome-btn-group center-block">
+        <p>
+            @Html.ActionLink("Find a truck near you", "Locate", "Home", new { @class = "btn btn-primary btn-lg btn-block" })
+            @*<a href="#/locate" class="btn btn-primary btn-lg btn-block" role="button">Find a truck near you</a>*@
+        </p>
+        <p>OR</p>
+        <p>
+            @Html.ActionLink("Check out their schedules", "Schedule", "Home", new { @class = "btn btn-primary btn-lg btn-block" })
+        </p>
     </div>
 </div>
 
 @section scripts {
-    <script src="Scripts/jquery-2.1.0.min.js"></script>
-    <script src="Scripts/angular.js"></script>
-    <script src="Scripts/angular-route.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
+
     <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
     <script src="App/foodr.js"></script>
 }
