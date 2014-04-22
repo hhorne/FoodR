@@ -12,7 +12,7 @@ namespace FoodR.Web.Data
 	{
 		public DbSet<FoodTruck> FoodTrucks { get; set; }
 
-        public FoodRContext() : base("DefaultConnection", throwIfV1Schema: false) { }
+        public FoodRContext() : base("FoodR", throwIfV1Schema: false) { }
 
 		static FoodRContext()
 		{
