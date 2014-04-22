@@ -11,6 +11,7 @@ namespace FoodR.Web.Data
 	public class FoodRContext : IdentityDbContext<FoodRUser>
 	{
 		public DbSet<Badge> Badges { get; set; }
+		public DbSet<EarnedBadge> EarnedBadges { get; set; }
 		public DbSet<FoodTruck> FoodTrucks { get; set; }
 		public DbSet<Location> Locations { get; set; }
 		public DbSet<FoodRUser> Users { get; set; }

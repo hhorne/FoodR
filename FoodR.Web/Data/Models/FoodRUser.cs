@@ -8,7 +8,7 @@ namespace FoodR.Web.Data.Models
 {
 	public class FoodRUser : IdentityUser
 	{
-		public virtual ICollection<Badge> Badges { get; set; }
+		public virtual ICollection<EarnedBadge> Badges { get; set; }
 
 		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<FoodRUser> manager)
 		{
