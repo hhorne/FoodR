@@ -11,6 +11,8 @@ namespace FoodR.Web.Data
 	public class FoodRContext : IdentityDbContext<FoodRUser>
 	{
 		public DbSet<FoodTruck> FoodTrucks { get; set; }
+		public DbSet<Location> Locations { get; set; }
+		public DbSet<FoodRUser> Users { get; set; }
 
         public FoodRContext() : base("FoodR", throwIfV1Schema: false) { }
 

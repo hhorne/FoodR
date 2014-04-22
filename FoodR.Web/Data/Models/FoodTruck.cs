@@ -7,7 +7,7 @@ namespace FoodR.Web.Data.Models
 {
 	public class FoodTruck
 	{
-		public int ID { get; set; }
+		public int FoodTruckId { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
 	}
