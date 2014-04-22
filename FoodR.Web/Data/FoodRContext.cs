@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.Composition;
+﻿using FoodR.Web.Data.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Reflection;
-using FoodR.Web.Data.EntityTypeConfiguration;
-using FoodR.Web.Data.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FoodR.Web.Data
 {
