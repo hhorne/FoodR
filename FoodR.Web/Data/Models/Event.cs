@@ -9,13 +9,15 @@ namespace FoodR.Web.Data.Models
 {
 	public class Event
 	{
+		[ForeignKey("FoodTruck")]
 		public int FoodTruckId { get; set; }
-		public virtual FoodTruck Truck { get; set; }
+		public virtual FoodTruck FoodTruck { get; set; }
 
+		[ForeignKey("Location")]
 		public int LocationId { get; set; }
 		public virtual Location Location { get; set; }
 
-		public int EventId { get; set; }
+		public int Id { get; set; }
 
 		public bool Active { get; set; }
 

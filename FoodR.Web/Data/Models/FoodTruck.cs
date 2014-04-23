@@ -8,7 +8,6 @@ namespace FoodR.Web.Data.Models
 {
 	public class FoodTruck
 	{
-		[Key]
 		public int Id { get; set; }
 
 		public string Name { get; set; }
@@ -30,6 +29,8 @@ namespace FoodR.Web.Data.Models
 
 		public DateTime CreatedOn { get; set; }
 		public string CreatedBy { get; set; }
+
+		public virtual ICollection<Event> Events { get; set; }
 
 	}
 }

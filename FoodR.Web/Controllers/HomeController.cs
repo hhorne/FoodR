@@ -1,4 +1,5 @@
-﻿using FoodR.Web.Data.Models;
+﻿using FoodR.Web.Data;
+using FoodR.Web.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,11 @@ namespace FoodR.Web.Controllers
 
         public ActionResult Index()
         {
+			FoodRContext db = new FoodRContext();
+			foreach(FoodTruck ft in db.FoodTrucks)
+			{
+				var name = ft.Name;
+			}
             return View();
         }
 
