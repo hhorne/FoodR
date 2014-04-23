@@ -273,8 +273,6 @@
     <Compile Include="Data\Models\MapModel.cs" />
     <Compile Include="Data\Models\Event.cs" />
     <Compile Include="Data\Models\FoodTruck.cs" />
-    <Compile Include="Data\Models\Schedule.cs" />
-    <Compile Include="Data\Models\ScheduleEntry.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

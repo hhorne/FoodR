@@ -15,7 +15,7 @@ namespace FoodR.Web.Data
 		public DbSet<FoodTruck> FoodTrucks { get; set; }
 		public DbSet<Location> Locations { get; set; }
 		public DbSet<FoodRUser> Users { get; set; }
-		public DbSet<ScheduleEntry> ScheduleEntries { get; set; }
+		public DbSet<Event> Events { get; set; }
 
         public FoodRContext() : base("FoodR", throwIfV1Schema: false) { }
 
