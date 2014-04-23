@@ -1,25 +1,29 @@
-﻿using System.ComponentModel.Composition;
+﻿using FoodR.Web.Data.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Reflection;
-using FoodR.Web.Data.EntityTypeConfiguration;
-using FoodR.Web.Data.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FoodR.Web.Data
 {
 	public class FoodRContext : IdentityDbContext<FoodRUser>
 	{
+		public DbSet<Badge> Badges { get; set; }
+		public DbSet<EarnedBadge> EarnedBadges { get; set; }
 		public DbSet<FoodTruck> FoodTrucks { get; set; }
+		public DbSet<Location> Locations { get; set; }
+		public DbSet<FoodRUser> Users { get; set; }
+		public DbSet<ScheduleEntry> ScheduleEntries { get; set; }
 
-        public FoodRContext() : base("DefaultConnection", throwIfV1Schema: false) {
-        }
+        public FoodRContext() : base("FoodR", throwIfV1Schema: false) { }
 
 		static FoodRContext()
 		{
             // Set the database intializer which is run once during application start
             // This seeds the database with admin user credentials and admin role
-			// Database.SetInitializer<FoodRContext>(new FoodRDbInitializer());
+			Database.SetInitializer(new FoodRDbInitializer());
         }
 
 		public static FoodRContext Create()
@@ -45,6 +49,14 @@ namespace FoodR.Web.Data
 			{
 				configuration.AddConfiguration(modelBuilder.Configurations);
 			}
+		}
+	}
+
+	internal sealed class FoodRDbConfig : DbMigrationsConfiguration<FoodRContext>
+	{
+		public FoodRDbConfig()
+		{
+			AutomaticMigrationsEnabled = true;
 		}
 	}
 }

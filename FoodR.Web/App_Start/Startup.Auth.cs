@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using FoodR.Web.Data;
+﻿using FoodR.Web.Data;
 using FoodR.Web.Data.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.Google;
 using Owin;
+using System;
 
 namespace FoodR.Web
 {
@@ -32,7 +30,7 @@ namespace FoodR.Web
 				{
 					// Enables the application to validate the security stamp when the user logs in.
 					// This is a security feature which is used when you change a password or add an external login to your account.  
-					OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<UserManager<FoodRUser>, FoodRUser>(
+					OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<FoodRUserManager, FoodRUser>(
 						validateInterval: TimeSpan.FromMinutes(30),
 						regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
 				}
@@ -61,7 +59,7 @@ namespace FoodR.Web
 			//   appId: "",
 			//   appSecret: "");
 
-			//app.UseGoogleAuthentication();
+			app.UseGoogleAuthentication();
 		}
 	}
 }

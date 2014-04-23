@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 
-namespace FoodR.Web.Data.EntityTypeConfiguration
+namespace FoodR.Web.Data
 {
 	public class ContextConfiguration
 	{

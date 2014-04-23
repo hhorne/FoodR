@@ -104,7 +104,7 @@ body {
   display: block;
   width: 200px;
   font-size: 14px;
-  font_weight: bold;
+  font-weight: bold;
   text-align: center;
 }
 .schedule-entry .schedule-where:hover {
