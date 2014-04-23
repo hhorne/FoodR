@@ -5,10 +5,11 @@ namespace FoodR.Web.Data.EntityTypeConfiguration
 	{
 		public EventConfig()
 		{
+			HasKey(s => s.Id);
 			Property(s => s.ModifiedComments).
 				HasMaxLength(500);
 
-			HasRequired(s => s.Truck).
+			HasRequired(s => s.FoodTruck).
 				WithMany().
 				HasForeignKey(s => s.FoodTruckId);
 
