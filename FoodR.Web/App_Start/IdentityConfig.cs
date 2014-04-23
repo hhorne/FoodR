@@ -109,6 +109,11 @@ namespace FoodR.Web
 		}
 	}
 
+	public class FoodRUserStore : UserStore<FoodRUser>
+	{
+		public FoodRUserStore() : base(new FoodRContext()) { }
+	}
+
 	public class FoodRRoleManager : RoleManager<IdentityRole>
 	{
 		public FoodRRoleManager(IRoleStore<IdentityRole, string> roleStore) : base(roleStore) { }
@@ -118,5 +123,10 @@ namespace FoodR.Web
 			var manager = new FoodRRoleManager(new RoleStore<IdentityRole>(context.Get<FoodRContext>()));
 			return manager;
 		}
+	}
+
+	public class FoodRRoleStore : RoleStore<IdentityRole, string, IdentityUserRole>
+	{
+		public FoodRRoleStore() : base (new FoodRContext()) { }
 	}
 }
