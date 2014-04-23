@@ -9,6 +9,7 @@ namespace FoodR.Web.App_Start.InjectionModules
 		{
 			Bind<IEmailService>().To<EmailService>();
 			Bind<ISmsService>().To<SmsService>();
+			Bind<IUserService>().To<UserService>();
 		}
 	}
 }

@@ -7,19 +7,9 @@ using System.Web.Mvc;
 
 namespace FoodR.Web.Controllers
 {
-    public class AccountController : Controller
+    public class ProfileController : FoodRController
     {
 		public ActionResult Index()
-		{
-			return View();
-		}
-
-		public ActionResult Login()
-		{
-			return View();
-		}
-
-		public ActionResult Profile()
 		{
 			return View();
 		}

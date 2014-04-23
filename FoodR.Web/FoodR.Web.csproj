@@ -170,6 +170,8 @@
     <Compile Include="Data\EntityTypeConfiguration\EventConfig.cs" />
     <Compile Include="Data\Models\Address.cs" />
     <Compile Include="Data\Models\EarnedBadge.cs" />
+    <Compile Include="Filters\UserAwareAttribute.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Content Include="App\css\styles.css">
       <DependentUpon>styles.less</DependentUpon>
@@ -216,6 +218,9 @@
     </Content>
     <Content Include="Views\Auth\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Auth\ExternalLoginFailure.cshtml" />
+    <Content Include="App\css\schedule.css.map">
+      <DependentUpon>schedule.css</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -248,7 +253,9 @@
     <Content Include="Templates\map.html" />
     <Content Include="Templates\schedule.html" />
     <Content Include="Templates\vendor.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -263,7 +270,7 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\FoodRController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Data\ContextConfiguration.cs" />
     <Compile Include="Data\EntityConfig.cs" />
     <Compile Include="Data\EntityTypeConfiguration\FoodTruckConfig.cs" />

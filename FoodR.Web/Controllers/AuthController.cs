@@ -7,22 +7,21 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using FoodR.Web.Data.Models;
+using FoodR.Web.Services;
 using FoodR.Web.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
 namespace FoodR.Web.Controllers
-{
+{	
 	public class AuthController : FoodRController
 	{
-		private readonly IAuthenticationManager authManager;
-		private readonly FoodRUserManager userManager;
+		private readonly IUserService userService;
 
-		public AuthController(IAuthenticationManager authManager, FoodRUserManager userManager)
+		public AuthController(IUserService userService)
 		{
-			this.authManager = authManager;
-			this.userManager = userManager;
+			this.userService = userService;
 		}
 
 		public ActionResult Login(string returnUrl)
@@ -30,10 +29,17 @@ namespace FoodR.Web.Controllers
 			var viewModel = new LoginViewModel
 			{
 				ReturnUrl = returnUrl,
-				LoginProviders = authManager.GetExternalAuthenticationTypes() 
+				LoginProviders = userService.GetExternalAuthenticationTypes() 
 			};
 
 			return View(viewModel);
+		}
+
+		[HttpPost]
+		public ActionResult Logout()
+		{
+			userService.SignOut();
+			return RedirectToAction("Index", "Home");
 		}
 
 		[HttpPost]
@@ -56,7 +62,7 @@ namespace FoodR.Web.Controllers
 		[AllowAnonymous]
 		public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
 		{
-			var loginInfo = await authManager.GetExternalLoginInfoAsync();
+			var loginInfo = await userService.GetExternalLoginInfoAsync();
 			if (loginInfo == null)
 			{
 				return RedirectToAction("Login");
@@ -84,12 +90,12 @@ namespace FoodR.Web.Controllers
 		[NonAction]
 		public async Task<SignInStatus> ExternalSignIn(ExternalLoginInfo loginInfo, bool isPersistent)
 		{
-			var user = await userManager.FindAsync(loginInfo.Login);
+			var user = await userService.FindAsync(loginInfo.Login);
 			if (user == null)
 			{
 				return SignInStatus.Failure;
 			}
-			if (await userManager.IsLockedOutAsync(user.Id))
+			if (await userService.IsLockedOutAsync(user.Id))
 			{
 				return SignInStatus.LockedOut;
 			}
@@ -99,12 +105,12 @@ namespace FoodR.Web.Controllers
 		[NonAction]
 		private async Task<SignInStatus> SignInOrTwoFactor(FoodRUser user, bool isPersistent)
 		{
-			if (await userManager.GetTwoFactorEnabledAsync(user.Id) &&
-				!await authManager.TwoFactorBrowserRememberedAsync(user.Id))
+			if (await userService.GetTwoFactorEnabledAsync(user.Id) &&
+				!await userService.TwoFactorBrowserRememberedAsync(user.Id))
 			{
 				var identity = new ClaimsIdentity(DefaultAuthenticationTypes.TwoFactorCookie);
 				identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
-				authManager.SignIn(identity);
+				userService.SignIn(identity);
 				return SignInStatus.RequiresTwoFactorAuthentication;
 			}
 			await SignInAsync(user, isPersistent, false);
@@ -114,16 +120,16 @@ namespace FoodR.Web.Controllers
 		public async Task SignInAsync(FoodRUser user, bool isPersistent, bool rememberBrowser)
 		{
 			// Clear any partial cookies from external or two factor partial sign ins
-			authManager.SignOut(DefaultAuthenticationTypes.ExternalCookie, DefaultAuthenticationTypes.TwoFactorCookie);
-			var userIdentity = await user.GenerateUserIdentityAsync(userManager);
+			userService.SignOut(DefaultAuthenticationTypes.ExternalCookie, DefaultAuthenticationTypes.TwoFactorCookie);
+			var userIdentity = await user.GenerateUserIdentityAsync(userService);
 			if (rememberBrowser)
 			{
-				var rememberBrowserIdentity = authManager.CreateTwoFactorRememberBrowserIdentity(user.Id);
-				authManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, userIdentity, rememberBrowserIdentity);
+				var rememberBrowserIdentity = userService.CreateTwoFactorRememberBrowserIdentity(user.Id);
+				userService.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, userIdentity, rememberBrowserIdentity);
 			}
 			else
 			{
-				authManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, userIdentity);
+				userService.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, userIdentity);
 			}
 		}
 
@@ -135,6 +141,7 @@ namespace FoodR.Web.Controllers
 			}
 			return RedirectToAction("Index", "Home");
 		}
+
 		[HttpPost]
 		[AllowAnonymous]
 		[ValidateAntiForgeryToken]
@@ -148,16 +155,16 @@ namespace FoodR.Web.Controllers
 			if (ModelState.IsValid)
 			{
 				// Get the information about the user from the external login provider
-				var info = await authManager.GetExternalLoginInfoAsync();
+				var info = await userService.GetExternalLoginInfoAsync();
 				if (info == null)
 				{
 					return View("ExternalLoginFailure");
 				}
 				var user = new FoodRUser { UserName = model.Email, Email = model.Email };
-				var result = await userManager.CreateAsync(user);
+				var result = await userService.CreateUserAsync(user);
 				if (result.Succeeded)
 				{
-					result = await userManager.AddLoginAsync(user.Id, info.Login);
+					result = await userService.AddLoginAsync(user.Id, info.Login);
 					if (result.Succeeded)
 					{
 						await SignInAsync(user, isPersistent: false, rememberBrowser: false);

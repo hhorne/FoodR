@@ -26,17 +26,32 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        @Html.ActionLink("Schedule", "Schedule", "Home")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Map", "Map", "Home")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Login", "Login", "Account")
-                    </li>
-                </ul>
+				<ul class="nav navbar-nav"
+					<li>
+						@Html.ActionLink("Schedule", "Schedule", "Home")
+					</li>
+					<li>
+						@Html.ActionLink("Map", "Map", "Home")
+					</li>
+					<li>
+						@if (ViewBag.UserName == "Anonymous")
+						{
+							@Html.ActionLink("Login", "Login", "Auth")
+						}
+						else
+						{
+							
+							using (Html.BeginForm("Logout", "Auth", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {
+								@Html.AntiForgeryToken()
+								@ViewBag.UserName
+								<a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+							}
+						}
+					</li>
+				</ul>
+
+
+
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
