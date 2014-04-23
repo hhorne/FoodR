@@ -168,10 +168,12 @@
     <Compile Include="Data\EntityTypeConfiguration\EarnedBadgeConfig.cs" />
     <Compile Include="Data\EntityTypeConfiguration\LocationConfig.cs" />
     <Compile Include="Data\EntityTypeConfiguration\EventConfig.cs" />
+    <Compile Include="Data\EntityTypeConfiguration\MenuConfig.cs" />
     <Compile Include="Data\Models\Address.cs" />
     <Compile Include="Data\Models\EarnedBadge.cs" />
     <Compile Include="Filters\UserAwareAttribute.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="Data\Models\Menu.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Content Include="App\css\styles.css">
       <DependentUpon>styles.less</DependentUpon>
@@ -221,6 +223,7 @@
     <Content Include="App\css\schedule.css.map">
       <DependentUpon>schedule.css</DependentUpon>
     </Content>
+    <Content Include="Views\Home\ScheduleAng.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -260,7 +263,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />

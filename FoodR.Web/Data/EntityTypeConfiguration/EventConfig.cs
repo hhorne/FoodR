@@ -6,7 +6,6 @@ namespace FoodR.Web.Data.EntityTypeConfiguration
 	{
 		public EventConfig()
 		{
-			HasKey(s => s.Id);
 			Property(s => s.ModifiedComments).
 				HasMaxLength(500);
 

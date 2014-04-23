@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<FoodTruck>
 @{
     ViewBag.Title = "FoodR - Schedule";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,65 +8,72 @@
     <link href="/App/css/schedule.css" rel="stylesheet">
 }
 
-<div ng-controller="ScheduleCtrl">
+<div>
     <ul class="pager">
         <li class="previous"><a href="#">&larr; Older</a></li>
         <li>Today</li>
         <li class="next"><a href="#">Newer &rarr;</a></li>
     </ul>
-    <div class="week" ng-repeat="vendor in vendors">
-        <div class="day">
-            <div class="header">
-                <div class="verbiage pull-left">
-                    <a href="#" class="name">{{vendor.name}}</a>
-                    <ul class="rating">
-                        <li>
-                            <a href="#"><span ng-class="{'glyphicon-star': vendor.rating >= 1, 'glyphicon-star-empty': vendor.rating < 1}" class="glyphicon"></span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span ng-class="{'glyphicon-star': vendor.rating >= 2, 'glyphicon-star-empty': vendor.rating < 2}" class="glyphicon"></span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span ng-class="{'glyphicon-star': vendor.rating >= 3, 'glyphicon-star-empty': vendor.rating < 3}" class="glyphicon"></span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span ng-class="{'glyphicon-star': vendor.rating >= 4, 'glyphicon-star-empty': vendor.rating < 4}" class="glyphicon"></span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span ng-class="{'glyphicon-star': vendor.rating >= 5, 'glyphicon-star-empty': vendor.rating < 5}" class="glyphicon"></span></a>
-                        </li>
-                    </ul>
-                    <p>{{vendor.description}}</p>
-                </div>
-                <div class="controls pull-right">
-                    <button type="button" class="btn btn-info btn-sm">Menu</button>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <ul class="events">
-                <li class="entry" ng-repeat="event in vendor.events">
-                    <div class="timespan">
-                        <div> {{event.from}}</div>
-                        <div> {{event.to}}</div>
+    @foreach (FoodTruck t in Model)
+    {
+        <div class="week">
+            <div class="day">
+                <div class="header">
+                    <div class="verbiage pull-left">
+                        <a href="#" class="name">@t.Name</a>
+                        <ul class="rating">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                <li>
+                                    <a href="#">
+                                        @if (t.Rating < i)
+                                        {
+                                            <span class="glyphicon glyphicon-star-empty"></span>
+                                        }
+                                        else
+                                        {
+                                            <span class="glyphicon glyphicon-star"></span>
+                                        }
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                        <p>@t.Description</p>
                     </div>
-                    <div class="location">
-                        <h5>{{event.location}}</h5>
-                        <p>{{event.address1}}</p>
-                    </div>
-                    <div class="entry-controls">
-                        <button class="btn btn-success btn-sm">I'm Going!</button>
-                        <button class="btn btn-info btn-sm">On Map</button>
-                        <button class="btn btn-danger btn-sm">Report Problem</button>
+                    <div class="controls pull-right">
+                        @if (t.Menus.Count > 0)
+                        {
+                            <button type="button" class="btn btn-info btn-sm">Menu</button>
+                        }
                     </div>
                     <div class="clearfix"></div>
-                </li>
-            </ul>
+                </div>
+                <ul class="events">
+                    @foreach (FoodR.Web.Data.Models.Event e in t.Events)
+                    {
+                        <li class="entry">
+                            <div class="timespan">
+                                <div>@e.From.ToString("h tt")</div>
+                                <div>@e.To.ToString("h tt")</div>
+                            </div>
+                            <div class="location">
+                                <h5>@e.Location.Name</h5>
+                                <p>@e.Location.Address.StreetAddress</p>
+                            </div>
+                            <div class="entry-controls">
+                                <button class="btn btn-success btn-sm">I'm Going!</button>
+                                <button class="btn btn-info btn-sm">On Map</button>
+                                <button class="btn btn-danger btn-sm">Report Problem</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                    }
+                </ul>
+            </div>
         </div>
-    </div>
+    }
 </div>
 @section scripts {
-
-    <script src="/App/schedule.js"></script>
     <script type="text/javascript">
         $('.rating a').mouseover(function (e) {
             $(this).parent().parent().children('span').addClass('user-rating-selected user-rating');

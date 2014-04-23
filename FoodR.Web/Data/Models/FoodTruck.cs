@@ -32,5 +32,6 @@ namespace FoodR.Web.Data.Models
 
 		public virtual ICollection<Event> Events { get; set; }
 
+		public virtual ICollection<Menu> Menus { get; set; }
 	}
 }

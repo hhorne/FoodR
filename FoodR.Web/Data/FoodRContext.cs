@@ -7,6 +7,8 @@ using System.ComponentModel.Composition.Hosting;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Reflection;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FoodR.Web.Data
 {
@@ -17,6 +19,7 @@ namespace FoodR.Web.Data
 		public DbSet<FoodTruck> FoodTrucks { get; set; }
 		public DbSet<Location> Locations { get; set; }
 		public DbSet<Event> Events { get; set; }
+		public DbSet<Menu> Menus { get; set; }
 
 		public FoodRContext() : base("FoodR", throwIfV1Schema: false)
 		{
@@ -72,24 +75,114 @@ namespace FoodR.Web.Data
 
 		private void InitializeTrucks(FoodRContext context)
 		{
-			context.FoodTrucks.AddOrUpdate(t => t.Name,
-				new[]
+			
+			context.FoodTrucks.AddOrUpdate(t => t.Name, new[]
 				{
 					new FoodTruck
 					{
 						Name = "Happy Grilled Cheese",
 						Description = "Specialty Grilled Cheese Sandwiches",
 						CreatedOn = DateTime.Now,
-						LastModifiedOn = DateTime.Now
+						LastModifiedOn = DateTime.Now,
+						Menus = new [] {
+							new Menu
+							{
+								Name = "Grilled Cheese Menu"
+							}
+						},
+						Events = new [] { 
+							new Event
+							{
+								From = new DateTime(2014, 4, 23, 11, 0, 0),
+								To = new DateTime(2014, 4, 23, 14, 0, 0),
+								Location = new Location
+								{
+									Name = "Av Med",
+									Address = new Address() {
+										StreetAddress = "123 Main St"
+									}
+								},
+								LastModifiedOn = DateTime.Now
+							}
+						}
 					},
 					new FoodTruck
 					{
 						Name = "On The Fly",
 						Description = "Sandwiches & Stuff. Available for Catering and Private Parties.",
 						CreatedOn = DateTime.Now,
-						LastModifiedOn = DateTime.Now
+						LastModifiedOn = DateTime.Now,
+						Events = new [] { 
+							new Event
+							{
+								From = new DateTime(2014, 4, 23, 11, 0, 0),
+								To = new DateTime(2014, 4, 23, 14, 0, 0),
+								Location = new Location
+								{
+									Name = "Courthouse",
+									Address = new Address() {
+										StreetAddress = "123 Main St"
+									}
+								},
+								LastModifiedOn = DateTime.Now
+							},
+							new Event
+							{
+								From = new DateTime(2014, 4, 23, 18, 0, 0),
+								To = new DateTime(2014, 4, 23, 22, 0, 0),
+								Location = new Location
+								{
+									Name = "Arrd Wolf",
+									Address = new Address() {
+										StreetAddress = "123 Wolf St"
+									}
+								},
+								LastModifiedOn = DateTime.Now
+							}
+						}
+					},
+					new FoodTruck
+					{
+						Name = "Taste Buds Express",
+						Description = "TACOS!",
+						CreatedOn = DateTime.Now,
+						LastModifiedOn = DateTime.Now,
+						Events = new [] { 
+							new Event
+							{
+								From = new DateTime(2014, 4, 23, 11, 0, 0),
+								To = new DateTime(2014, 4, 23, 14, 0, 0),
+								Location = new Location
+								{
+									Name = "Forsyth an Main",
+									Address = new Address() {
+										StreetAddress = "123 Main St"
+									}
+								}, 
+								LastModifiedOn = DateTime.Now
+							}
+						}
 					}
 				});
+
+			//context.FoodTrucks.AddOrUpdate(t => t.Name,
+			//	new[]
+			//	{
+			//		new FoodTruck
+			//		{
+			//			Name = "Happy Grilled Cheese",
+			//			Description = "Specialty Grilled Cheese Sandwiches",
+			//			CreatedOn = DateTime.Now,
+			//			LastModifiedOn = DateTime.Now
+			//		},
+			//		new FoodTruck
+			//		{
+			//			Name = "On The Fly",
+			//			Description = "Sandwiches & Stuff. Available for Catering and Private Parties.",
+			//			CreatedOn = DateTime.Now,
+			//			LastModifiedOn = DateTime.Now
+			//		}
+			//	});
 		}
 
 		public static void InitializeIdentityForEF(FoodRContext db)

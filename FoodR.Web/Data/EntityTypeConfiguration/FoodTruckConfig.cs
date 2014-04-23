@@ -7,7 +7,6 @@ namespace FoodR.Web.Data.EntityTypeConfiguration
 	{
 		public FoodTruckConfig()
 		{
-			HasKey(t => t.Id);
 			Property(t => t.Name).HasMaxLength(50);
 			Property(t => t.Description).HasMaxLength(500);
 			Property(t => t.Phone).HasMaxLength(20);

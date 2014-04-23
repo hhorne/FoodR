@@ -16,10 +16,12 @@ namespace FoodR.Web.Controllers
 
         public ActionResult Index()
         {
-			FoodRContext db = new FoodRContext();
-			foreach(FoodTruck ft in db.FoodTrucks)
+			using (FoodRContext db = new FoodRContext())
 			{
-				var name = ft.Name;
+				foreach (FoodTruck ft in db.FoodTrucks)
+				{
+					var name = ft.Name;
+				}
 			}
             return View();
         }
@@ -36,10 +38,18 @@ namespace FoodR.Web.Controllers
 			MapModel m = new MapModel();
 			m.Vendors = vendors.ToArray();
 
+			
+
 			return View(m);
 		}
 
 		public ActionResult Schedule()
+		{
+			FoodRContext db = new FoodRContext();
+			return View(db.FoodTrucks.ToArray());
+		}
+
+		public ActionResult ScheduleAng()
 		{
 
 			return View();
