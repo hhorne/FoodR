@@ -1,4 +1,5 @@
 ﻿using FoodR.Web.Data.Models;
+
 namespace FoodR.Web.Data.EntityTypeConfiguration
 {
 	public class EventConfig : EntityConfig<Event>

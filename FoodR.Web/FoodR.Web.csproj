@@ -214,6 +214,8 @@
     <Content Include="App\css\styles.css.map">
       <DependentUpon>styles.css</DependentUpon>
     </Content>
+    <Content Include="Views\Auth\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Auth\ExternalLoginFailure.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -266,7 +268,6 @@
     <Compile Include="Data\EntityConfig.cs" />
     <Compile Include="Data\EntityTypeConfiguration\FoodTruckConfig.cs" />
     <Compile Include="Data\FoodRContext.cs" />
-    <Compile Include="Data\FoodRDbInitializer.cs" />
     <Compile Include="Data\Models\Badge.cs" />
     <Compile Include="Data\Models\FoodRUser.cs" />
     <Compile Include="Data\Models\Location.cs" />
@@ -295,16 +296,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>32087</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:9064/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
