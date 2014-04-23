@@ -1,0 +1,109 @@
+.controls {
+  margin: 7px;
+}
+.week {
+  color: #333333;
+  cursor: default;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  padding: 0px;
+  margin-bottom: 10px;
+}
+.day {
+  border-bottom: 1px solid #dddddd;
+}
+.day:first-child {
+  border: 0;
+}
+.day .header {
+  font-weight: bold;
+  display: block;
+  padding: 2px;
+  margin: 0px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #dddddd;
+  min-height: 38px;
+}
+.day .header p {
+  padding-left: 10px;
+}
+.day .header .name {
+  margin: 5px;
+}
+.day .header .rating {
+  display: inline;
+}
+.day .header .rating .user-rating {
+  color: #f0ad4e;
+}
+.day .header .rating .user-rating-selected:before {
+  content: "\e006";
+}
+.day .header .rating li {
+  display: inline;
+}
+.day .header .rating li a {
+  color: #999999;
+}
+.day .header .rating li a:hover {
+  color: #f0ad4e;
+}
+.day .header .verbiage {
+  max-width: 600px;
+}
+.day ul {
+  padding: 0;
+  margin: 0;
+}
+.day li {
+  list-style: none;
+  display: block;
+}
+.day p {
+  color: #666666;
+  font-size: 9px;
+  padding: 2px 0 0 0;
+  margin: 0;
+}
+.day .timespan {
+  font-size: 10px;
+  background-color: #f5f5f5;
+  border-right: 1px solid #dddddd;
+  float: left;
+  margin: 0;
+  padding: 3px;
+  padding-right: 12px;
+  width: 70px;
+  height: 38px;
+}
+.day .timespan div {
+  text-align: right;
+}
+.day .location {
+  padding: 2px 2px 2px 4px;
+  float: left;
+}
+.day .location h5 {
+  color: #333333;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+}
+.day .entry-controls {
+  float: right;
+  padding: 2px;
+}
+.day .entry-controls button {
+  height: 34px;
+  opacity: 0.2;
+}
+.day .entry-controls button:hover {
+  opacity: 1;
+}
+.day .entry {
+  border-bottom: 1px solid #dddddd;
+}
+.day .entry:last-child {
+  border: 0;
+}

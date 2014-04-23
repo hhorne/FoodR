@@ -1,14 +1,15 @@
 ﻿using FoodR.Web.Data.Models;
+
 namespace FoodR.Web.Data.EntityTypeConfiguration
 {
-	public class ScheduleEntryConfig : EntityConfig<ScheduleEntry>
+	public class EventConfig : EntityConfig<Event>
 	{
-		public ScheduleEntryConfig()
+		public EventConfig()
 		{
-			Property(s => s.Comments).
+			Property(s => s.ModifiedComments).
 				HasMaxLength(500);
 
-			HasRequired(s => s.FoodTruck).
+			HasRequired(s => s.Truck).
 				WithMany().
 				HasForeignKey(s => s.FoodTruckId);
 

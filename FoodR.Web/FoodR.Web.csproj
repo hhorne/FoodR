@@ -155,12 +155,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\app.js" />
+    <Content Include="App\css\schedule.css">
+      <DependentUpon>schedule.less</DependentUpon>
+    </Content>
+    <Content Include="App\css\schedule.min.css">
+      <DependentUpon>schedule.css</DependentUpon>
+    </Content>
     <Compile Include="App_Start\InjectionModules\ServiceModule.cs" />
     <Compile Include="Data\EntityTypeConfiguration\AddressConfig.cs" />
     <Compile Include="Data\EntityTypeConfiguration\BadgeConfig.cs" />
     <Compile Include="Data\EntityTypeConfiguration\EarnedBadgeConfig.cs" />
     <Compile Include="Data\EntityTypeConfiguration\LocationConfig.cs" />
-    <Compile Include="Data\EntityTypeConfiguration\ScheduleEntryConfig.cs" />
+    <Compile Include="Data\EntityTypeConfiguration\EventConfig.cs" />
     <Compile Include="Data\Models\Address.cs" />
     <Compile Include="Data\Models\EarnedBadge.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -177,11 +184,12 @@
       <DependentUpon>styles2.css</DependentUpon>
     </Content>
     <Content Include="App\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="App\foodr.js" />
+    <Content Include="App\map.js" />
     <Content Include="App\css\bootstrap-theme.css" />
     <Content Include="App\css\bootstrap-theme.min.css" />
     <Content Include="App\css\bootstrap.css" />
     <Content Include="App\css\bootstrap.min.css" />
+    <Content Include="App\schedule.js" />
     <Content Include="packages.config" />
     <Content Include="App\css\bootstrap-theme.css.map" />
     <Content Include="App\css\bootstrap.css.map" />
@@ -191,6 +199,17 @@
     <Content Include="App\css\styles.less" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="Scripts\tab.js" />
+    <Content Include="Views\Home\Map.cshtml" />
+    <Content Include="Views\Home\Schedule.cshtml" />
+    <Content Include="Views\Home\Truck.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Home\Locate.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Account\Badges.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\ManageSchedule.cshtml" />
+    <Content Include="App\css\schedule.less" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="App\css\styles.css.map">
       <DependentUpon>styles.css</DependentUpon>
@@ -244,15 +263,17 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\FoodRController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Data\ContextConfiguration.cs" />
     <Compile Include="Data\EntityConfig.cs" />
     <Compile Include="Data\EntityTypeConfiguration\FoodTruckConfig.cs" />
     <Compile Include="Data\FoodRContext.cs" />
     <Compile Include="Data\Models\Badge.cs" />
     <Compile Include="Data\Models\FoodRUser.cs" />
-    <Compile Include="Data\Models\FoodTruck.cs" />
     <Compile Include="Data\Models\Location.cs" />
-    <Compile Include="Data\Models\ScheduleEntry.cs" />
+    <Compile Include="Data\Models\MapModel.cs" />
+    <Compile Include="Data\Models\Event.cs" />
+    <Compile Include="Data\Models\FoodTruck.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

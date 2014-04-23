@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,10 +8,13 @@ namespace FoodR.Web.Data.Models
 {
 	public class FoodTruck
 	{
-		public int FoodTruckId { get; set; }
+		[Key]
+		public int Id { get; set; }
+
 		public string Name { get; set; }
 		public string Description { get; set; }
 		public string Comments { get; set; }
+		public int Rating { get; set; }
 
 		//contact info
 		public string Phone { get; set; }
@@ -22,9 +26,10 @@ namespace FoodR.Web.Data.Models
 		public string Twitter { get; set; }
 
 		public DateTime LastModifiedOn { get; set; }
-		public virtual FoodRUser LastModifiedBy { get; set; }
+		public string LastModifiedBy { get; set; }
 
 		public DateTime CreatedOn { get; set; }
-		public virtual FoodRUser CreatedBy { get; set; }
+		public string CreatedBy { get; set; }
+
 	}
 }
