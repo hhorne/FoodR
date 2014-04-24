@@ -208,7 +208,6 @@
     <Content Include="Views\Home\Map.cshtml" />
     <Content Include="Views\Home\Schedule.cshtml" />
     <Content Include="Views\Home\Truck.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\Locate.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Views\Account\Badges.cshtml" />
