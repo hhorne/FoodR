@@ -1,7 +1,7 @@
 ﻿@using Microsoft.Owin.Security
 @model LoginViewModel
 @{
-    ViewBag.Title = "Login";
+	ViewBag.Title = "FoodR - Login";
 }
 
 <h2>Login</h2>
@@ -15,5 +15,16 @@
 				<button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
 			}
 		</p>
-</div>
+	</div>
+}
+
+@using (Html.BeginForm("Login", "Auth", new { }, FormMethod.Post, new { @class = "form-signin" }))
+{
+	<h2 class="form-signin-heading">Please sign in</h2>
+	<input type="email" class="form-control" placeholder="Email address" required autofocus>
+	<input type="password" class="form-control" placeholder="Password" required>
+	<label class="checkbox">
+		<input type="checkbox" value="remember-me"> Remember me
+	</label>
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 }

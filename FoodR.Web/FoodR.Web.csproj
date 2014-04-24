@@ -172,9 +172,10 @@
     <Compile Include="Data\EntityTypeConfiguration\MenuConfig.cs" />
     <Compile Include="Data\Models\Address.cs" />
     <Compile Include="Data\Models\EarnedBadge.cs" />
-    <Compile Include="Filters\UserAwareAttribute.cs" />
+    <Compile Include="Controllers\Filters\UserAwareAttribute.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Data\Models\Menu.cs" />
+    <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Content Include="App\css\styles.css">
       <DependentUpon>styles.less</DependentUpon>

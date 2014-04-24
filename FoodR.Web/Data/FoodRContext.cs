@@ -1,14 +1,12 @@
-﻿using System;
-using FoodR.Web.Data.Models;
+﻿using FoodR.Web.Data.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Reflection;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace FoodR.Web.Data
 {
@@ -180,25 +178,6 @@ namespace FoodR.Web.Data
 						}
 					}
 				});
-
-			//context.FoodTrucks.AddOrUpdate(t => t.Name,
-			//	new[]
-			//	{
-			//		new FoodTruck
-			//		{
-			//			Name = "Happy Grilled Cheese",
-			//			Description = "Specialty Grilled Cheese Sandwiches",
-			//			CreatedOn = DateTime.Now,
-			//			LastModifiedOn = DateTime.Now
-			//		},
-			//		new FoodTruck
-			//		{
-			//			Name = "On The Fly",
-			//			Description = "Sandwiches & Stuff. Available for Catering and Private Parties.",
-			//			CreatedOn = DateTime.Now,
-			//			LastModifiedOn = DateTime.Now
-			//		}
-			//	});
 		}
 
 		public static void InitializeIdentityForEF(FoodRContext db)

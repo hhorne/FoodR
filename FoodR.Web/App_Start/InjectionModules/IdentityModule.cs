@@ -1,9 +1,7 @@
 ﻿using System.Web;
-using FoodR.Web.Data;
 using FoodR.Web.Data.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Ninject.Modules;
 

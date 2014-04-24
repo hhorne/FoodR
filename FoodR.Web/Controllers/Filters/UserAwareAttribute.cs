@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 
-namespace FoodR.Web.Filters
+namespace FoodR.Web.Controllers.Filters
 {
 	public class UserAwareAttribute : ActionFilterAttribute
 	{

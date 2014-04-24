@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FoodR.Web.Controllers.Filters;
+using Microsoft.Owin.Security;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
-using FoodR.Web.Filters;
-using Microsoft.Owin.Security;
 
 namespace FoodR.Web.Controllers
 {
@@ -17,6 +13,16 @@ namespace FoodR.Web.Controllers
 
 		public FoodRController()
 		{
+		}
+
+		protected ActionResult RedirectToLocal(string returnUrl)
+		{
+			if (Url.IsLocalUrl(returnUrl))
+			{
+				return Redirect(returnUrl);
+			}
+
+			return RedirectToAction("Index", "Home");
 		}
 
 		internal class ChallengeResult : HttpUnauthorizedResult
