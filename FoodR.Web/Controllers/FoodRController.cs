@@ -1,4 +1,4 @@
-﻿using FoodR.Web.Filters;
+﻿using FoodR.Web.Controllers.Filters;
 using Microsoft.Owin.Security;
 using System.Web;
 using System.Web.Mvc;
