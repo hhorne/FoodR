@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FoodR.Web.Filters;
+using Microsoft.Owin.Security;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
-using FoodR.Web.Filters;
-using Microsoft.Owin.Security;
 
 namespace FoodR.Web.Controllers
 {

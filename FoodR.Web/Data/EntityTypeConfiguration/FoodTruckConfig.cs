@@ -1,5 +1,4 @@
-﻿using System.Data.Entity.ModelConfiguration;
-using FoodR.Web.Data.Models;
+﻿using FoodR.Web.Data.Models;
 
 namespace FoodR.Web.Data.EntityTypeConfiguration
 {
