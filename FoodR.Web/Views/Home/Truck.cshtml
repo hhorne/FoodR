@@ -1,75 +1,50 @@
-﻿@model FoodR.Web.Data.Models.FoodTruck
+﻿@model FoodR.Web.ViewModels.TruckViewModel
 @{
-    ViewBag.Title = "Vendor";
+    ViewBag.Title = "FoodR - " + Model.Truck.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>@Model.Name</h3>
+@section styles {
+    <link href="/App/css/schedule.css" rel="stylesheet">
+}
 
-@Html.LabelFor(m => m.Id)
-<p>@Model.Id</p>
+<h3>@Model.Truck.Name</h3>
 
-@Html.LabelFor(m => m.Comments)
-<p>@Model.Comments</p>
+<p>@Model.Truck.Description</p>
 
-@Html.LabelFor(m => m.Rating)
-<p>@Model.Rating / 5</p>
+@Html.LabelFor(m => m.Truck.Rating)
+<p>@Model.Truck.Rating / 5</p>
 
 <h3>Contact Info</h3>
 
-@if (!string.IsNullOrEmpty(Model.Email))
+@if (!string.IsNullOrEmpty(Model.Truck.Email))
 {
-    @Html.LabelFor(m => m.Email)
-    <p>@Model.Email</p>
+    @Html.LabelFor(m => m.Truck.Email)
+    <p>@Model.Truck.Email</p>
 }
 
-@if (!string.IsNullOrEmpty(Model.Email2))
+@if (!string.IsNullOrEmpty(Model.Truck.Email2))
 {
-    @Html.LabelFor(m => m.Email2)
-    <p>@Model.Email2</p>
+    @Html.LabelFor(m => m.Truck.Email2)
+    <p>@Model.Truck.Email2</p>
 }
 
-@if (!string.IsNullOrEmpty(Model.Phone))
+@if (!string.IsNullOrEmpty(Model.Truck.Phone))
 {
-    @Html.LabelFor(m => m.Phone)
-    <p>@Model.Phone</p>
+    @Html.LabelFor(m => m.Truck.Phone)
+    <p>@Model.Truck.Phone</p>
 }
 
-@if (!string.IsNullOrEmpty(Model.Phone2))
+@if (!string.IsNullOrEmpty(Model.Truck.Phone2))
 {
-    @Html.LabelFor(m => m.Phone2)
-    <p>@Model.Phone2</p>
+    @Html.LabelFor(m => m.Truck.Phone2)
+    <p>@Model.Truck.Phone2</p>
 }
 
-@if (!string.IsNullOrEmpty(Model.Website))
+@if (!string.IsNullOrEmpty(Model.Truck.Website))
 {
-    @Html.LabelFor(m => m.Website)
-    <p><a href="@Model.Website">Website</a></p>
+    @Html.LabelFor(m => m.Truck.Website)
+    <p><a href="@Model.Truck.Website">Website</a></p>
 }
 <h3>Schedule</h3>
-<div class="panel panel-default">
-    <div class="panel-body">
-        <table class="table table-bordered">
-            <tr>
-                <th>10 AM</th>
-                <th>11 AM</th>
-                <th>12 AM</th>
-                <th>1 PM</th>
-                <th>2 PM</th>
-                <th>3 PM</th>
-                <th>4 PM</th>
-                <th>5 PM</th>
-                <th>6 PM</th>
-                <th>7 PM</th>
-                <th>8 PM</th>
-                <th>9 PM</th>
-                <th>10 PM</th>
-            </tr>
-            <tr>
-                <td colspan="{{timeBlock.colspan}}" ng-repeat="timeBlock in timeBlocks" class="{{timeBlock.type}}">
-                    {{timeBlock.where}}
-                </td>
-            </tr>
-        </table>
-    </div>
-</div>
+@Html.Partial("ManageSchedule", Model)

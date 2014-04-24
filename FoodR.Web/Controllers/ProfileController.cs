@@ -1,4 +1,6 @@
-﻿using FoodR.Web.Data.Models;
+﻿using FoodR.Web.Data;
+using FoodR.Web.Data.Models;
+using FoodR.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +21,50 @@ namespace FoodR.Web.Controllers
 			return View();
 		}
 
-		public ActionResult Manage()
+		public ActionResult Manage(int id = 0)
 		{
-			FoodTruck m = new FoodTruck();
-			m.Id = 1;
-			m.Name = "Happy Grilled Cheese";
+			if (id == 0) //dont wanna catch the page in an invalid state
+				return RedirectToAction("Index", "Profile");
 
+			TruckViewModel m = new TruckViewModel();
+			using (FoodRContext db = new FoodRContext())
+			{
+				//eagerly load the events and locations
+				m.Truck = db.FoodTrucks
+					.Include("Events.Location")
+					.FirstOrDefault(t => t.Id == id);
+
+				if (m.Truck == null) //non existent truck id
+					return RedirectToAction("Index", "Profile");
+
+				m.EventsInDays = m.Truck.Events.GroupBy(e => e.From.Date);
+			}
+
+			m.EditMode = true;
+
+			
 			return View(m);
+		}
+
+		[HttpPost]
+		public ActionResult Manage(TruckViewModel model, int id)
+		{
+			using(FoodRContext db = new FoodRContext())
+			{
+				FoodTruck truck = db.FoodTrucks
+					.FirstOrDefault(t => t.Id == id);
+
+				if(truck == null)
+					return View(model);
+
+				truck.Name = model.Truck.Name;
+				truck.Description = model.Truck.Description;
+				truck.Website = model.Truck.Website;
+
+				db.SaveChanges();
+			}
+			
+			return RedirectToAction("Manage", "Profile", new {id = id});
 		}
 	}
 }

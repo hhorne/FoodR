@@ -1,9 +1,8 @@
 ﻿using FoodR.Web.Data;
 using FoodR.Web.Data.Models;
-using System;
+using FoodR.Web.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace FoodR.Web.Controllers
@@ -60,15 +59,27 @@ namespace FoodR.Web.Controllers
 			return View();
 		}
 
-		public ActionResult Truck()
+		public ActionResult Truck(int id = 0)
 		{
-			FoodTruck m = new FoodTruck();
-			m.Id = 1;
-			m.Name = "Happy Grilled Cheese";
-			m.Comments = "Some Comments from the truck";
-			m.Rating = 2;
-			m.Phone = "(904) 555-5556";
-			m.Website = "http://www.google.com";
+			if(id == 0) //dont wanna catch the page in an invalid state
+				return RedirectToAction("Index", "Home");
+
+			TruckViewModel m = new TruckViewModel();
+			using (FoodRContext db = new FoodRContext())
+			{
+				//eagerly load the events and locations
+				m.Truck = db.FoodTrucks
+					.Include("Events.Location")
+					.FirstOrDefault(t => t.Id == id);
+
+				if (m.Truck == null) //non existent truck id
+					return RedirectToAction("Index", "Home");
+
+				m.EventsInDays = m.Truck.Events.GroupBy(e => e.From.Date);
+			}
+
+			m.EditMode = false;
+			
 			return View(m);
 		}
 	}

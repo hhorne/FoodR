@@ -82,12 +82,26 @@ namespace FoodR.Web.Data
 					{
 						Name = "Happy Grilled Cheese",
 						Description = "Specialty Grilled Cheese Sandwiches",
+						Rating = 3,
 						CreatedOn = DateTime.Now,
 						LastModifiedOn = DateTime.Now,
 						Menus = new [] {
 							new Menu
 							{
-								Name = "Grilled Cheese Menu"
+								Name = "Grilled Cheese Menu",
+								MenuItems = new []
+								{
+									new MenuItem() {
+										Name = "Grilled Cheese Sammich",
+										Description = "Its the classic grilled cheese sandwich we all love.",
+										Price = 6.99
+									},
+									new MenuItem() {
+										Name = "Mac and Cheese Sammich",
+										Description = "Its a grilled cheese sandwich with Macaroni n Cheese added to it!",
+										Price = 7.99
+									}
+								}
 							}
 						},
 						Events = new [] { 
@@ -110,6 +124,7 @@ namespace FoodR.Web.Data
 					{
 						Name = "On The Fly",
 						Description = "Sandwiches & Stuff. Available for Catering and Private Parties.",
+						Rating = 5,
 						CreatedOn = DateTime.Now,
 						LastModifiedOn = DateTime.Now,
 						Events = new [] { 
@@ -145,6 +160,7 @@ namespace FoodR.Web.Data
 					{
 						Name = "Taste Buds Express",
 						Description = "TACOS!",
+						Rating = 2,
 						CreatedOn = DateTime.Now,
 						LastModifiedOn = DateTime.Now,
 						Events = new [] { 

@@ -1,6 +1,6 @@
-﻿@model FoodR.Web.Data.Models.FoodTruck
+﻿@model FoodR.Web.ViewModels.TruckViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "FoodR - Manage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -21,29 +21,32 @@
             <h2>Manage Truck</h2>
         </div>
         <div class="col-md-8">
-            @Html.LabelFor(m => m.Id)
-            <p>@Model.Id</p>
+            @using (Html.BeginForm("Manage", "Profile", FormMethod.Post, new { id = Model.Truck.Id }))
+            {
+            @Html.LabelFor(m => m.Truck.Id)
+            <p>@Html.DisplayFor(m => m.Truck.Id)</p>
 
-            @Html.LabelFor(m => m.Name)
-            <p>@Html.TextBoxFor(m => m.Name, new { @class = "form-control" })</p>
+            @Html.LabelFor(m => m.Truck.Name)
+            <p>@Html.TextBoxFor(m => m.Truck.Name, new { @class = "form-control" })</p>
 
-            @Html.LabelFor(m => m.Description)
-            <p>@Html.TextAreaFor(m => m.Description, new { @class = "form-control" })</p>
+            @Html.LabelFor(m => m.Truck.Description)
+            <p>@Html.TextAreaFor(m => m.Truck.Description, new { @class = "form-control" })</p>
 
             <h3>Contact Info</h3>
 
-            @Html.LabelFor(m => m.Email)
-            <p>@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })</p>
+            @Html.LabelFor(m => m.Truck.Email)
+            <p>@Html.TextBoxFor(m => m.Truck.Email, new { @class = "form-control" })</p>
 
-            @Html.LabelFor(m => m.Phone)
-            <p>@Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })</p>
+            @Html.LabelFor(m => m.Truck.Phone)
+            <p>@Html.TextBoxFor(m => m.Truck.Phone, new { @class = "form-control" })</p>
 
-            @Html.LabelFor(m => m.Website)
-            <p>@Html.TextBoxFor(m => m.Website, new { @class = "form-control" })</p>
+            @Html.LabelFor(m => m.Truck.Website)
+            <p>@Html.TextBoxFor(m => m.Truck.Website, new { @class = "form-control" })</p>
 
             <div>
-                <button class="btn btn-success btn-lg center-block">Save</button>
+                <button type="submit" class="btn btn-success btn-lg center-block">Save</button>
             </div>
+            }
         </div>
     </div>
     <div class="tab-pane" id="schedule">
@@ -51,7 +54,7 @@
             <h2>Manage Schedule</h2>
         </div>
         <div class="col-md-8">
-            @Html.Partial("ManageSchedule")
+            @Html.Partial("ManageSchedule", Model)
         </div>
     </div>
     <div class="tab-pane" id="menu">

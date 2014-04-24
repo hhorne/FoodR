@@ -155,6 +155,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewModels\TruckViewModel.cs" />
     <Content Include="App\app.js" />
     <Content Include="App\css\schedule.css">
       <DependentUpon>schedule.less</DependentUpon>
@@ -207,12 +208,12 @@
     <Content Include="Views\Home\Map.cshtml" />
     <Content Include="Views\Home\Schedule.cshtml" />
     <Content Include="Views\Home\Truck.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Profile\Login.cshtml" />
     <Content Include="Views\Home\Locate.cshtml" />
-    <Content Include="Views\Account\Profile.cshtml" />
-    <Content Include="Views\Account\Badges.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\ManageSchedule.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\Badges.cshtml" />
+    <Content Include="Views\Profile\Manage.cshtml" />
+    <Content Include="Views\Shared\ManageSchedule.cshtml" />
     <Content Include="App\css\schedule.less" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="App\css\styles.css.map">
@@ -283,7 +284,7 @@
     <Compile Include="Data\Models\Badge.cs" />
     <Compile Include="Data\Models\FoodRUser.cs" />
     <Compile Include="Data\Models\Location.cs" />
-    <Compile Include="Data\Models\MapModel.cs" />
+    <Compile Include="ViewModels\MapModel.cs" />
     <Compile Include="Data\Models\Event.cs" />
     <Compile Include="Data\Models\FoodTruck.cs" />
     <Compile Include="Global.asax.cs">

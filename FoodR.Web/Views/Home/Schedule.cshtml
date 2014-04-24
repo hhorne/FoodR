@@ -11,7 +11,7 @@
 <div>
     <ul class="pager">
         <li class="previous"><a href="#">&larr; Older</a></li>
-        <li>Today</li>
+        <li><strong>Today</strong></li>
         <li class="next"><a href="#">Newer &rarr;</a></li>
     </ul>
     @foreach (FoodTruck t in Model)
@@ -20,7 +20,8 @@
             <div class="day">
                 <div class="header">
                     <div class="verbiage pull-left">
-                        <a href="#" class="name">@t.Name</a>
+                        @Html.ActionLink(t.Name, "Truck", "Home", new { id = t.Id }, null)
+                        @*<a href="#" class="name">@t.Name</a>*@
                         <ul class="rating">
                             @for (int i = 1; i <= 5; i++)
                             {

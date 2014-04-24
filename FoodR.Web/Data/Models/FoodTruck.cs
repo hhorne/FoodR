@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Web;
 
@@ -30,6 +31,7 @@ namespace FoodR.Web.Data.Models
 		public DateTime CreatedOn { get; set; }
 		public string CreatedBy { get; set; }
 
+		//public virtual EntityCollection<Event> Events { get; set; }
 		public virtual ICollection<Event> Events { get; set; }
 
 		public virtual ICollection<Menu> Menus { get; set; }
