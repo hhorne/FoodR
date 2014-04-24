@@ -51,14 +51,6 @@ namespace FoodR.Web.Controllers
 			return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Auth", new { ReturnUrl = returnUrl }));
 		}
 
-		public enum SignInStatus
-		{
-			Success,
-			LockedOut,
-			RequiresTwoFactorAuthentication,
-			Failure
-		}
-
 		[AllowAnonymous]
 		public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
 		{
@@ -69,7 +61,7 @@ namespace FoodR.Web.Controllers
 			}
 
 			// Sign in the user with this external login provider if the user already has a login
-			var result = await ExternalSignIn(loginInfo, isPersistent: false);
+			var result = await userService.ExternalSignIn(loginInfo, isPersistent: false);
 			switch (result)
 			{
 				case SignInStatus.Success:
@@ -85,61 +77,6 @@ namespace FoodR.Web.Controllers
 					ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
 					return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
 			}
-		}
-
-		[NonAction]
-		public async Task<SignInStatus> ExternalSignIn(ExternalLoginInfo loginInfo, bool isPersistent)
-		{
-			var user = await userService.FindAsync(loginInfo.Login);
-			if (user == null)
-			{
-				return SignInStatus.Failure;
-			}
-			if (await userService.IsLockedOutAsync(user.Id))
-			{
-				return SignInStatus.LockedOut;
-			}
-			return await SignInOrTwoFactor(user, isPersistent);
-		}
-
-		[NonAction]
-		private async Task<SignInStatus> SignInOrTwoFactor(FoodRUser user, bool isPersistent)
-		{
-			if (await userService.GetTwoFactorEnabledAsync(user.Id) &&
-				!await userService.TwoFactorBrowserRememberedAsync(user.Id))
-			{
-				var identity = new ClaimsIdentity(DefaultAuthenticationTypes.TwoFactorCookie);
-				identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
-				userService.SignIn(identity);
-				return SignInStatus.RequiresTwoFactorAuthentication;
-			}
-			await SignInAsync(user, isPersistent, false);
-			return SignInStatus.Success;
-		}
-
-		public async Task SignInAsync(FoodRUser user, bool isPersistent, bool rememberBrowser)
-		{
-			// Clear any partial cookies from external or two factor partial sign ins
-			userService.SignOut(DefaultAuthenticationTypes.ExternalCookie, DefaultAuthenticationTypes.TwoFactorCookie);
-			var userIdentity = await user.GenerateUserIdentityAsync(userService);
-			if (rememberBrowser)
-			{
-				var rememberBrowserIdentity = userService.CreateTwoFactorRememberBrowserIdentity(user.Id);
-				userService.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, userIdentity, rememberBrowserIdentity);
-			}
-			else
-			{
-				userService.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, userIdentity);
-			}
-		}
-
-		private ActionResult RedirectToLocal(string returnUrl)
-		{
-			if (Url.IsLocalUrl(returnUrl))
-			{
-				return Redirect(returnUrl);
-			}
-			return RedirectToAction("Index", "Home");
 		}
 
 		[HttpPost]
@@ -167,30 +104,25 @@ namespace FoodR.Web.Controllers
 					result = await userService.AddLoginAsync(user.Id, info.Login);
 					if (result.Succeeded)
 					{
-						await SignInAsync(user, isPersistent: false, rememberBrowser: false);
+						await userService.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 						return RedirectToLocal(returnUrl);
 					}
 				}
-				AddErrors(result);
+
+				AddIdentityErrors(result);
 			}
 
 			ViewBag.ReturnUrl = returnUrl;
 			return View(model);
 		}
 
-		private void AddErrors(IdentityResult result)
+		[NonAction]
+		private void AddIdentityErrors(IdentityResult result)
 		{
 			foreach (var error in result.Errors)
 			{
 				ModelState.AddModelError("", error);
 			}
-		}
-
-		public class ExternalLoginConfirmationViewModel
-		{
-			[Required]
-			[Display(Name = "Email")]
-			public string Email { get; set; }
 		}
 	}
 }

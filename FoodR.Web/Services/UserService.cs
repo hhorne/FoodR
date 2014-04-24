@@ -88,6 +88,50 @@ namespace FoodR.Web.Services
 		{
 			return userManager.CreateIdentityAsync(user, authenticationType);
 		}
+		
+		public async Task<SignInStatus> ExternalSignIn(ExternalLoginInfo loginInfo, bool isPersistent)
+		{
+			var user = await FindAsync(loginInfo.Login);
+			if (user == null)
+			{
+				return SignInStatus.Failure;
+			}
+			if (await IsLockedOutAsync(user.Id))
+			{
+				return SignInStatus.LockedOut;
+			}
+			return await SignInOrTwoFactor(user, isPersistent);
+		}
+
+		private async Task<SignInStatus> SignInOrTwoFactor(FoodRUser user, bool isPersistent)
+		{
+			if (await GetTwoFactorEnabledAsync(user.Id) &&
+				!await TwoFactorBrowserRememberedAsync(user.Id))
+			{
+				var identity = new ClaimsIdentity(DefaultAuthenticationTypes.TwoFactorCookie);
+				identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
+				SignIn(identity);
+				return SignInStatus.RequiresTwoFactorAuthentication;
+			}
+			await SignInAsync(user, isPersistent, false);
+			return SignInStatus.Success;
+		}
+
+		public async Task SignInAsync(FoodRUser user, bool isPersistent, bool rememberBrowser)
+		{
+			// Clear any partial cookies from external or two factor partial sign ins
+			SignOut(DefaultAuthenticationTypes.ExternalCookie, DefaultAuthenticationTypes.TwoFactorCookie);
+			var userIdentity = await user.GenerateUserIdentityAsync(userManager);
+			if (rememberBrowser)
+			{
+				var rememberBrowserIdentity = CreateTwoFactorRememberBrowserIdentity(user.Id);
+				SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, userIdentity, rememberBrowserIdentity);
+			}
+			else
+			{
+				SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, userIdentity);
+			}
+		}
 	}
 
 	public interface IUserService
@@ -105,5 +149,15 @@ namespace FoodR.Web.Services
 		Task<IdentityResult> CreateUserAsync(FoodRUser user);
 		Task<IdentityResult> AddLoginAsync(string userId, UserLoginInfo loginInfo);
 		Task<ClaimsIdentity> CreateIdentityAsync(FoodRUser user, string authenticationType);
+		Task<SignInStatus> ExternalSignIn(ExternalLoginInfo loginInfo, bool isPersistent);
+		Task SignInAsync(FoodRUser user, bool isPersistent, bool rememberBrowser);
+	}
+
+	public enum SignInStatus
+	{
+		Success,
+		LockedOut,
+		RequiresTwoFactorAuthentication,
+		Failure
 	}
 }

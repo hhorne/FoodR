@@ -19,6 +19,16 @@ namespace FoodR.Web.Controllers
 		{
 		}
 
+		protected ActionResult RedirectToLocal(string returnUrl)
+		{
+			if (Url.IsLocalUrl(returnUrl))
+			{
+				return Redirect(returnUrl);
+			}
+
+			return RedirectToAction("Index", "Home");
+		}
+
 		internal class ChallengeResult : HttpUnauthorizedResult
 		{
 			public ChallengeResult(string provider, string redirectUri)
