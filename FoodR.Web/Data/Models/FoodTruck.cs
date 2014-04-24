@@ -31,7 +31,6 @@ namespace FoodR.Web.Data.Models
 		public DateTime CreatedOn { get; set; }
 		public string CreatedBy { get; set; }
 
-		//public virtual EntityCollection<Event> Events { get; set; }
 		public virtual ICollection<Event> Events { get; set; }
 
 		public virtual ICollection<Menu> Menus { get; set; }

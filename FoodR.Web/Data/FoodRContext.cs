@@ -114,7 +114,8 @@ namespace FoodR.Web.Data
 										StreetAddress = "123 Main St"
 									}
 								},
-								LastModifiedOn = DateTime.Now
+								LastModifiedOn = DateTime.Now,
+								Active = true
 							}
 						}
 					},
@@ -137,7 +138,8 @@ namespace FoodR.Web.Data
 										StreetAddress = "123 Main St"
 									}
 								},
-								LastModifiedOn = DateTime.Now
+								LastModifiedOn = DateTime.Now,
+								Active = true
 							},
 							new Event
 							{
@@ -150,7 +152,8 @@ namespace FoodR.Web.Data
 										StreetAddress = "123 Wolf St"
 									}
 								},
-								LastModifiedOn = DateTime.Now
+								LastModifiedOn = DateTime.Now,
+								Active = true
 							}
 						}
 					},
@@ -173,7 +176,8 @@ namespace FoodR.Web.Data
 										StreetAddress = "123 Main St"
 									}
 								}, 
-								LastModifiedOn = DateTime.Now
+								LastModifiedOn = DateTime.Now,
+								Active = true
 							}
 						}
 					}

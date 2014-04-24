@@ -6,8 +6,8 @@ using System.Web;
 
 namespace FoodR.Web.ViewModels
 {
-	public class MapModel
+	public class MapViewModel
 	{
-		public FoodTruck[] Vendors { get; set; }
+		public FoodTruck[] Trucks { get; set; }
 	}
 }

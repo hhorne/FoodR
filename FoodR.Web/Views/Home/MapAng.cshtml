@@ -1,10 +1,10 @@
-﻿@model FoodR.Web.ViewModels.MapViewModel
-@{
+﻿@model FoodR.Web.ViewModels.MapModel
+    @{
     ViewBag.Title = " FoodR - Map";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    }
 
-<div>
+<div ng-controller="MapCtrl">
     <h3>Map</h3>
     <form class="form-inline" role="form" ng-submit="search()">
         <div class="form-group">
@@ -18,14 +18,13 @@
         <div class="pull-left" id="map-canvas" style="height: 600px; width: 900px;"></div>
         <div class="list-group pull-right">
             <h4>Trucks near you</h4>
-            @foreach (FoodTruck truck in Model.Trucks)
-            {
-                @Html.ActionLink(truck.Name, "Truck", "Home", new { id = truck.Id }, new { @class = "list-group-item" })
-            }
+            <a href="Truck?vendorid={{vendor.id}}" class="list-group-item" ng-repeat="vendor in vendors">{{vendor.name}}</a>
         </div>
         <div class="clearfix"></div>
     </div>
 </div>
 @section scripts {
+
     <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+    <script src="/App/map.js"></script>
 }

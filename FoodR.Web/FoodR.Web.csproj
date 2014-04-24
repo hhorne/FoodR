@@ -206,8 +206,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Content Include="Scripts\tab.js" />
-    <Content Include="Views\Home\Map.cshtml" />
-    <Content Include="Views\Home\Schedule.cshtml" />
+    <Content Include="Views\Home\MapAng.cshtml" />
+    <Content Include="Views\Home\List.cshtml" />
     <Content Include="Views\Home\Truck.cshtml" />
     <Content Include="Views\Profile\Login.cshtml" />
     <Content Include="Views\Home\Locate.cshtml" />
@@ -225,7 +225,9 @@
     <Content Include="App\css\schedule.css.map">
       <DependentUpon>schedule.css</DependentUpon>
     </Content>
-    <Content Include="Views\Home\ScheduleAng.cshtml" />
+    <Content Include="Views\Home\ListAng.cshtml" />
+    <Content Include="Views\Home\Menu.cshtml" />
+    <Content Include="Views\Home\Map.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -285,7 +287,7 @@
     <Compile Include="Data\Models\Badge.cs" />
     <Compile Include="Data\Models\FoodRUser.cs" />
     <Compile Include="Data\Models\Location.cs" />
-    <Compile Include="ViewModels\MapModel.cs" />
+    <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="Data\Models\Event.cs" />
     <Compile Include="Data\Models\FoodTruck.cs" />
     <Compile Include="Global.asax.cs">
