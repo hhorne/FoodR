@@ -1,0 +1,10 @@
+﻿@model TruckDetailsViewModel
+
+<div class="header">
+	<div class="verbiage pull-left">
+		@Html.ActionLink(Model.Name, "Truck", "Home", new { id = Model.Id }, null)
+		@Html.Partial("Rating", Model.Rating)
+		<p>@Model.Description</p>
+	</div>
+	<div class="clearfix"></div>
+</div>

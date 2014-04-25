@@ -239,6 +239,8 @@
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Home\Map.cshtml" />
     <Content Include="Views\Trucks\Index.cshtml" />
+    <Content Include="Views\Shared\TruckDetails.cshtml" />
+    <Content Include="Views\Shared\Rating.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

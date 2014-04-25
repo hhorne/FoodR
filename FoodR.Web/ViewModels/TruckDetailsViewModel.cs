@@ -13,5 +13,6 @@ namespace FoodR.Web.ViewModels
 		public string Facebook { get; set; }
 		public string Website { get; set; }
 		public string Twitter { get; set; }
+		public int Rating { get; set; }
 	}
 }
