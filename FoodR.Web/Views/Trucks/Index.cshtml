@@ -1,0 +1,13 @@
+﻿@model IEnumerable<TruckDetailsViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Trucks!</h2>
+
+<ul>
+@foreach (var truck in Model)
+{
+	<li>@truck.Name - @truck.Description</li>
+}
+</ul>
