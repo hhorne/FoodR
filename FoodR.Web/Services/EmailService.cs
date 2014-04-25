@@ -14,6 +14,5 @@ namespace FoodR.Web.Services
 
 	public interface IEmailService : IIdentityMessageService
 	{
-		Task SendAsync(IdentityMessage message);
 	}
 }
