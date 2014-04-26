@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Configuration;
 
-namespace FoodR.Web.Data
+namespace FoodR.Data.Configuration
 {
 	public abstract class EntityConfig<T> :  EntityTypeConfiguration<T>, IEntityConfig where T : class
 	{

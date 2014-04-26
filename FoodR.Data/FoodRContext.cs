@@ -1,12 +1,9 @@
-﻿using FoodR.Web.Data.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.Hosting;
+﻿using System;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
-using System.Reflection;
+using FoodR.Web.Data.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FoodR.Web.Data
 {
@@ -28,7 +25,7 @@ namespace FoodR.Web.Data
 		{
             // Set the database intializer which is run once during application start
             // This seeds the database with admin user credentials and admin role
-			Database.SetInitializer(new DropCreateDatabaseIfModelChanges<FoodRContext>());
+			Database.SetInitializer(new DropCreateDatabaseIfModelChanges<FoodRContext>());			
 		}
 
 		public static FoodRContext Create()
@@ -38,22 +35,8 @@ namespace FoodR.Web.Data
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
-			ComposeModelConfiguration(modelBuilder);
-
+			this.ComposeModelConfiguration(modelBuilder);
 			base.OnModelCreating(modelBuilder);
-		}
-
-		private void ComposeModelConfiguration(DbModelBuilder modelBuilder)
-		{
-			var contextConfiguration = new ContextConfiguration();
-			var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
-			var container = new CompositionContainer(catalog);
-			container.ComposeParts(contextConfiguration);
-
-			foreach (var configuration in contextConfiguration.Configurations)
-			{
-				configuration.AddConfiguration(modelBuilder.Configurations);
-			}
 		}
 	}
 
@@ -186,8 +169,8 @@ namespace FoodR.Web.Data
 
 		public static void InitializeIdentityForEF(FoodRContext db)
 		{
-			var userManager = new FoodRUserManager(new UserStore<FoodRUser>(db));
-			var roleManager = new FoodRRoleManager(new RoleStore<IdentityRole>(db));
+			var userManager = new UserManager<FoodRUser>(new UserStore<FoodRUser>(db));
+			var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
 			const string name = "admin@admin.com";
 			const string password = "Admin@123456";
 			const string roleName = "Admin";

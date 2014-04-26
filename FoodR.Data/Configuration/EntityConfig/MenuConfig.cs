@@ -1,6 +1,6 @@
 ﻿using FoodR.Web.Data.Models;
 
-namespace FoodR.Web.Data.EntityTypeConfiguration
+namespace FoodR.Data.Configuration.EntityConfig
 {
 	public class MenuConfig : EntityConfig<Menu>
 	{

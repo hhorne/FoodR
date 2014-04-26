@@ -162,8 +162,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\TypeMapConfig.cs" />
+    <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\TrucksController.cs" />
-    <Compile Include="Data\FoodRRepository.cs" />
     <Compile Include="ViewModels\TruckDetailsViewModel.cs" />
     <Compile Include="ViewModels\TruckViewModel.cs" />
     <Content Include="App\app.js" />
@@ -174,17 +174,8 @@
       <DependentUpon>schedule.css</DependentUpon>
     </Content>
     <Compile Include="App_Start\InjectionModules\ServiceModule.cs" />
-    <Compile Include="Data\EntityTypeConfiguration\AddressConfig.cs" />
-    <Compile Include="Data\EntityTypeConfiguration\BadgeConfig.cs" />
-    <Compile Include="Data\EntityTypeConfiguration\EarnedBadgeConfig.cs" />
-    <Compile Include="Data\EntityTypeConfiguration\LocationConfig.cs" />
-    <Compile Include="Data\EntityTypeConfiguration\EventConfig.cs" />
-    <Compile Include="Data\EntityTypeConfiguration\MenuConfig.cs" />
-    <Compile Include="Data\Models\Address.cs" />
-    <Compile Include="Data\Models\EarnedBadge.cs" />
     <Compile Include="Controllers\Filters\UserAwareAttribute.cs" />
     <Compile Include="Services\UserService.cs" />
-    <Compile Include="Data\Models\Menu.cs" />
     <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Content Include="App\css\styles.css">
@@ -293,16 +284,7 @@
     <Compile Include="Controllers\FoodRController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Data\ContextConfiguration.cs" />
-    <Compile Include="Data\EntityConfig.cs" />
-    <Compile Include="Data\EntityTypeConfiguration\FoodTruckConfig.cs" />
-    <Compile Include="Data\FoodRContext.cs" />
-    <Compile Include="Data\Models\Badge.cs" />
-    <Compile Include="Data\Models\FoodRUser.cs" />
-    <Compile Include="Data\Models\Location.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
-    <Compile Include="Data\Models\Event.cs" />
-    <Compile Include="Data\Models\FoodTruck.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -313,6 +295,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\js\" />
+    <Folder Include="Views\Locations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FoodR.Data\FoodR.Data.csproj">
+      <Project>{7092f683-7685-403f-8179-79f41bb541a2}</Project>
+      <Name>FoodR.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

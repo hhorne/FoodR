@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FoodR.Web.Data.Models
 {
-	public class FoodRUser : IdentityUser
+	public partial class FoodRUser : IdentityUser
 	{
 		public virtual ICollection<EarnedBadge> Badges { get; set; }
 
-		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(FoodRUserManager userManager)
+		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<FoodRUser> userManager)
 		{
 			// Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
 			var userIdentity = await userManager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
