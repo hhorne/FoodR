@@ -1,4 +1,4 @@
-﻿using FoodR.Web.Data.Models;
+﻿using FoodR.Data.Models;
 
 namespace FoodR.Data.Configuration.EntityConfig
 {

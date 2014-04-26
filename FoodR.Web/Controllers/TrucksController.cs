@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
+using FoodR.Data.Models;
 using FoodR.Web.Data;
-using FoodR.Web.Data.Models;
 using FoodR.Web.ViewModels;
 
 namespace FoodR.Web.Controllers

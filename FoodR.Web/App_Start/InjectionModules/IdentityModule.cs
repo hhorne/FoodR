@@ -1,5 +1,5 @@
 ﻿using System.Web;
-using FoodR.Web.Data.Models;
+using FoodR.Data.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;

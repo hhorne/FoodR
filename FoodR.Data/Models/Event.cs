@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FoodR.Web.Data.Models
+namespace FoodR.Data.Models
 {
 	public class Event
 	{

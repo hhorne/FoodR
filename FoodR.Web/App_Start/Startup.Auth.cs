@@ -1,5 +1,5 @@
-﻿using FoodR.Web.Data;
-using FoodR.Web.Data.Models;
+﻿using FoodR.Data.Models;
+using FoodR.Web.Data;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;

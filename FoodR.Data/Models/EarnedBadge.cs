@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FoodR.Web.Data.Models
+namespace FoodR.Data.Models
 {
 	public class EarnedBadge
 	{

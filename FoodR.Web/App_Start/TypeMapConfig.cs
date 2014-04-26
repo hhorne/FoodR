@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using FoodR.Data.Models;
 using FoodR.Web.Controllers;
-using FoodR.Web.Data.Models;
 using FoodR.Web.ViewModels;
 
 namespace FoodR.Web

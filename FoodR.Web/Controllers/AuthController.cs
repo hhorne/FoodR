@@ -1,4 +1,4 @@
-﻿using FoodR.Web.Data.Models;
+﻿using FoodR.Data.Models;
 using FoodR.Web.Services;
 using FoodR.Web.ViewModels;
 using Microsoft.AspNet.Identity;

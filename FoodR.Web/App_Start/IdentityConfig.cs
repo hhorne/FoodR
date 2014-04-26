@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FoodR.Data.Models;
 using FoodR.Web.Data;
-using FoodR.Web.Data.Models;
 using FoodR.Web.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
