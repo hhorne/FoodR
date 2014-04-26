@@ -164,6 +164,7 @@
     <Compile Include="App_Start\TypeMapConfig.cs" />
     <Compile Include="Controllers\TrucksController.cs" />
     <Compile Include="Data\FoodRRepository.cs" />
+    <Compile Include="Services\TruckService.cs" />
     <Compile Include="ViewModels\TruckDetailsViewModel.cs" />
     <Compile Include="ViewModels\TruckViewModel.cs" />
     <Content Include="App\app.js" />
@@ -217,7 +218,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Content Include="Scripts\tab.js" />
     <Content Include="Views\Home\MapAng.cshtml" />
-    <Content Include="Views\Home\List.cshtml" />
+    <Content Include="Views\Home\Today.cshtml" />
     <Content Include="Views\Home\Truck.cshtml" />
     <Content Include="Views\Profile\Login.cshtml" />
     <Content Include="Views\Home\Locate.cshtml" />
@@ -241,6 +242,8 @@
     <Content Include="Views\Trucks\Index.cshtml" />
     <Content Include="Views\Shared\TruckDetails.cshtml" />
     <Content Include="Views\Shared\Rating.cshtml" />
+    <Content Include="Views\Trucks\Details.cshtml" />
+    <Content Include="Views\Trucks\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
