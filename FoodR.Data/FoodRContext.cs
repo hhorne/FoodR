@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Linq;
 using FoodR.Data.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -9,6 +12,7 @@ namespace FoodR.Data
 {
 	public class FoodRContext : IdentityDbContext<FoodRUser>
 	{
+		public DbSet<Area> Areas { get; set; }
 		public DbSet<Badge> Badges { get; set; }
 		public DbSet<EarnedBadge> EarnedBadges { get; set; }
 		public DbSet<FoodTruck> FoodTrucks { get; set; }
@@ -49,93 +53,110 @@ namespace FoodR.Data
 
 		protected override void Seed(FoodRContext context)
 		{
+			InitializeAreasAndLocations(context);
 			InitializeTrucks(context);
+			InitializeMenuItems(context);
 			InitializeIdentityForEF(context);
 			base.Seed(context);
 		}
 
+		private void InitializeAreasAndLocations(FoodRContext context)
+		{
+			var southBank = new Area {
+				Name = "Southbank",
+				Description = "The Southbank area borders SanMarco and has locations like Aardwolf.",
+				Locations = new List<Location> {
+					new Location {	
+						Name = "Aardwolf",
+						UrlSlug = "Aardwolf",
+						Address = new Address {
+							StreetAddress = "123 Wolf St"
+						}
+					},
+					new Location {
+						Name = "AvMed",
+						UrlSlug =  "AvMed",
+						Address = new Address {
+							StreetAddress = "123 Main St"
+						}
+					}
+				}
+			};
+
+			var downTown = new Area {
+				Name = "Downtown",
+				Description = "A regular host to a wide variety of trucks",
+				Locations = new List<Location> {
+					new Location {
+						Name = "Courthouse",
+						UrlSlug = "Courthouse",
+						Address = new Address {
+							StreetAddress = "123 Main St"
+						}
+					},
+					new Location {
+						Name = "Forsyth and Main",
+						UrlSlug = "Forsyth_and_Main",
+						Address = new Address {
+							StreetAddress = "123 Main St"
+						}
+					}
+				}
+			};
+			
+			context.Areas.AddOrUpdate(a => a.Name, new []
+			{
+				southBank,
+				downTown,
+			});
+
+			context.SaveChanges();
+		}
+
 		private void InitializeTrucks(FoodRContext context)
 		{
-			
+			var aardwolf = context.Locations.Single(l => l.UrlSlug.Equals("Aardwolf", StringComparison.OrdinalIgnoreCase));
+			var avMed = context.Locations.Single(l => l.UrlSlug.Equals("AvMed", StringComparison.OrdinalIgnoreCase));
+			var courthouse = context.Locations.Single(l => l.UrlSlug.Equals("Courthouse", StringComparison.OrdinalIgnoreCase));
+			var forsyth = context.Locations.Single(l => l.UrlSlug.Equals("Forsyth_and_Main", StringComparison.OrdinalIgnoreCase));
+
 			context.FoodTrucks.AddOrUpdate(t => t.Name, new[]
 				{
 					new FoodTruck
 					{
 						Name = "Happy Grilled Cheese",
+						UrlSlug = "Happy_Grilled_Cheese",
 						Description = "Specialty Grilled Cheese Sandwiches",
 						Rating = 3,
-						CreatedOn = DateTime.Now,
-						LastModifiedOn = DateTime.Now,
-						Menus = new [] {
-							new Menu
-							{
-								Name = "Grilled Cheese Menu",
-								MenuItems = new []
-								{
-									new MenuItem() {
-										Name = "Grilled Cheese Sammich",
-										Description = "Its the classic grilled cheese sandwich we all love.",
-										Price = 6.99
-									},
-									new MenuItem() {
-										Name = "Mac and Cheese Sammich",
-										Description = "Its a grilled cheese sandwich with Macaroni n Cheese added to it!",
-										Price = 7.99
-									}
-								}
-							}
-						},
 						Events = new [] { 
 							new Event
 							{
 								From = new DateTime(2014, 4, 23, 11, 0, 0),
 								To = new DateTime(2014, 4, 23, 14, 0, 0),
-								Location = new Location
-								{
-									Name = "Av Med",
-									Address = new Address() {
-										StreetAddress = "123 Main St"
-									}
-								},
-								LastModifiedOn = DateTime.Now,
+								Location = avMed,
 								Active = true
 							}
 						}
 					},
 					new FoodTruck
 					{
-						Name = "On The Fly",
+						Name = "On The Fly!",
+						UrlSlug = "On_The_Fly",
 						Description = "Sandwiches & Stuff. Available for Catering and Private Parties.",
 						Rating = 5,
-						CreatedOn = DateTime.Now,
-						LastModifiedOn = DateTime.Now,
 						Events = new [] { 
 							new Event
 							{
 								From = new DateTime(2014, 4, 23, 11, 0, 0),
 								To = new DateTime(2014, 4, 23, 14, 0, 0),
-								Location = new Location
-								{
-									Name = "Courthouse",
-									Address = new Address() {
-										StreetAddress = "123 Main St"
-									}
-								},
-								LastModifiedOn = DateTime.Now,
+								Location = courthouse,
 								Active = true
 							},
 							new Event
 							{
 								From = new DateTime(2014, 4, 23, 18, 0, 0),
 								To = new DateTime(2014, 4, 23, 22, 0, 0),
-								Location = new Location
-								{
-									Name = "Arrd Wolf",
-									Address = new Address() {
-										StreetAddress = "123 Wolf St"
-									}
-								},
-								LastModifiedOn = DateTime.Now,
+								Location = aardwolf,
 								Active = true
 							}
 						}
@@ -143,28 +164,46 @@ namespace FoodR.Data
 					new FoodTruck
 					{
 						Name = "Taste Buds Express",
+						UrlSlug = "Taste_Buds_Express",
 						Description = "TACOS!",
 						Rating = 2,
-						CreatedOn = DateTime.Now,
-						LastModifiedOn = DateTime.Now,
 						Events = new [] { 
 							new Event
 							{
 								From = new DateTime(2014, 4, 23, 11, 0, 0),
 								To = new DateTime(2014, 4, 23, 14, 0, 0),
-								Location = new Location
-								{
-									Name = "Forsyth an Main",
-									Address = new Address() {
-										StreetAddress = "123 Main St"
-									}
-								}, 
-								LastModifiedOn = DateTime.Now,
+								Location = forsyth, 
 								Active = true
 							}
 						}
 					}
 				});
+
+			context.SaveChanges();
+		}
+
+		private void InitializeMenuItems(FoodRContext context)
+		{
+			var happy = context.FoodTrucks.Single(t => t.UrlSlug.Equals("Happy_Grilled_Cheese", StringComparison.OrdinalIgnoreCase));
+			happy.Menus = new Collection<Menu> {
+				new Menu {
+					FoodTruck = happy,
+					Name = "Grilled Cheese Menu",
+					MenuItems = new Collection<MenuItem> {
+						new MenuItem {
+							Name = "Grilled Cheese Sammich",
+							Description = "Its the classic grilled cheese sandwich we all love.",
+							Price = 6.99
+						},
+						new MenuItem {
+							Name = "Mac and Cheese Sammich",
+							Description = "Its a grilled cheese sandwich with Macaroni n Cheese added to it!",
+							Price = 7.99
+						},
+					}
+				},
+			};
+			context.SaveChanges();
 		}
 
 		public static void InitializeIdentityForEF(FoodRContext db)

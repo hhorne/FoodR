@@ -5,6 +5,11 @@ namespace FoodR.Data.Models
 {
 	public class Event
 	{
+		public Event()
+		{
+			LastModifiedOn = DateTime.Now;
+		}
+
 		[ForeignKey("FoodTruck")]
 		public int FoodTruckId { get; set; }
 		public virtual FoodTruck FoodTruck { get; set; }
