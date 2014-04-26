@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FoodR.Web.Data;
+using FoodR.Data;
 using FoodR.Web.Services;
 using Ninject.Modules;
 

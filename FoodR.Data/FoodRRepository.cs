@@ -1,13 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
-namespace FoodR.Web.Data
+namespace FoodR.Data
 {
 	public class FoodRRepository : IRepository
 	{
-		private bool disposed;
+		private bool disposed = false;
 		private bool isDisposing;
 
 		private readonly FoodRContext context;
@@ -21,6 +21,11 @@ namespace FoodR.Web.Data
 		{
 			var result = context.Set<T>();
 			return result;
+		}
+
+		public IEnumerable<T> Where<T>(Func<T, bool> predicate) where T : class
+		{
+			return context.Set<T>().Where(predicate);
 		}
 
 		public void Delete<T>(T entity) where T : class
@@ -47,7 +52,8 @@ namespace FoodR.Web.Data
 		{
 			if (!IsDisposed())
 			{
-				this.Dispose();
+				context.Dispose();
+				this.disposed = true;
 			}
 		}
 	}
@@ -55,6 +61,7 @@ namespace FoodR.Web.Data
 	public interface IRepository : IDisposable
 	{
 		IQueryable<T> GetAll<T>() where T : class;
+		IEnumerable<T> Where<T>(Func<T, bool> predicate) where T : class;
 		void Delete<T>(T entity) where T : class;
 		void Add<T>(T entity) where T : class;
 		void SaveChanges();

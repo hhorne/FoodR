@@ -4,7 +4,6 @@ using System.ComponentModel.Composition.Hosting;
 using System.Data.Entity;
 using System.Reflection;
 using FoodR.Data.Configuration;
-using FoodR.Web.Data;
 
 public static class ContextExtensions
 {

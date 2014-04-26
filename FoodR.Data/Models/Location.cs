@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace FoodR.Data.Models
 {
 	public class Location
@@ -7,7 +8,6 @@ namespace FoodR.Data.Models
 		public string Name { get; set; }
 		public Address Address { get; set; }
 		public virtual Area Area { get; set; }
-		//public DbGeography Coordinates { get; set; }
 	}
 
 	public class Area
@@ -15,5 +15,6 @@ namespace FoodR.Data.Models
 		public int Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
+		public ICollection<Location> Locations { get; set; }
 	}
 }

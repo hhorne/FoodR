@@ -5,7 +5,7 @@ using FoodR.Data.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace FoodR.Web.Data
+namespace FoodR.Data
 {
 	public class FoodRContext : IdentityDbContext<FoodRUser>
 	{
