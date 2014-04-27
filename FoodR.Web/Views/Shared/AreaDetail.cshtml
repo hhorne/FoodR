@@ -7,7 +7,9 @@
 		<ul>
 			@foreach (var location in @Model.Locations)
 			{
-				<li><a href="@location.UrlSlug">@location.Name</a></li>
+				<li>
+					<a href="~/location/@location.UrlSlug">@location.Name</a>
+				</li>
 			}
 		</ul>
 	</div>
