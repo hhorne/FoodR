@@ -5,6 +5,7 @@ namespace FoodR.Web.ViewModels
 {
 	public class AreaDetailViewModel
 	{
+		public int Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
 		public IEnumerable<LocationDetailViewModel> Locations { get; set; }
@@ -12,6 +13,7 @@ namespace FoodR.Web.ViewModels
 
 	public class LocationDetailViewModel
 	{
+		public int Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
 		public Address Address { get; set; }

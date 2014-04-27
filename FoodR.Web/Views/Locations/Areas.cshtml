@@ -1,0 +1,6 @@
+﻿@model IEnumerable<AreaDetailViewModel>
+		   
+@foreach (var area in Model)
+{
+	@Html.Partial("AreaDetail", area)
+}
