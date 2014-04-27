@@ -6,25 +6,38 @@ using AutoMapper;
 using FoodR.Data;
 using FoodR.Data.Models;
 using FoodR.Web.ViewModels;
+using FoodR.Web.Services;
 
 namespace FoodR.Web.Controllers
 {
     public class TrucksController : FoodRController
     {
-	    private readonly IRepository repository;
+		private readonly ITruckService service;
 	    private readonly IMappingEngine mapper;
 
-	    public TrucksController(IRepository repository, IMappingEngine mapper)
+	    public TrucksController(ITruckService service, IMappingEngine mapper)
 	    {
-		    this.repository = repository;
+		    this.service = service;
 		    this.mapper = mapper;
 	    }
 
 	    public ActionResult Index()
 	    {
-		    var trucks = repository.GetAll<FoodTruck>();
+		    var trucks = service.GetAllTrucks();
 			var details = mapper.Map<IEnumerable<TruckDetailsViewModel>>(trucks);
             return View(details);
         }
+
+		public ActionResult Details(string truckName)
+		{
+
+			return View();
+		}
+
+		public ActionResult Edit(string truckName)
+		{
+
+			return View();
+		}
 	}
 }

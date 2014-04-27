@@ -1,4 +1,7 @@
-﻿using FoodR.Data;
+﻿using AutoMapper;
+using FoodR.Web.Data;
+using FoodR.Web.Data.Models;
+using FoodR.Web.Services;
 using FoodR.Web.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -44,9 +47,9 @@ namespace FoodR.Web.Controllers
 			return View();
 		}
 
-		public ActionResult List()
+		public ActionResult Today()
 		{
-			using(FoodRContext db = new FoodRContext())
+			using (FoodRContext db = new FoodRContext())
 			{
 				var today = new DateTime(2014, 4, 23);
 				var tomorrow = new DateTime(2014, 4, 24);
