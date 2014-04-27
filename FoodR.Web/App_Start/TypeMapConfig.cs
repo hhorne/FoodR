@@ -10,6 +10,8 @@ namespace FoodR.Web
 		public static void RegisterTypeMaps()
 		{
 			Mapper.CreateMap<FoodTruck, TruckDetailsViewModel>();
+			Mapper.CreateMap<LocationDetailViewModel, Location>();
+			Mapper.CreateMap<Area, AreaDetailViewModel>();
 		}
 	}
 }
