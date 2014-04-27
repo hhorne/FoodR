@@ -215,7 +215,6 @@
     <Content Include="Views\Home\MapAng.cshtml" />
     <Content Include="Views\Home\Today.cshtml" />
     <Content Include="Views\Home\Truck.cshtml" />
-    <Content Include="Views\Profile\Login.cshtml" />
     <Content Include="Views\Home\Locate.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Badges.cshtml" />
