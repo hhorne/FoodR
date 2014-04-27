@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using FoodR.Web.Data;
-using FoodR.Web.Data.Models;
+using FoodR.Data;
+using FoodR.Data.Models;
 using FoodR.Web.Services;
 using FoodR.Web.ViewModels;
 using System;

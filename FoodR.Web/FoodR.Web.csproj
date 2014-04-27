@@ -164,7 +164,6 @@
     <Compile Include="App_Start\TypeMapConfig.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\TrucksController.cs" />
-    <Compile Include="Data\FoodRRepository.cs" />
     <Compile Include="Services\TruckService.cs" />
     <Compile Include="ViewModels\TruckDetailsViewModel.cs" />
     <Compile Include="ViewModels\TruckViewModel.cs" />

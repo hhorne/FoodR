@@ -1,5 +1,5 @@
-﻿using FoodR.Web.Data;
-using FoodR.Web.Data.Models;
+﻿using FoodR.Data;
+using FoodR.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
