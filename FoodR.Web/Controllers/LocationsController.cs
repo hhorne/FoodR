@@ -20,7 +20,7 @@ namespace FoodR.Web.Controllers
 		    this.mapper = mapper;
 	    }
 
-		[Route("locations/{name?}")]
+		[Route("locations/{name?}", Name = "Locations")]
 	    public ActionResult Index(string name)
 	    {
 			if (name.IsNullOrEmpty())
@@ -42,6 +42,39 @@ namespace FoodR.Web.Controllers
 		{
 			var vm = GetAreaViewModels();
 			return View(vm);
+	    }
+		
+		[HttpGet]
+		[Route("locations/create")]
+	    public ActionResult Create()
+		{
+			var vm = new LocationEditViewModel
+			{
+				Areas = mapper.Map<IEnumerable<SelectListItem>>(GetAreaViewModels())
+			};
+
+		    return View(vm);
+	    }
+
+	    [HttpPost]
+		[Route("locations/create")]
+		public ActionResult Create(LocationEditViewModel viewModel)
+	    {
+		    if (ModelState.IsValid)
+		    {
+			    var location = new Location
+			    {
+				    Name = viewModel.Name,
+				    AreaId = viewModel.AreaId,
+					UrlSlug = viewModel.Name.ConvertToUrlSlug()
+			    };
+
+				repository.Add(location);
+			    repository.SaveChanges();
+			    return RedirectToRoute("Locations");
+		    }
+
+		    return View(viewModel);
 	    }
 
 	    private IEnumerable<AreaDetailViewModel> GetAreaViewModels()

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Web.Mvc;
+using AutoMapper;
 using FoodR.Data.Models;
 using FoodR.Web.Controllers;
 using FoodR.Web.ViewModels;
@@ -12,6 +13,10 @@ namespace FoodR.Web
 			Mapper.CreateMap<FoodTruck, TruckDetailsViewModel>();
 			Mapper.CreateMap<Location, LocationDetailViewModel>();
 			Mapper.CreateMap<Area, AreaDetailViewModel>();
+			Mapper.CreateMap<AreaDetailViewModel, SelectListItem>()
+				.ForMember(dest => dest.Text, opt => opt.MapFrom(src => src.Name))
+				.ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Id));
+			//.ForMember(dest => dest.Text, opt => opt.MapFrom(src => src.Name));
 		}
 	}
 }

@@ -169,6 +169,7 @@
     <Compile Include="StringExtensions.cs" />
     <Compile Include="ViewModels\AreaDetailViewModel.cs" />
     <Compile Include="Services\TruckService.cs" />
+    <Compile Include="ViewModels\LocationEditViewModel.cs" />
     <Compile Include="ViewModels\TruckDetailsViewModel.cs" />
     <Compile Include="ViewModels\TruckViewModel.cs" />
     <Content Include="App\app.js" />
@@ -243,6 +244,7 @@
     <Content Include="Views\Shared\LocationDetails.cshtml" />
     <Content Include="Views\Locations\Areas.cshtml" />
     <Content Include="Views\Locations\Index.cshtml" />
+    <Content Include="Views\Locations\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
