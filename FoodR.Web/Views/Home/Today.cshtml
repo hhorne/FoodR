@@ -9,12 +9,7 @@
     <link href="/App/css/schedule.css" rel="stylesheet">
 }
 
-<div>
-    <ul class="pager">
-        <li class="previous"><a href="#">&larr; Yesterday</a></li>
-        <li><strong>Today</strong></li>
-        <li class="next"><a href="#">Tomorrow &rarr;</a></li>
-    </ul>
+    <h2>Today</h2>
     @if (Model.Count() == 0)
     {
         <div class="alert alert-danger">No Trucks out today, sorry :(</div>
@@ -77,7 +72,6 @@
             </div>
         </div>
     }
-</div>
 @section scripts {
     <script type="text/javascript">
         $('.rating a').mouseover(function (e) {
