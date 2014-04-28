@@ -1,8 +1,32 @@
-﻿
+﻿@model TruckDetailsViewModel
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "FoodR - " + Model.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h3>@Model.Name</h3>
 
+<p>@Model.Description</p>
+
+@Html.LabelFor(m => m.Rating)
+<p>@Model.Rating / 5</p>
+
+<h3>Contact Info</h3>
+
+@if (!string.IsNullOrEmpty(Model.Email))
+{
+    @Html.LabelFor(m => m.Email)
+    <p>@Model.Email</p>
+}
+
+@if (!string.IsNullOrEmpty(Model.Phone))
+{
+    @Html.LabelFor(m => m.Phone)
+    <p>@Model.Phone</p>
+}
+
+@if (!string.IsNullOrEmpty(Model.Website))
+{
+    @Html.LabelFor(m => m.Website)
+    <p><a href="@Model.Website">@Model.Website</a></p>
+}

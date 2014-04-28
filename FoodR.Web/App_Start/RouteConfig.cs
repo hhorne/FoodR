@@ -11,7 +11,7 @@ namespace FoodR.Web
 
 			routes.MapRoute(
 				name: "TruckEdit",
-				url: "Trucks/edit/{truckName}",
+				url: "Truck/edit/{truckName}",
 				defaults: new
 				{
 					controller = "Trucks",
@@ -21,7 +21,7 @@ namespace FoodR.Web
 
 			routes.MapRoute(
 				name: "TruckDetails",
-				url: "Trucks/{truckName}",
+				url: "Truck/{truckName}",
 				defaults: new
 				{
 					controller = "Trucks",

@@ -167,6 +167,9 @@ namespace FoodR.Data
 						UrlSlug = "Taste_Buds_Express",
 						Description = "TACOS!",
 						Rating = 2,
+						Email = "abc@abc.comx",
+						Phone = "(904) 555-5555",
+						Website = "www.google.com",
 						Events = new [] { 
 							new Event
 							{

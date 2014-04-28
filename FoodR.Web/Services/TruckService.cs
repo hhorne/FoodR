@@ -24,27 +24,46 @@ namespace FoodR.Web.Services
 				Success = false
 			};
 
+			try
+			{
+				repository.SaveChanges();
+				result.Success = true;
+			}
+			catch (Exception ex)
+			{
+				string[] errors = new[] { ex.Message };
+				result.Errors = errors;
+				result.Success = false;
+			}
 			return result;
 		}
 
-		public IEnumerable<FoodTruck> GetAllTrucks(DateTime? day = null)
+		public IEnumerable<FoodTruck> GetTrucks(DateTime? day = null)
 		{
-			var trucks = repository.GetAll<FoodTruck>();
+			IEnumerable<FoodTruck> trucks = null;
 			if(day.HasValue)
 			{
 				DateTime thisDay = day.Value.Date;
 				DateTime nextDay = thisDay + TimeSpan.FromDays(1);
-				trucks = trucks.Where(t => t.Events.Any(e => e.From >= thisDay && e.From < nextDay));
+				trucks = repository.Where<FoodTruck>(t => t.Events.Any(e => e.From >= thisDay && e.From < nextDay));
 			}
+			else
+				trucks = repository.GetAll<FoodTruck>();
 
 			return trucks;
+		}
+
+		public FoodTruck GetTruck(string name)
+		{
+			return repository.Where<FoodTruck>(t => t.UrlSlug == name).First();
 		}
 	}
 
 	public interface ITruckService
 	{
 		TruckResult SaveTruck(FoodTruck truck);
-		IEnumerable<FoodTruck> GetAllTrucks(DateTime? day = null);
+		IEnumerable<FoodTruck> GetTrucks(DateTime? day = null);
+		FoodTruck GetTruck(string name);
 		
 	}
 

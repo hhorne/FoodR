@@ -23,21 +23,46 @@ namespace FoodR.Web.Controllers
 
 	    public ActionResult Index()
 	    {
-		    var trucks = service.GetAllTrucks();
+		    var trucks = service.GetTrucks();
 			var details = mapper.Map<IEnumerable<TruckDetailsViewModel>>(trucks);
             return View(details);
         }
 
 		public ActionResult Details(string truckName)
 		{
-
-			return View();
+			var truck = service.GetTruck(truckName);
+			var details = mapper.Map<TruckDetailsViewModel>(truck);
+			return View(details);
 		}
 
 		public ActionResult Edit(string truckName)
 		{
+			var truck = service.GetTruck(truckName);
+			var details = mapper.Map<TruckDetailsViewModel>(truck);
+			details.PageState = TruckDetailsPageState.Loaded;
 
-			return View();
+			return View(details);
+		}
+
+		[HttpPost]
+		public ActionResult Edit(TruckDetailsViewModel model, string truckName)
+		{
+			var truck = service.GetTruck(truckName);
+
+			truck.Name = model.Name;
+			truck.Description = model.Description;
+			truck.Website = model.Website;
+
+			var result = service.SaveTruck(truck);
+			var details = mapper.Map<TruckDetailsViewModel>(truck);
+			details.PageState = TruckDetailsPageState.SaveSuccessfully;
+			if (!result.Success)
+			{
+				details.EditErrors = result.Errors;
+				details.PageState = TruckDetailsPageState.SaveFailed;
+			}
+
+			return View(details);
 		}
 	}
 }
