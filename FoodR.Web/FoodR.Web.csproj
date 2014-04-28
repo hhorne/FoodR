@@ -166,7 +166,7 @@
     <Compile Include="Controllers\ActionResults\JsonNetResult.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Controllers\Filters\SlugToIdAttribute.cs" />
-    <Compile Include="Controllers\Filters\TruckSlutToIdAttribute.cs" />
+    <Compile Include="Controllers\Filters\TruckSlugToIdAttribute.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\TrucksController.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />

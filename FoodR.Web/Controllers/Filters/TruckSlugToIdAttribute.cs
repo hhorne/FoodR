@@ -3,7 +3,7 @@ using FoodR.Data;
 
 namespace FoodR.Web.Controllers.Filters
 {
-	public class TruckSlutToIdAttribute : SlugToIdAttribute
+	public class TruckSlugToIdAttribute : SlugToIdAttribute
 	{
 		protected override int GetIdFromSlug(string slug)
 		{
