@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Routing;
 using AutoMapper;
 using FoodR.Data;
 using FoodR.Data.Models;
@@ -80,6 +81,37 @@ namespace FoodR.Web.Controllers
 		    return View(viewModel);
 	    }
 
+		[HttpGet]
+		[Route("locations/edit/{id}")]
+		public ActionResult Edit(int id)
+		{
+			var location = repository.Find<Location>(new object[] { id });
+			var viewModel = mapper.Map<LocationEditViewModel>(location);
+			viewModel.Areas = mapper.Map<IEnumerable<SelectListItem>>(repository.GetAll<Area>());
+			return View(viewModel);
+		}
+
+	    [HttpPost]
+	    [Route("locations/edit/{id}")]
+	    public ActionResult Edit(int id, LocationEditViewModel viewModel)
+	    {
+		    if (ModelState.IsValid)
+		    {
+			    var location = repository.Find<Location>(id);
+			    if (location == null)
+			    {
+				    return HttpNotFound();
+			    }
+
+				location = mapper.Map(viewModel, location);
+				repository.SaveChanges();
+
+			    return RedirectToRoute("Locations", new { name = location.UrlSlug });
+		    }
+
+		    return View(viewModel);
+	    }
+
 	    private IEnumerable<AreaDetailViewModel> GetAreaViewModels()
 		{
 			var areas = repository.GetAll<Area>().ToArray();
@@ -99,15 +131,5 @@ namespace FoodR.Web.Controllers
 			var vm = mapper.Map<LocationDetailViewModel>(location);
 			return vm;
 		}
-
-	    private LocationEditViewModel GetLocationEditViewModel()
-	    {
-		    var viewModel = new LocationEditViewModel
-		    {
-				Areas = mapper.Map<IEnumerable<SelectListItem>>(repository.GetAll<Area>())
-		    };
-
-		    return viewModel;
-	    }
     }
 }

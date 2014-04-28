@@ -1,0 +1,39 @@
+﻿@model LocationEditViewModel
+		   
+<div class="form-group">
+	@Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+	<div class="col-md-10">
+		@Html.EditorFor(model => model.Name)
+		@Html.ValidationMessageFor(model => model.Name)
+	</div>
+</div>
+
+<div class="form-group">
+	@Html.LabelFor(model => model.StreetAddress, new { @class = "control-label col-md-2" })
+	<div class="col-md-offset-2 col-md-10">
+		@Html.EditorFor(model => model.StreetAddress)
+		@Html.ValidationMessageFor(model => model.StreetAddress)
+	</div>
+</div>
+
+<div class="form-group">
+	@Html.LabelFor(model => model.StreetAddress2, new { @class = "control-label col-md-2" })
+	<div class="col-md-offset-2 col-md-10">
+		@Html.EditorFor(model => model.StreetAddress2)
+		@Html.ValidationMessageFor(model => model.StreetAddress2)
+	</div>
+</div>
+
+<div class="form-group">
+	@Html.LabelFor(model => model.ZipCode, new { @class = "control-label col-md-2" })
+	<div class="col-md-offset-2 col-md-10">
+		@Html.EditorFor(model => model.ZipCode)
+		@Html.ValidationMessageFor(model => model.ZipCode)
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="col-md-offset-2 col-md-10">
+		@Html.DropDownListFor(model => model.AreaId, Model.Areas)
+	</div>
+</div>

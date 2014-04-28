@@ -9,3 +9,7 @@
 }
 @Model.AreaCityName, @Model.AreaCityStateId<br/>
 @Model.ZipCode
+
+<div>
+	@Html.ActionLink("Edit", "Edit", "Locations", new { id = Model.Id }, null)
+</div>

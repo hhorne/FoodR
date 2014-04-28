@@ -249,6 +249,8 @@
     <Content Include="Views\Locations\Areas.cshtml" />
     <Content Include="Views\Locations\Index.cshtml" />
     <Content Include="Views\Locations\Create.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\LocationEditViewModel.cshtml" />
+    <Content Include="Views\Locations\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
