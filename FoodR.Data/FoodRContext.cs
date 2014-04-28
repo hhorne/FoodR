@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
@@ -19,6 +20,8 @@ namespace FoodR.Data
 		public DbSet<Location> Locations { get; set; }
 		public DbSet<Event> Events { get; set; }
 		public DbSet<Menu> Menus { get; set; }
+		public DbSet<City> Cities { get; set; }
+		public DbSet<State> States { get; set; }
 
 		public FoodRContext() : base("FoodR", throwIfV1Schema: false)
 		{
@@ -53,6 +56,7 @@ namespace FoodR.Data
 
 		protected override void Seed(FoodRContext context)
 		{
+			InitializeCitiesAndStates(context);
 			InitializeAreasAndLocations(context);
 			InitializeTrucks(context);
 			InitializeMenuItems(context);
@@ -60,25 +64,93 @@ namespace FoodR.Data
 			base.Seed(context);
 		}
 
+		private void InitializeCitiesAndStates(FoodRContext context)
+		{
+			var stateIds = new[]
+			{
+				"AL",
+				"AK",
+				"AZ",
+				"AR",
+				"CA",
+				"CO",
+				"CT",
+				"DE",
+				"FL",
+				"GA",
+				"HI",
+				"ID",
+				"IL",
+				"IN",
+				"IA",
+				"KS",
+				"KY",
+				"LA",
+				"ME",
+				"MD",
+				"MA",
+				"MI",
+				"MN",
+				"MS",
+				"MO",
+				"MT",
+				"NE",
+				"NV",
+				"NH",
+				"NJ",
+				"NM",
+				"NY",
+				"NC",
+				"ND",
+				"OH",
+				"OK",
+				"OR",
+				"PA",
+				"RI",
+				"SC",
+				"SD",
+				"TN",
+				"TX",
+				"UT",
+				"VT",
+				"VA",
+				"WA",
+				"WV",
+				"WI",
+				"WY",
+			}; // I really need to move this db initialization data to files or something...
+
+			var states = stateIds.Select(state => new State { Id = state }).ToList();
+			context.Set<State>().AddRange(states);
+			context.SaveChanges();
+
+			var fl = context.Set<State>().SingleOrDefault(s => s.Id.Equals("FL", StringComparison.OrdinalIgnoreCase));
+			fl.Cities = new Collection<City>
+			{
+				new City { Name = "Jacksonville" },
+			};
+
+			context.SaveChanges();
+		}
+
 		private void InitializeAreasAndLocations(FoodRContext context)
 		{
+			var jacksonville = context.Cities.Single(c => c.Name.Equals("Jacksonville", StringComparison.OrdinalIgnoreCase));
+			
 			var southBank = new Area {
 				Name = "Southbank",
 				Description = "The Southbank area borders SanMarco and has locations like Aardwolf.",
+				City = jacksonville,
 				Locations = new List<Location> {
 					new Location {	
 						Name = "Aardwolf",
 						UrlSlug = "Aardwolf",
-						Address = new Address {
-							StreetAddress = "123 Wolf St"
-						}
+						StreetAddress = "123 Wolf St"
 					},
 					new Location {
 						Name = "AvMed",
 						UrlSlug =  "AvMed",
-						Address = new Address {
-							StreetAddress = "123 Main St"
-						}
+						StreetAddress = "123 Main St"
 					}
 				}
 			};
@@ -86,20 +158,17 @@ namespace FoodR.Data
 			var downTown = new Area {
 				Name = "Downtown",
 				Description = "A regular host to a wide variety of trucks",
+				City = jacksonville,
 				Locations = new List<Location> {
 					new Location {
 						Name = "Courthouse",
 						UrlSlug = "Courthouse",
-						Address = new Address {
-							StreetAddress = "123 Main St"
-						}
+						StreetAddress = "123 Main St"
 					},
 					new Location {
 						Name = "Forsyth and Main",
 						UrlSlug = "Forsyth_and_Main",
-						Address = new Address {
-							StreetAddress = "123 Main St"
-						}
+						StreetAddress = "123 Main St"
 					}
 				}
 			};

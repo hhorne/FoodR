@@ -8,7 +8,9 @@ namespace FoodR.Web
 		public static void RegisterRoutes(RouteCollection routes)
 		{
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+			
+			routes.MapMvcAttributeRoutes();
+			
 			routes.MapRoute(
 				name: "TruckEdit",
 				url: "Truck/edit/{truckName}",

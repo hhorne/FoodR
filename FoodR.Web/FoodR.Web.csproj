@@ -82,8 +82,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
@@ -162,9 +163,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\TypeMapConfig.cs" />
+    <Compile Include="Controllers\ActionResults\JsonNetResult.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Controllers\Filters\SlugToIdAttribute.cs" />
+    <Compile Include="Controllers\Filters\TruckSlugToIdAttribute.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\TrucksController.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="ViewModels\AddressViewModel.cs" />
+    <Compile Include="ViewModels\AreaDetailViewModel.cs" />
     <Compile Include="Services\TruckService.cs" />
+    <Compile Include="ViewModels\LocationEditViewModel.cs" />
     <Compile Include="ViewModels\TruckDetailsViewModel.cs" />
     <Compile Include="ViewModels\TruckViewModel.cs" />
     <Content Include="App\app.js" />
@@ -211,6 +220,7 @@
     <Content Include="Views\Home\MapAng.cshtml" />
     <Content Include="Views\Home\Today.cshtml" />
     <Content Include="Views\Profile\Login.cshtml" />
+    <Content Include="Views\Home\Truck.cshtml" />
     <Content Include="Views\Home\Locate.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Badges.cshtml" />
@@ -234,6 +244,14 @@
     <Content Include="Views\Shared\Rating.cshtml" />
     <Content Include="Views\Trucks\Details.cshtml" />
     <Content Include="Views\Trucks\Edit.cshtml" />
+    <Content Include="Views\Shared\AreaDetail.cshtml" />
+    <Content Include="Views\Locations\Location.cshtml" />
+    <Content Include="Views\Shared\LocationDetails.cshtml" />
+    <Content Include="Views\Locations\Areas.cshtml" />
+    <Content Include="Views\Locations\Index.cshtml" />
+    <Content Include="Views\Locations\Create.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\LocationEditViewModel.cshtml" />
+    <Content Include="Views\Locations\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -297,7 +315,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\js\" />
-    <Folder Include="Views\Locations\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FoodR.Data\FoodR.Data.csproj">

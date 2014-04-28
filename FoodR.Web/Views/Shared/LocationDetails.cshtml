@@ -1,0 +1,15 @@
+﻿@model LocationDetailViewModel
+		   
+<h4>@Model.Name</h4>
+<p>@Model.Description</p>
+@Model.StreetAddress<br/>
+@if (!Model.StreetAddress2.IsNullOrEmpty())
+{
+	@Model.StreetAddress2 <br/>
+}
+@Model.AreaCityName, @Model.AreaCityStateId<br/>
+@Model.ZipCode
+
+<div>
+	@Html.ActionLink("Edit", "Edit", "Locations", new { id = Model.Id }, null)
+</div>

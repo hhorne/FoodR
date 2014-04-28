@@ -59,9 +59,9 @@ namespace FoodR.Web.Controllers
 				case SignInStatus.Success:
 					return RedirectToLocal(returnUrl);
 				case SignInStatus.LockedOut:
-					return View("Lockout");
+					//return View("Lockout");
 				case SignInStatus.RequiresTwoFactorAuthentication:
-					return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
+					//return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
 				case SignInStatus.Failure:
 				default:
 					// If the user does not have an account, then prompt the user to create an account
