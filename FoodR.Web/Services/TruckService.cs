@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using FoodR.Web.ViewModels;
 
 namespace FoodR.Web.Services
 {
@@ -39,13 +40,19 @@ namespace FoodR.Web.Services
 
 			return trucks;
 		}
+
+		public FoodTruck GetTruckByUrlName(string name)
+		{
+			var truck = repository.Where<FoodTruck>(t => t.UrlSlug.Equals(name, StringComparison.OrdinalIgnoreCase)).SingleOrDefault();
+			return truck;
+		}
 	}
 
 	public interface ITruckService
 	{
 		TruckResult SaveTruck(FoodTruck truck);
 		IEnumerable<FoodTruck> GetAllTrucks(DateTime? day = null);
-		
+		FoodTruck GetTruckByUrlName(string name);
 	}
 
 	public class TruckResult

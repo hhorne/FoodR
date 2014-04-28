@@ -28,10 +28,17 @@ namespace FoodR.Web.Controllers
             return View(details);
         }
 
-		public ActionResult Details(string truckName)
+		[Route("trucks/details/{name}")]
+		public ActionResult Details(string name)
 		{
+			var truck = service.GetTruckByUrlName(name);
+			if (truck == null)
+			{
+				return HttpNotFound();
+			}
 
-			return View();
+			var viewModel = mapper.Map<TruckDetailsViewModel>(truck);
+			return View(viewModel);
 		}
 
 		public ActionResult Edit(string truckName)

@@ -1,8 +1,33 @@
-﻿
+﻿@model TruckDetailsViewModel
+
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>@Model.Name</h2>
+	
+<p>
+	@Model.Description
+</p>
+
+@Html.Partial("Rating", Model.Rating)
+
+<h3>Contact Info</h3>
+<div>
+	Phone: @Model.Phone
+</div>
+
+<div>
+	Website: <a href="@Model.Website">@Model.Website</a>
+</div>
+
+<div>
+	Facebook: <a href="@Model.Facebook">@Model.Facebook</a>
+</div>
+
+<div>
+	Twitter: <a href="@Model.Twitter">@Model.Twitter</a>
+</div>
+
+
 
