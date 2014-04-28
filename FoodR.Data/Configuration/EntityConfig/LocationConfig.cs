@@ -13,13 +13,4 @@ namespace FoodR.Data.Configuration.EntityConfig
 			Property(a => a.ZipCode).HasMaxLength(10);		
 		}
 	}
-
-	public class AreaConfig : EntityConfig<Area>
-	{
-		public AreaConfig()
-		{
-			Property(a => a.Name).HasMaxLength(150);
-			Property(a => a.Description).HasMaxLength(500);
-		}
-	}
 }
