@@ -23,7 +23,7 @@ namespace FoodR.Web.Controllers
 
 	    public ActionResult Index()
 	    {
-		    var trucks = service.GetAllTrucks();
+		    var trucks = service.GetTrucks();
 			var details = mapper.Map<IEnumerable<TruckDetailsViewModel>>(trucks);
             return View(details);
         }
@@ -31,7 +31,7 @@ namespace FoodR.Web.Controllers
 		[Route("trucks/details/{name}")]
 		public ActionResult Details(string name)
 		{
-			var truck = service.GetTruckByUrlName(name);
+			var truck = service.GetTruck(name);
 			if (truck == null)
 			{
 				return HttpNotFound();
