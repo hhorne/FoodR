@@ -82,8 +82,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
@@ -162,11 +163,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\TypeMapConfig.cs" />
+    <Compile Include="Controllers\ActionResults\JsonNetResult.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Controllers\Filters\SlugToIdAttribute.cs" />
     <Compile Include="Controllers\Filters\TruckSlutToIdAttribute.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\TrucksController.cs" />
-    <Compile Include="StringExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="ViewModels\AddressViewModel.cs" />
     <Compile Include="ViewModels\AreaDetailViewModel.cs" />
     <Compile Include="Services\TruckService.cs" />
     <Compile Include="ViewModels\LocationEditViewModel.cs" />

@@ -1,4 +1,6 @@
-﻿using FoodR.Web.Controllers.Filters;
+﻿using System.Text;
+using FoodR.Web.Controllers.ActionResults;
+using FoodR.Web.Controllers.Filters;
 using Microsoft.Owin.Security;
 using System.Web;
 using System.Web.Mvc;
@@ -23,6 +25,17 @@ namespace FoodR.Web.Controllers
 			}
 
 			return RedirectToAction("Index", "Home");
+		}
+
+		protected override JsonResult Json(object data, string contentType, Encoding contentEncoding, JsonRequestBehavior behavior)
+		{
+			return new JsonNetResult
+			{
+				Data = data,
+				ContentType = contentType,
+				ContentEncoding = contentEncoding,
+				JsonRequestBehavior = behavior
+			};
 		}
 
 		internal class ChallengeResult : HttpUnauthorizedResult

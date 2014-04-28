@@ -50,7 +50,7 @@ namespace FoodR.Web.Controllers
 		{
 			var vm = new LocationEditViewModel
 			{
-				Areas = mapper.Map<IEnumerable<SelectListItem>>(GetAreaViewModels())
+				Areas = mapper.Map<IEnumerable<SelectListItem>>(repository.GetAll<Area>())
 			};
 
 		    return View(vm);
@@ -65,6 +65,9 @@ namespace FoodR.Web.Controllers
 			    var location = new Location
 			    {
 				    Name = viewModel.Name,
+					StreetAddress = viewModel.StreetAddress,
+					StreetAddress2 = viewModel.StreetAddress2,
+					ZipCode = viewModel.ZipCode,
 				    AreaId = viewModel.AreaId,
 					UrlSlug = viewModel.Name.ConvertToUrlSlug()
 			    };
@@ -96,5 +99,15 @@ namespace FoodR.Web.Controllers
 			var vm = mapper.Map<LocationDetailViewModel>(location);
 			return vm;
 		}
-	}
+
+	    private LocationEditViewModel GetLocationEditViewModel()
+	    {
+		    var viewModel = new LocationEditViewModel
+		    {
+				Areas = mapper.Map<IEnumerable<SelectListItem>>(repository.GetAll<Area>())
+		    };
+
+		    return viewModel;
+	    }
+    }
 }

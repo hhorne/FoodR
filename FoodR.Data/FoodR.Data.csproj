@@ -76,16 +76,15 @@
   <ItemGroup>
     <Compile Include="Configuration\ContextExtensions.cs" />
     <Compile Include="Configuration\EntityConfig.cs" />
-    <Compile Include="Configuration\EntityConfig\AddressConfig.cs" />
     <Compile Include="Configuration\EntityConfig\BadgeConfig.cs" />
     <Compile Include="Configuration\EntityConfig\EarnedBadgeConfig.cs" />
     <Compile Include="Configuration\EntityConfig\EventConfig.cs" />
     <Compile Include="Configuration\EntityConfig\FoodTruckConfig.cs" />
     <Compile Include="Configuration\EntityConfig\LocationConfig.cs" />
     <Compile Include="Configuration\EntityConfig\MenuConfig.cs" />
+    <Compile Include="Configuration\EntityConfig\StateConfig.cs" />
     <Compile Include="FoodRContext.cs" />
     <Compile Include="FoodRRepository.cs" />
-    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Badge.cs" />
     <Compile Include="Models\EarnedBadge.cs" />
     <Compile Include="Models\Event.cs" />
@@ -93,6 +92,8 @@
     <Compile Include="Models\FoodTruck.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
