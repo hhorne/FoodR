@@ -7,6 +7,7 @@ using FoodR.Data;
 using FoodR.Data.Models;
 using FoodR.Web.ViewModels;
 using FoodR.Web.Services;
+using System;
 
 namespace FoodR.Web.Controllers
 {
@@ -31,7 +32,7 @@ namespace FoodR.Web.Controllers
 		[Route("trucks/details/{name}")]
 		public ActionResult Details(string name)
 		{
-			var truck = service.GetTruck(name);
+			var truck = service.GetTruckByUrl(name);
 			if (truck == null)
 			{
 				return HttpNotFound();
@@ -41,10 +42,48 @@ namespace FoodR.Web.Controllers
 			return View(viewModel);
 		}
 
+		[Route("trucks/edit/{truckName}")]
 		public ActionResult Edit(string truckName)
 		{
+			var truck = service.GetTruckByUrl(truckName);
+			if (truck == null)
+			{
+				return HttpNotFound();
+			}
 
-			return View();
+			ViewBag.TruckName = truckName;
+
+			var viewModel = mapper.Map<TruckEditViewModel>(truck);
+			return View(viewModel);
+		}
+
+		[HttpPost]
+		[Route("trucks/edit/{truckName}")]
+		public ActionResult Edit(TruckEditViewModel model, string truckName)
+		{
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					FoodTruck truck = service.GetTruckByUrl(truckName);
+					truck = mapper.Map(model, truck);
+					var result = service.SaveTruck(truck);
+
+					model.PageState = result.Success ? TruckDetailsPageState.SaveSuccessfully : TruckDetailsPageState.SaveFailed;
+					model.EditErrors = result.Errors;
+				}
+				catch (Exception ex)
+				{
+					model.PageState = TruckDetailsPageState.SaveFailed;
+					var errors = new string [] { ex.Message };
+					model.EditErrors = errors;
+				}
+			}
+			else
+			{
+				model.PageState = TruckDetailsPageState.SaveFailed;
+			}
+			return View(model);
 		}
 	}
 }

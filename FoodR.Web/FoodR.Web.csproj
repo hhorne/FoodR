@@ -175,6 +175,7 @@
     <Compile Include="Services\TruckService.cs" />
     <Compile Include="ViewModels\LocationEditViewModel.cs" />
     <Compile Include="ViewModels\TruckDetailsViewModel.cs" />
+    <Compile Include="ViewModels\TruckEditViewModel.cs" />
     <Compile Include="ViewModels\TruckViewModel.cs" />
     <Content Include="App\app.js" />
     <Content Include="App\css\schedule.css">

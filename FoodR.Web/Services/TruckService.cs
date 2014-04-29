@@ -53,9 +53,14 @@ namespace FoodR.Web.Services
 			return trucks;
 		}
 
-		public FoodTruck GetTruck(string name)
+		public FoodTruck GetTruckByUrl(string name)
 		{
-			return repository.Where<FoodTruck>(t => t.UrlSlug == name).First();
+			return repository.Where<FoodTruck>(t => t.UrlSlug == name).FirstOrDefault();
+		}
+
+		public FoodTruck GetTruckById(int id)
+		{
+			return repository.Where<FoodTruck>(t => t.Id == id).FirstOrDefault();
 		}
 	}
 
@@ -63,7 +68,8 @@ namespace FoodR.Web.Services
 	{
 		TruckResult SaveTruck(FoodTruck truck);
 		IEnumerable<FoodTruck> GetTrucks(DateTime? day = null);
-		FoodTruck GetTruck(string name);
+		FoodTruck GetTruckByUrl(string name);
+		FoodTruck GetTruckById(int id);
 		
 	}
 

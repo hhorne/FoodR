@@ -1,4 +1,4 @@
-﻿@model TruckDetailsViewModel
+﻿@model TruckEditViewModel
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -22,8 +22,10 @@
             <strong>Oops!</strong> The hamster fell of the wheel and was not able to save your changes. Please try again later.
         </div>
     }
-    @using (Html.BeginForm("Edit", "Trucks", FormMethod.Post, new { @truckName = Model.UrlSlug }))
+    @using (Html.BeginForm("Edit", "Trucks", FormMethod.Post, new { truckName = ViewBag.TruckName }))
     {
+        @Html.AntiForgeryToken()
+        
         @Html.LabelFor(m => m.Name)
         <p>@Html.TextBoxFor(m => m.Name, new { @class = "form-control" })</p>
 
