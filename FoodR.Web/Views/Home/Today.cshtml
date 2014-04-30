@@ -20,7 +20,7 @@
             <div class="day">
                 <div class="header">
                     <div class="verbiage pull-left">
-                        @Html.ActionLink(t.Name, "Details", "Trucks", new { truckName = t.UrlSlug }, null)
+                        @Html.ActionLink(t.Name, "Details", "Trucks", new { name = t.UrlSlug }, null)
                         <ul class="rating">
                             @for (int i = 1; i <= 5; i++)
                             {

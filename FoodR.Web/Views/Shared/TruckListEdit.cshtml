@@ -1,0 +1,13 @@
+﻿@model TruckDetailsViewModel
+
+<div class="header">
+    <div class="verbiage pull-left">
+        <a href="/trucks/details/@Model.UrlSlug">@Model.Name</a>
+        @Html.Partial("Rating", Model.Rating)
+        <p>@Model.Description</p>
+    </div>
+    <div class="pull-right">
+        <a href="/trucks/edit/@Model.UrlSlug" class="btn btn-info">Edit</a>
+    </div>
+    <div class="clearfix"></div>
+</div>
