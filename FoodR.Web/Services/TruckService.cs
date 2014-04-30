@@ -16,13 +16,28 @@ namespace FoodR.Web.Services
 		{
 			repository = repo;
 		}
+		public TruckResult CreateTruck(FoodTruck truck)
+		{
+			TruckResult result = new TruckResult() { Success = false };
+
+			try
+			{
+				repository.Add<FoodTruck>(truck);
+				repository.SaveChanges();
+				result.Success = true;
+			}
+			catch (Exception ex)
+			{
+				string[] errors = new[] { ex.Message };
+				result.Errors = errors;
+				result.Success = false;
+			}
+			return result;
+		}
 
 		public TruckResult SaveTruck(FoodTruck truck)
 		{
-			TruckResult result = new TruckResult()
-			{
-				Success = false
-			};
+			TruckResult result = new TruckResult() { Success = false };
 
 			try
 			{
@@ -66,6 +81,7 @@ namespace FoodR.Web.Services
 
 	public interface ITruckService
 	{
+		TruckResult CreateTruck(FoodTruck truck);
 		TruckResult SaveTruck(FoodTruck truck);
 		IEnumerable<FoodTruck> GetTrucks(DateTime? day = null);
 		FoodTruck GetTruckByUrl(string name);

@@ -241,7 +241,7 @@
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Home\Map.cshtml" />
     <Content Include="Views\Trucks\Index.cshtml" />
-    <Content Include="Views\Shared\TruckDetails.cshtml" />
+    <Content Include="Views\Shared\TruckListDetails.cshtml" />
     <Content Include="Views\Shared\Rating.cshtml" />
     <Content Include="Views\Trucks\Details.cshtml" />
     <Content Include="Views\Trucks\Edit.cshtml" />
@@ -253,6 +253,7 @@
     <Content Include="Views\Locations\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\LocationEditViewModel.cshtml" />
     <Content Include="Views\Locations\Edit.cshtml" />
+    <Content Include="Views\Trucks\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

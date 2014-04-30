@@ -41,7 +41,43 @@ namespace FoodR.Web.Controllers
 			var viewModel = mapper.Map<TruckDetailsViewModel>(truck);
 			return View(viewModel);
 		}
+		
+		[HttpGet]
+		[Route("trucks/create")]
+		public ActionResult Create()
+		{
+			return View(new TruckEditViewModel());
+		}
 
+		[HttpPost]
+		[Route("trucks/create")]
+		public ActionResult Create(TruckEditViewModel vm)
+		{
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					FoodTruck newTruck = mapper.Map<FoodTruck>(vm);
+					var result = service.CreateTruck(newTruck);
+
+					vm.PageState = result.Success ? TruckDetailsPageState.SaveSuccessfully : TruckDetailsPageState.SaveFailed;
+					vm.EditErrors = result.Errors;
+				}
+				catch (Exception ex)
+				{
+					vm.PageState = TruckDetailsPageState.SaveFailed;
+					var errors = new string[] { ex.Message };
+					vm.EditErrors = errors;
+				}
+			}
+			else
+			{
+				vm.PageState = TruckDetailsPageState.SaveFailed;
+			}
+			return View(vm);
+		}
+
+		[HttpGet]
 		[Route("trucks/edit/{truckName}")]
 		public ActionResult Edit(string truckName)
 		{

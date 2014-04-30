@@ -8,17 +8,35 @@ namespace FoodR.Web.ViewModels
 {
 	public class TruckEditViewModel
 	{
+		[Required(ErrorMessage = "Provide a name for this truck")]
 		[MaxLength(150)]
 		public string Name { get; set; }
-		public string Description { get; set; }
-		public string Phone { get; set; }
-		public string Email { get; set; }
-		public string Website { get; set; }
-		public string Facebook { get; set; }
-		public string Twitter { get; set; }
-		public int Rating { get; set; }
 
+		[Required(ErrorMessage = "Provide a description for this truck")]
+		[MaxLength(1000)]
+		public string Description { get; set; }
+
+		[MaxLength(30)]
+		public string Phone { get; set; }
+
+		[MaxLength(50)]
+		public string Email { get; set; }
+
+		[MaxLength(200)]
+		public string Website { get; set; }
+
+		[MaxLength(50)]
+		public string Facebook { get; set; }
+
+		[MaxLength(50)]
+		public string Twitter { get; set; }
+
+		//public int Rating { get; set; }
+
+		[ScaffoldColumn(false)]
 		public TruckDetailsPageState PageState { get; set; }
+
+		[ScaffoldColumn(false)]
 		public IEnumerable<string> EditErrors { get; set; }
 	}
 

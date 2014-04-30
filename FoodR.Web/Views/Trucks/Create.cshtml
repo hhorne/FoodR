@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.PageState == TruckDetailsPageState.SaveSuccessfully)
+{
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        Truck Added!
+    </div>
+}
+else if (Model.PageState == TruckDetailsPageState.SaveFailed)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Oops!</strong> The hamster fell of the wheel and was not able to save your new truck. Please try again later.
+    </div>
+}
+
+<h2>Add a new truck</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.EditorFor(model => model)
+
+    <div>
+        <button type="submit" class="btn btn-success btn-lg center-block">Create</button>
+    </div>
+}
