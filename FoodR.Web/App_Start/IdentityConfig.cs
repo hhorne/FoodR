@@ -18,7 +18,9 @@ namespace FoodR.Web
 
 		public static FoodRUserManager Create(IdentityFactoryOptions<FoodRUserManager> options, IOwinContext context)
 		{
-			var manager = new FoodRUserManager(new UserStore<FoodRUser>(context.Get<FoodRContext>()));
+			var store = new UserStore<FoodRUser>(context.Get<FoodRContext>());
+			store.DisposeContext = true;
+			var manager = new FoodRUserManager(store);
 
 			// Configure validation logic for usernames
 			manager.UserValidator = new UserValidator<FoodRUser>(manager)
@@ -111,7 +113,10 @@ namespace FoodR.Web
 
 	public class FoodRUserStore : UserStore<FoodRUser>
 	{
-		public FoodRUserStore() : base(new FoodRContext()) { }
+		public FoodRUserStore() : base(new FoodRContext()) 
+		{
+			DisposeContext = true;
+		}
 	}
 
 	public class FoodRRoleManager : RoleManager<IdentityRole>
@@ -127,6 +132,9 @@ namespace FoodR.Web
 
 	public class FoodRRoleStore : RoleStore<IdentityRole, string, IdentityUserRole>
 	{
-		public FoodRRoleStore() : base (new FoodRContext()) { }
+		public FoodRRoleStore() : base (new FoodRContext()) 
+		{
+			DisposeContext = true;
+		}
 	}
 }
