@@ -42,7 +42,7 @@ namespace FoodR.Data
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
-			this.ComposeModelConfiguration(modelBuilder);
+			modelBuilder.ComposeModelConfiguration();
 			base.OnModelCreating(modelBuilder);
 		}
 	}

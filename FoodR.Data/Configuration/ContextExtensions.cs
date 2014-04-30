@@ -7,8 +7,7 @@ using FoodR.Data.Configuration;
 
 public static class ContextExtensions
 {
-	[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context", Justification="This is helper extension method on DbContext.")]
-	public static void ComposeModelConfiguration(this DbContext context, DbModelBuilder modelBuilder)
+	public static void ComposeModelConfiguration(this DbModelBuilder modelBuilder)
 	{
 		var contextConfiguration = new ContextConfiguration();
 		using (var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly()))
