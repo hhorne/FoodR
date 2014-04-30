@@ -66,69 +66,78 @@ namespace FoodR.Data
 
 		private void InitializeCitiesAndStates(FoodRContext context)
 		{
-			var stateIds = new[]
-			{
-				"AL",
-				"AK",
-				"AZ",
-				"AR",
-				"CA",
-				"CO",
-				"CT",
-				"DE",
-				"FL",
-				"GA",
-				"HI",
-				"ID",
-				"IL",
-				"IN",
-				"IA",
-				"KS",
-				"KY",
-				"LA",
-				"ME",
-				"MD",
-				"MA",
-				"MI",
-				"MN",
-				"MS",
-				"MO",
-				"MT",
-				"NE",
-				"NV",
-				"NH",
-				"NJ",
-				"NM",
-				"NY",
-				"NC",
-				"ND",
-				"OH",
-				"OK",
-				"OR",
-				"PA",
-				"RI",
-				"SC",
-				"SD",
-				"TN",
-				"TX",
-				"UT",
-				"VT",
-				"VA",
-				"WA",
-				"WV",
-				"WI",
-				"WY",
-			}; // I really need to move this db initialization data to files or something...
+			//var stateIds = new[]
+			//{
+			//	"AL",
+			//	"AK",
+			//	"AZ",
+			//	"AR",
+			//	"CA",
+			//	"CO",
+			//	"CT",
+			//	"DE",
+			//	"FL",
+			//	"GA",
+			//	"HI",
+			//	"ID",
+			//	"IL",
+			//	"IN",
+			//	"IA",
+			//	"KS",
+			//	"KY",
+			//	"LA",
+			//	"ME",
+			//	"MD",
+			//	"MA",
+			//	"MI",
+			//	"MN",
+			//	"MS",
+			//	"MO",
+			//	"MT",
+			//	"NE",
+			//	"NV",
+			//	"NH",
+			//	"NJ",
+			//	"NM",
+			//	"NY",
+			//	"NC",
+			//	"ND",
+			//	"OH",
+			//	"OK",
+			//	"OR",
+			//	"PA",
+			//	"RI",
+			//	"SC",
+			//	"SD",
+			//	"TN",
+			//	"TX",
+			//	"UT",
+			//	"VT",
+			//	"VA",
+			//	"WA",
+			//	"WV",
+			//	"WI",
+			//	"WY",
+			//}; // I really need to move this db initialization data to files or something...
 
-			var states = stateIds.Select(state => new State { Id = state }).ToList();
-			context.Set<State>().AddRange(states);
-			context.SaveChanges();
+			//var states = stateIds.Select(state => new State { Id = state }).ToList();
+			//context.Set<State>().AddRange(states);
+			//context.SaveChanges();
 
-			var fl = context.Set<State>().SingleOrDefault(s => s.Id.Equals("FL", StringComparison.OrdinalIgnoreCase));
-			fl.Cities = new Collection<City>
+			//var fl = context.Set<State>().SingleOrDefault(s => s.Id.Equals("FL", StringComparison.OrdinalIgnoreCase));
+			var fl = new State()
 			{
-				new City { Name = "Jacksonville" },
+				Id = "FL",
+				Name = "Florida",
+				Cities = new Collection<City>
+					{
+						new City { Name = "Jacksonville" },
+					}
 			};
+			//fl.Cities = new Collection<City>
+			//{
+			//	new City { Name = "Jacksonville" },
+			//};
 
 			context.SaveChanges();
 		}

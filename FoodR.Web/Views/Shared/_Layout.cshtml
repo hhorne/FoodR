@@ -30,6 +30,9 @@
 					<li>
 						@Html.ActionLink("Today", "Today", "Home")
 					</li>
+                    <li>
+                        <a href="/trucks/">Trucks</a>
+                    </li>
 					<li>
 						@Html.ActionLink("Map", "Map", "Home")
 					</li>
@@ -48,6 +51,9 @@
 							}
 						}
 					</li>
+                    <li>
+                        <a href="/admin/">Admin</a>
+                    </li>
 				</ul>
 
 
@@ -67,8 +73,8 @@
         <script src="/Scripts/jquery-2.1.0.min.js"></script>
 		<script src="~/Scripts/jquery.validate.js"></script>
 		<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-        <script src="/Scripts/angular.js"></script>
-        <script src="/Scripts/angular-route.js"></script>
+        @*<script src="/Scripts/angular.js"></script>
+        <script src="/Scripts/angular-route.js"></script>*@
         <script src="/Scripts/bootstrap.min.js"></script>
         @RenderSection("scripts", required: false)
 </body>
