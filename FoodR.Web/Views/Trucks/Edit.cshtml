@@ -1,0 +1,50 @@
+﻿@model TruckEditViewModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-8">
+    <h2>Edit Truck</h2>
+</div>
+<div class="col-md-8">
+    @if (Model.PageState == TruckDetailsPageState.SaveSuccessfully)
+    {
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            Changes saved
+        </div>
+    }
+    else if (Model.PageState == TruckDetailsPageState.SaveFailed)
+    {
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Oops!</strong> The hamster fell of the wheel and was not able to save your changes. Please try again later.
+        </div>
+    }
+    @using (Html.BeginForm("Edit", "Trucks", FormMethod.Post, new { truckName = ViewBag.TruckName }))
+    {
+        @Html.AntiForgeryToken()
+        
+        @Html.LabelFor(m => m.Name)
+        <p>@Html.TextBoxFor(m => m.Name, new { @class = "form-control" })</p>
+
+        @Html.LabelFor(m => m.Description)
+        <p>@Html.TextAreaFor(m => m.Description, new { @class = "form-control" })</p>
+
+        <h3>Contact Info</h3>
+
+        @Html.LabelFor(m => m.Email)
+        <p>@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })</p>
+
+        @Html.LabelFor(m => m.Phone)
+        <p>@Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })</p>
+
+        @Html.LabelFor(m => m.Website)
+        <p>@Html.TextBoxFor(m => m.Website, new { @class = "form-control" })</p>
+
+        <div>
+            <button type="submit" class="btn btn-success btn-lg center-block">Save</button>
+        </div>
+    }
+</div>

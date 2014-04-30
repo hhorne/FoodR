@@ -1,7 +1,9 @@
-﻿using FoodR.Web.Services;
+﻿using AutoMapper;
+using FoodR.Data;
+using FoodR.Web.Services;
 using Ninject.Modules;
 
-namespace FoodR.Web.App_Start.InjectionModules
+namespace FoodR.Web.InjectionModules
 {
 	public class ServiceModule : NinjectModule
 	{
@@ -10,6 +12,9 @@ namespace FoodR.Web.App_Start.InjectionModules
 			Bind<IEmailService>().To<EmailService>();
 			Bind<ISmsService>().To<SmsService>();
 			Bind<IUserService>().To<UserService>();
+			Bind<ITruckService>().To<TruckService>();
+			Bind<IRepository>().To<FoodRRepository>();
+			Bind<IMappingEngine>().ToMethod(x => Mapper.Engine);
 		}
 	}
 }

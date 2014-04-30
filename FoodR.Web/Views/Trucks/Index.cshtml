@@ -1,0 +1,11 @@
+﻿@model IEnumerable<TruckDetailsViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Trucks!</h2>
+
+@foreach (var truck in Model)
+{
+	@Html.Partial("TruckDetails", truck)
+}

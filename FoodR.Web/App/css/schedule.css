@@ -1,4 +1,4 @@
-.controls {
+﻿.controls {
   margin: 7px;
 }
 .week {
@@ -29,24 +29,6 @@
 }
 .day .header .name {
   margin: 5px;
-}
-.day .header .rating {
-  display: inline;
-}
-.day .header .rating .user-rating {
-  color: #f0ad4e;
-}
-.day .header .rating .user-rating-selected:before {
-  content: "\e006";
-}
-.day .header .rating li {
-  display: inline;
-}
-.day .header .rating li a {
-  color: #999999;
-}
-.day .header .rating li a:hover {
-  color: #f0ad4e;
 }
 .day .header .verbiage {
   max-width: 600px;

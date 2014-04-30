@@ -122,4 +122,21 @@ body {
 .table .booked {
   background-color: #f2dede;
 }
-/*# sourceMappingURL=styles.css.map */
+.rating {
+  display: inline;
+}
+.rating .user-rating {
+  color: #f0ad4e;
+}
+.rating .user-rating-selected:before {
+  content: "\e006";
+}
+.rating li {
+  display: inline !important;
+}
+.rating li a {
+  color: #999999;
+}
+.rating li a:hover {
+  color: #f0ad4e;
+}

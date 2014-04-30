@@ -40,6 +40,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.2.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.2.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -78,8 +84,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
@@ -157,6 +164,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\TypeMapConfig.cs" />
+    <Compile Include="Controllers\ActionResults\JsonNetResult.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Controllers\Filters\SlugToIdAttribute.cs" />
+    <Compile Include="Controllers\Filters\TruckSlugToIdAttribute.cs" />
+    <Compile Include="Controllers\LocationsController.cs" />
+    <Compile Include="Controllers\TrucksController.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="ViewModels\AddressViewModel.cs" />
+    <Compile Include="ViewModels\AreaDetailViewModel.cs" />
+    <Compile Include="Services\TruckService.cs" />
+    <Compile Include="ViewModels\LocationEditViewModel.cs" />
+    <Compile Include="ViewModels\TruckDetailsViewModel.cs" />
+    <Compile Include="ViewModels\TruckEditViewModel.cs" />
     <Compile Include="ViewModels\TruckViewModel.cs" />
     <Content Include="App\app.js" />
     <Content Include="App\css\schedule.css">
@@ -166,17 +187,8 @@
       <DependentUpon>schedule.css</DependentUpon>
     </Content>
     <Compile Include="App_Start\InjectionModules\ServiceModule.cs" />
-    <Compile Include="Data\EntityTypeConfiguration\AddressConfig.cs" />
-    <Compile Include="Data\EntityTypeConfiguration\BadgeConfig.cs" />
-    <Compile Include="Data\EntityTypeConfiguration\EarnedBadgeConfig.cs" />
-    <Compile Include="Data\EntityTypeConfiguration\LocationConfig.cs" />
-    <Compile Include="Data\EntityTypeConfiguration\EventConfig.cs" />
-    <Compile Include="Data\EntityTypeConfiguration\MenuConfig.cs" />
-    <Compile Include="Data\Models\Address.cs" />
-    <Compile Include="Data\Models\EarnedBadge.cs" />
     <Compile Include="Controllers\Filters\UserAwareAttribute.cs" />
     <Compile Include="Services\UserService.cs" />
-    <Compile Include="Data\Models\Menu.cs" />
     <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Content Include="App\css\styles.css">
@@ -209,9 +221,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Content Include="Scripts\tab.js" />
     <Content Include="Views\Home\MapAng.cshtml" />
-    <Content Include="Views\Home\List.cshtml" />
-    <Content Include="Views\Home\Truck.cshtml" />
+    <Content Include="Views\Home\Today.cshtml" />
     <Content Include="Views\Profile\Login.cshtml" />
+    <Content Include="Views\Home\Truck.cshtml" />
     <Content Include="Views\Home\Locate.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Badges.cshtml" />
@@ -230,6 +242,19 @@
     <Content Include="Views\Home\ListAng.cshtml" />
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Home\Map.cshtml" />
+    <Content Include="Views\Trucks\Index.cshtml" />
+    <Content Include="Views\Shared\TruckDetails.cshtml" />
+    <Content Include="Views\Shared\Rating.cshtml" />
+    <Content Include="Views\Trucks\Details.cshtml" />
+    <Content Include="Views\Trucks\Edit.cshtml" />
+    <Content Include="Views\Shared\AreaDetail.cshtml" />
+    <Content Include="Views\Locations\Location.cshtml" />
+    <Content Include="Views\Shared\LocationDetails.cshtml" />
+    <Content Include="Views\Locations\Areas.cshtml" />
+    <Content Include="Views\Locations\Index.cshtml" />
+    <Content Include="Views\Locations\Create.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\LocationEditViewModel.cshtml" />
+    <Content Include="Views\Locations\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -282,16 +307,7 @@
     <Compile Include="Controllers\FoodRController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Data\ContextConfiguration.cs" />
-    <Compile Include="Data\EntityConfig.cs" />
-    <Compile Include="Data\EntityTypeConfiguration\FoodTruckConfig.cs" />
-    <Compile Include="Data\FoodRContext.cs" />
-    <Compile Include="Data\Models\Badge.cs" />
-    <Compile Include="Data\Models\FoodRUser.cs" />
-    <Compile Include="Data\Models\Location.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
-    <Compile Include="Data\Models\Event.cs" />
-    <Compile Include="Data\Models\FoodTruck.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -302,6 +318,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\js\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FoodR.Data\FoodR.Data.csproj">
+      <Project>{7092f683-7685-403f-8179-79f41bb541a2}</Project>
+      <Name>FoodR.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -319,6 +341,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\AutoMapper.3.2.0\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.0\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

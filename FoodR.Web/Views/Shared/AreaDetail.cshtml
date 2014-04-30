@@ -1,0 +1,17 @@
+﻿@model AreaDetailViewModel
+
+<div class="header">
+	<div class="verbiage pull-left">
+		<h4>@Model.Name</h4>
+		<p>@Model.Description</p>
+		<ul>
+			@foreach (var location in @Model.Locations)
+			{
+				<li>
+					<a href="~/locations/@location.UrlSlug">@location.Name</a>
+				</li>
+			}
+		</ul>
+	</div>
+	<div class="clearfix"></div>
+</div>

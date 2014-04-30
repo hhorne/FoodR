@@ -1,5 +1,7 @@
-﻿using FoodR.Web.Data;
-using FoodR.Web.Data.Models;
+﻿using AutoMapper;
+using FoodR.Data;
+using FoodR.Data.Models;
+using FoodR.Web.Services;
 using FoodR.Web.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -35,6 +37,19 @@ namespace FoodR.Web.Controllers
 			return View(m);
 		}
 
+		public JsonResult Json()
+		{
+			using (FoodRContext db = new FoodRContext())
+			{
+				//Find all the trucks out right now.
+				//TODO: Prolly want to expand this to check for trucks that will be out with in an hour from now, maybe.
+				//TESTING: this date should be changed to now, but for testing im leaving it like this
+				var myDate = new DateTime(2014, 4, 23, 11, 15, 0);
+				var trucks = db.FoodTrucks.Where(t => t.Events.Any(e => e.From < myDate && e.To > myDate)).ToArray();
+				return Json(trucks, JsonRequestBehavior.AllowGet);
+			}
+		}
+
 		public ActionResult MapAng()
 		{
 			return View();
@@ -45,9 +60,9 @@ namespace FoodR.Web.Controllers
 			return View();
 		}
 
-		public ActionResult List()
+		public ActionResult Today()
 		{
-			using(FoodRContext db = new FoodRContext())
+			using (FoodRContext db = new FoodRContext())
 			{
 				var today = new DateTime(2014, 4, 23);
 				var tomorrow = new DateTime(2014, 4, 24);
@@ -68,30 +83,6 @@ namespace FoodR.Web.Controllers
 		public ActionResult Locate()
 		{
 			return View();
-		}
-
-		public ActionResult Truck(int id = 0)
-		{
-			if(id == 0) //dont wanna catch the page in an invalid state
-				return RedirectToAction("Index", "Home");
-
-			TruckViewModel m = new TruckViewModel();
-			using (FoodRContext db = new FoodRContext())
-			{
-				//eagerly load the events and locations
-				m.Truck = db.FoodTrucks
-					.Include("Events.Location")
-					.FirstOrDefault(t => t.Id == id);
-
-				if (m.Truck == null) //non existent truck id
-					return RedirectToAction("Index", "Home");
-
-				m.EventsInDays = m.Truck.Events.GroupBy(e => e.From.Date);
-			}
-
-			m.EditMode = false;
-			
-			return View(m);
 		}
 	}
 }

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodR.Web", "FoodR.Web\Food
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodR.Web.Tests", "FoodR.Web.Tests\FoodR.Web.Tests.csproj", "{114548AD-597D-4752-97F7-9DF71C877322}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodR.Data", "FoodR.Data\FoodR.Data.csproj", "{7092F683-7685-403F-8179-79F41BB541A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{114548AD-597D-4752-97F7-9DF71C877322}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{114548AD-597D-4752-97F7-9DF71C877322}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{114548AD-597D-4752-97F7-9DF71C877322}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7092F683-7685-403F-8179-79F41BB541A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7092F683-7685-403F-8179-79F41BB541A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7092F683-7685-403F-8179-79F41BB541A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7092F683-7685-403F-8179-79F41BB541A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

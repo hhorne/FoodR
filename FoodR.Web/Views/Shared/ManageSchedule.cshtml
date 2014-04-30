@@ -23,7 +23,7 @@
                     </div>
                     <div class="location">
                         <h5>@evt.Location.Name</h5>
-                        <p>@evt.Location.Address.StreetAddress</p>
+                        <p>@evt.Location.StreetAddress</p>
                     </div>
                     @if (Model.EditMode)
                     {
@@ -39,27 +39,5 @@
 
     </div>
     }
-    @*<div class="day">
-        <div class="header">
-            <div class="name">Monday April 21st</div>
-        </div>
-        <ul class="events">
-            <li class="entry">
-                <div class="timespan">
-                    <div>11 AM</div>
-                    <div>2 PM</div>
-                </div>
-                <div class="location">
-                    <h5>Forsyth and Main</h5>
-                    <p>123 Main St</p>
-                </div>
-                <div class="entry-controls">
-                    <button class="btn btn-info btn-sm">Edit</button>
-                    <button class="btn btn-danger btn-sm">Cancel This</button>
-                </div>
-                <div class="clearfix"></div>
-            </li>
-        </ul>
-    </div>*@
 
 </div>
