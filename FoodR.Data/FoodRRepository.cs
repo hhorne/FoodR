@@ -7,9 +7,6 @@ namespace FoodR.Data
 {
 	public class FoodRRepository : IRepository
 	{
-		private bool disposed = false;
-		private bool isDisposing;
-
 		private readonly FoodRContext context;
 
 		public FoodRRepository(FoodRContext context)
@@ -55,18 +52,21 @@ namespace FoodR.Data
 			context.SaveChanges();
 		}
 
-		public bool IsDisposed()
+		protected virtual void Dispose(bool managed)
 		{
-			return disposed;
+			if(managed)
+			{
+				if (context != null)
+				{
+					context.Dispose();
+				}
+			}
 		}
 
 		public void Dispose()
 		{
-			if (!IsDisposed())
-			{
-				context.Dispose();
-				this.disposed = true;
-			}
+			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 	}
 	
@@ -79,6 +79,5 @@ namespace FoodR.Data
 		void Delete<T>(T entity) where T : class;
 		void Add<T>(T entity) where T : class;
 		void SaveChanges();
-		bool IsDisposed();
 	}
 }

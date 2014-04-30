@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="FoodR Rules" Description="These rules focus on the most critical problems in your code for which Code Analysis is the most accurate.  These rules are small in number and they are intended only to run in limited Visual Studio editions." ToolsVersion="10.0">
+  <Localization ResourceAssembly="Microsoft.VisualStudio.CodeAnalysis.RuleSets.Strings.dll" ResourceBaseName="Microsoft.VisualStudio.CodeAnalysis.RuleSets.Strings.Localized">
+    <Name Resource="ManagedMinimumRules_Name" />
+    <Description Resource="ManagedMinimumRules_Description" />
+  </Localization>
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="CA1001" Action="Warning" /> <!-- Types that own disposable fields should be disposable -->
+    <Rule Id="CA1012" Action="Warning" /> <!-- AbstractTypesShouldNotHaveConstructors -->
+    <Rule Id="CA1021" Action="Warning" /> <!-- AvoidOutParameters -->
+    <Rule Id="CA1045" Action="Warning" /> <!-- DoNotPassTypesByReference -->
+    <Rule Id="CA1048" Action="Warning" /> <!-- DoNotDeclareVirtualMembersInSealedTypes -->
+    <Rule Id="CA1051" Action="Warning" /> <!-- DoNotDeclareVisibleInstanceFields -->
+    <Rule Id="CA1063" Action="Warning" /> <!-- ImplementIDisposableCorrectly -->
+    <Rule Id="CA1801" Action="Warning" /> <!-- ReviewUnusedParameters -->
+    <Rule Id="CA1821" Action="Warning" /> <!-- Remove empty finalizers -->
+    <!-- Commenting this out for now. IdentityConfig has 5 failing entries that should be fixed or SuppressMessage with justification.
+    <Rule Id="CA2000" Action="Warning" /> --> <!-- DisposeObjectsBeforeLosingScope -->
+    <Rule Id="CA2100" Action="Warning" /> <!-- ReviewSqlQueriesForSecurityVulnerabilities -->
+    <Rule Id="CA2200" Action="Warning" /> <!-- RethrowToPreserveStackDetails -->
+    <Rule Id="CA2208" Action="Warning" /> <!-- InstantiateArgumentExceptionsCorrectly -->
+    <Rule Id="CA2211" Action="Warning" /> <!-- NonConstantFieldsShouldNotBeVisible -->
+    <Rule Id="CA2213" Action="Warning" /> <!-- Disposable fields should be disposed -->
+    <Rule Id="CA2215" Action="Warning" /> <!-- DisposeMethodsShouldCallBaseClassDispose -->
+    <Rule Id="CA2231" Action="Warning" /> <!-- Overload Operator equals on overriding ValueType.Equals -->
+    <Rule Id="CA2241" Action="Warning" /> <!-- ProvideCorrectArgumentsToFormattingMethods -->
+  </Rules>
+</RuleSet>

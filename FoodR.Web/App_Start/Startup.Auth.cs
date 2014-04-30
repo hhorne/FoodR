@@ -15,6 +15,7 @@ namespace FoodR.Web
 		public void ConfigureAuth(IAppBuilder app)
 		{
 			// Configure the db context, user manager and role manager to use a single instance per request
+#warning does the IAppBuilder call dispose on these when the OwinContext is done?
 			app.CreatePerOwinContext(FoodRContext.Create);
 			app.CreatePerOwinContext<FoodRUserManager>(FoodRUserManager.Create);
 			app.CreatePerOwinContext<FoodRRoleManager>(FoodRRoleManager.Create);

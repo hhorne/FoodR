@@ -13,10 +13,6 @@ namespace FoodR.Web.Controllers
 		// Used for XSRF protection when adding external logins
 		private const string XsrfKey = "XsrfId";
 
-		public FoodRController()
-		{
-		}
-
 		protected ActionResult RedirectToLocal(string returnUrl)
 		{
 			if (Url.IsLocalUrl(returnUrl))
