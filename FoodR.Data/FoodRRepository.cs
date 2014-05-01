@@ -22,7 +22,7 @@ namespace FoodR.Data
 
 		public T Find<T>(int id) where T : class
 		{
-			var result = Find<T>(new object[] {id});
+			var result = Find<T>(new object[] { id });
 			return result;
 		}
 
@@ -54,7 +54,7 @@ namespace FoodR.Data
 
 		protected virtual void Dispose(bool managed)
 		{
-			if(managed)
+			if (managed)
 			{
 				if (context != null)
 				{
