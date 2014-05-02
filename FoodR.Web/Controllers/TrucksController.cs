@@ -53,11 +53,12 @@ namespace FoodR.Web.Controllers
 		[Route("trucks/create")]
 		public ActionResult Create(TruckEditViewModel vm)
 		{
+			FoodTruck newTruck = null;
 			if (ModelState.IsValid)
 			{
 				try
 				{
-					FoodTruck newTruck = mapper.Map<FoodTruck>(vm);
+					newTruck = mapper.Map<FoodTruck>(vm);
 					var result = service.CreateTruck(newTruck);
 
 					vm.PageState = result.Success ? TruckDetailsPageState.SaveSuccessfully : TruckDetailsPageState.SaveFailed;
@@ -74,36 +75,36 @@ namespace FoodR.Web.Controllers
 			{
 				vm.PageState = TruckDetailsPageState.SaveFailed;
 			}
-			return View(vm);
+			return RedirectToAction("Index", "Admin");
 		}
 
 		[HttpGet]
-		[Route("trucks/edit/{truckName}")]
-		public ActionResult Edit(string truckName)
+		[Route("trucks/edit/{slug}")]
+		public ActionResult Edit(string slug)
 		{
-			var truck = service.GetTruckByUrl(truckName);
+			var truck = service.GetTruckByUrl(slug);
 			if (truck == null)
 			{
 				return HttpNotFound();
 			}
 
-			ViewBag.TruckName = truckName;
+			ViewBag.UrgSlug = slug;
 
-			var viewModel = mapper.Map<TruckEditViewModel>(truck);
-			return View(viewModel);
+			var vm = mapper.Map<TruckEditViewModel>(truck);
+			return View(vm);
 		}
 
 		[HttpPost]
-		[Route("trucks/edit/{truckName}")]
-		public ActionResult Edit(TruckEditViewModel model, string truckName)
+		[Route("trucks/edit/{slug}")]
+		public ActionResult Edit(TruckEditViewModel model, string slug)
 		{
 			if (ModelState.IsValid)
 			{
 				try
 				{
-					FoodTruck truck = service.GetTruckByUrl(truckName);
+					FoodTruck truck = service.GetTruckByUrl(slug);
 					truck = mapper.Map(model, truck);
-					var result = service.SaveTruck(truck);
+					var result = service.EditTruck(truck);
 
 					model.PageState = result.Success ? TruckDetailsPageState.SaveSuccessfully : TruckDetailsPageState.SaveFailed;
 					model.EditErrors = result.Errors;

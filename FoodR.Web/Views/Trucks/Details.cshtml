@@ -16,7 +16,7 @@
 @if (!string.IsNullOrEmpty(Model.Email))
 {
     @Html.LabelFor(m => m.Email)
-    <p>@Model.Email</p>
+    <p><a href="mailto:@Model.Email">@Model.Email</a></p>
 }
 
 @if (!string.IsNullOrEmpty(Model.Phone))
@@ -29,4 +29,16 @@
 {
     @Html.LabelFor(m => m.Website)
     <p><a href="@Model.Website">@Model.Website</a></p>
+}
+
+@if (!string.IsNullOrEmpty(Model.Facebook))
+{
+    @Html.LabelFor(m => m.Facebook)
+    <p><a href="https://www.facebook.com/@Model.Facebook">@Model.Facebook</a></p>
+}
+
+@if (!string.IsNullOrEmpty(Model.Twitter))
+{
+    @Html.LabelFor(m => m.Twitter)
+    <p><a href="https://www.twitter.com/@Model.Twitter">@Model.Twitter</a></p>
 }

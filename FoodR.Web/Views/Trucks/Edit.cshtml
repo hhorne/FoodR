@@ -22,7 +22,7 @@
     <h2>Edit Truck</h2>
 </div>
 <div class="col-md-8">
-    @using (Html.BeginForm("Edit", "Trucks", FormMethod.Post, new { truckName = ViewBag.TruckName }))
+    @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         
