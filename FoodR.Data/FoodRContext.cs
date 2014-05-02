@@ -22,6 +22,7 @@ namespace FoodR.Data
 		public DbSet<Menu> Menus { get; set; }
 		public DbSet<City> Cities { get; set; }
 		public DbSet<State> States { get; set; }
+		public DbSet<LogMessage> LogMessages { get; set; }
 
 		public FoodRContext() : base("FoodR", throwIfV1Schema: false)
 		{

@@ -13,6 +13,7 @@ namespace FoodR.Web
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			TypeMapConfig.RegisterTypeMaps();
+			log4net.Config.XmlConfigurator.Configure();
 		}
 	}
 }

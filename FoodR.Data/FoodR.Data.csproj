@@ -85,6 +85,7 @@
     <Compile Include="Configuration\EntityConfig\EventConfig.cs" />
     <Compile Include="Configuration\EntityConfig\FoodTruckConfig.cs" />
     <Compile Include="Configuration\EntityConfig\LocationConfig.cs" />
+    <Compile Include="Configuration\EntityConfig\LogMessageConfig.cs" />
     <Compile Include="Configuration\EntityConfig\MenuConfig.cs" />
     <Compile Include="Configuration\EntityConfig\StateConfig.cs" />
     <Compile Include="FoodRContext.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\Badge.cs" />
     <Compile Include="Models\EarnedBadge.cs" />
+    <Compile Include="Models\LogMessage.cs" />
     <Compile Include="Models\ScheduleEntry.cs" />
     <Compile Include="Models\FoodRUser.cs" />
     <Compile Include="Models\FoodTruck.cs" />
