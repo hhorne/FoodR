@@ -92,7 +92,7 @@
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\Badge.cs" />
     <Compile Include="Models\EarnedBadge.cs" />
-    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\ScheduleEntry.cs" />
     <Compile Include="Models\FoodRUser.cs" />
     <Compile Include="Models\FoodTruck.cs" />
     <Compile Include="Models\Location.cs" />

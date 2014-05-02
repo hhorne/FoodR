@@ -31,7 +31,7 @@ namespace FoodR.Web.Controllers
 				//TODO: Prolly want to expand this to check for trucks that will be out with in an hour from now, maybe.
 				//TESTING: this date should be changed to now, but for testing im leaving it like this
 				var myDate = new DateTime(2014, 4, 23, 11, 15, 0);
-				m.Trucks = db.FoodTrucks.Where(t => t.Events.Any(e => e.From < myDate && e.To > myDate)).ToArray();
+				m.Trucks = db.FoodTrucks.Where(t => t.ScheduleEntries.Any(e => e.From < myDate && e.To > myDate)).ToArray();
 			}
 
 			return View(m);
@@ -45,7 +45,7 @@ namespace FoodR.Web.Controllers
 				//TODO: Prolly want to expand this to check for trucks that will be out with in an hour from now, maybe.
 				//TESTING: this date should be changed to now, but for testing im leaving it like this
 				var myDate = new DateTime(2014, 4, 23, 11, 15, 0);
-				var trucks = db.FoodTrucks.Where(t => t.Events.Any(e => e.From < myDate && e.To > myDate)).ToArray();
+				var trucks = db.FoodTrucks.Where(t => t.ScheduleEntries.Any(e => e.From < myDate && e.To > myDate)).ToArray();
 				return Json(trucks, JsonRequestBehavior.AllowGet);
 			}
 		}
@@ -67,9 +67,9 @@ namespace FoodR.Web.Controllers
 				var today = new DateTime(2014, 4, 23);
 				var tomorrow = new DateTime(2014, 4, 24);
 				var trucks = db.FoodTrucks
-					.Include("Events.Location")
+					.Include("ScheduleEntries.Location")
 					.Include("Menus")
-					.Where(t => t.Events.Any(e => e.From >= today && e.From < tomorrow)).ToArray();
+					.Where(t => t.ScheduleEntries.Any(e => e.From >= today && e.From < tomorrow)).ToArray();
 				return View(trucks.ToArray());
 			}
 		}

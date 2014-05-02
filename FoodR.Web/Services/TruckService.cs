@@ -64,7 +64,7 @@ namespace FoodR.Web.Services
 			{
 				DateTime thisDay = day.Value.Date;
 				DateTime nextDay = thisDay + TimeSpan.FromDays(1);
-				trucks = repository.Where<FoodTruck>(t => t.Events.Any(e => e.From >= thisDay && e.From < nextDay));
+				trucks = repository.Where<FoodTruck>(t => t.ScheduleEntries.Any(e => e.From >= thisDay && e.From < nextDay));
 			}
 			else
 				trucks = repository.GetAll<FoodTruck>();

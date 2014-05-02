@@ -18,7 +18,7 @@ namespace FoodR.Data
 		public DbSet<EarnedBadge> EarnedBadges { get; set; }
 		public DbSet<FoodTruck> FoodTrucks { get; set; }
 		public DbSet<Location> Locations { get; set; }
-		public DbSet<Event> Events { get; set; }
+		public DbSet<ScheduleEntry> Events { get; set; }
 		public DbSet<Menu> Menus { get; set; }
 		public DbSet<City> Cities { get; set; }
 		public DbSet<State> States { get; set; }
@@ -139,6 +139,8 @@ namespace FoodR.Data
 			//	new City { Name = "Jacksonville" },
 			//};
 
+			context.States.AddOrUpdate(s => s.Id, fl);
+
 			context.SaveChanges();
 		}
 
@@ -206,8 +208,9 @@ namespace FoodR.Data
 						UrlSlug = "Happy_Grilled_Cheese",
 						Description = "Specialty Grilled Cheese Sandwiches",
 						Rating = 3,
-						Events = new [] { 
-							new Event
+						Facebook = "pages/The-Happy-Grilled-Cheese/284780458300232",
+						ScheduleEntries = new [] { 
+							new ScheduleEntry
 							{
 								From = new DateTime(2014, 4, 23, 11, 0, 0),
 								To = new DateTime(2014, 4, 23, 14, 0, 0),
@@ -222,15 +225,16 @@ namespace FoodR.Data
 						UrlSlug = "On_The_Fly",
 						Description = "Sandwiches & Stuff. Available for Catering and Private Parties.",
 						Rating = 5,
-						Events = new [] { 
-							new Event
+						Facebook = "Ontheflyjax",
+						ScheduleEntries = new [] { 
+							new ScheduleEntry
 							{
 								From = new DateTime(2014, 4, 23, 11, 0, 0),
 								To = new DateTime(2014, 4, 23, 14, 0, 0),
 								Location = courthouse,
 								Active = true
 							},
-							new Event
+							new ScheduleEntry
 							{
 								From = new DateTime(2014, 4, 23, 18, 0, 0),
 								To = new DateTime(2014, 4, 23, 22, 0, 0),
@@ -248,8 +252,9 @@ namespace FoodR.Data
 						Email = "abc@abc.comx",
 						Phone = "(904) 555-5555",
 						Website = "www.google.com",
-						Events = new [] { 
-							new Event
+						Facebook = "TasteBudsExpress",
+						ScheduleEntries = new [] { 
+							new ScheduleEntry
 							{
 								From = new DateTime(2014, 4, 23, 11, 0, 0),
 								To = new DateTime(2014, 4, 23, 14, 0, 0),

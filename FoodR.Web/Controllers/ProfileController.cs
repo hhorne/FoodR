@@ -31,13 +31,13 @@ namespace FoodR.Web.Controllers
 			{
 				//eagerly load the events and locations
 				m.Truck = db.FoodTrucks
-					.Include("Events.Location")
+					.Include("ScheduleEntries.Location")
 					.FirstOrDefault(t => t.Id == id);
 
 				if (m.Truck == null) //non existent truck id
 					return RedirectToAction("Index", "Profile");
 
-				m.EventsInDays = m.Truck.Events.GroupBy(e => e.From.Date);
+				m.EventsInDays = m.Truck.ScheduleEntries.GroupBy(e => e.From.Date);
 			}
 
 			m.EditMode = true;

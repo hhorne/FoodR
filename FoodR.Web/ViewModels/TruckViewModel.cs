@@ -10,13 +10,13 @@ namespace FoodR.Web.ViewModels
 	{
 		public bool EditMode { get; set; }
 		public FoodTruck Truck { get; set; }
-		public IEnumerable<IGrouping<DateTime, Event>> EventsInDays { get; set; }
+		public IEnumerable<IGrouping<DateTime, ScheduleEntry>> EventsInDays { get; set; }
 		//public List<EventsInDay> EventsInDays { get; set; }
 	}
 
 	public class EventsInDay
 	{
 		public DateTime Day { get; set; }
-		public List<Event> Events { get; set; }
+		public List<ScheduleEntry> Events { get; set; }
 	}
 }

@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodR.Data.Models
 {
-	public class Event
+	public class ScheduleEntry
 	{
-		public Event()
+		public ScheduleEntry()
 		{
 			LastModifiedOn = DateTime.Now;
 		}

@@ -2,7 +2,7 @@
 
 namespace FoodR.Data.Configuration.EntityConfig
 {
-	public class EventConfig : EntityConfig<Event>
+	public class EventConfig : EntityConfig<ScheduleEntry>
 	{
 		public EventConfig()
 		{
