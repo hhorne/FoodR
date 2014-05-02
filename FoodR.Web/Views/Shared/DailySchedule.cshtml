@@ -1,0 +1,13 @@
+﻿@model DailyScheduleViewModel
+<div class="day">
+    <div class="header">
+        <div class="name">@Model.Day.ToString("dddd MMMM dd")</div>
+    </div>
+    <ul class="events">
+        @foreach (var entry in Model.Entries)
+        {
+            @Html.Partial("ScheduleEntryDetail", entry)
+        }
+    </ul>
+</div>
+

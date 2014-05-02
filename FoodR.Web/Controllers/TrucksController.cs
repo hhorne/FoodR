@@ -25,7 +25,7 @@ namespace FoodR.Web.Controllers
 	    public ActionResult Index()
 	    {
 		    var trucks = service.GetTrucks();
-			var details = mapper.Map<IEnumerable<TruckDetailsViewModel>>(trucks);
+			var details = mapper.Map<IEnumerable<TruckListDetailViewModel>>(trucks);
             return View(details);
         }
 
@@ -39,6 +39,7 @@ namespace FoodR.Web.Controllers
 			}
 
 			var viewModel = mapper.Map<TruckDetailsViewModel>(truck);
+			
 			return View(viewModel);
 		}
 		
@@ -121,6 +122,32 @@ namespace FoodR.Web.Controllers
 				model.PageState = TruckDetailsPageState.SaveFailed;
 			}
 			return View(model);
+		}
+
+		[HttpGet]
+		public ActionResult WeeklySchedule(string urlslug)
+		{
+			DateTime from = DateTime.Now.Date.AddDays(-1);
+			DateTime to = from.AddDays(7);
+			var vm = new WeeklyScheduleViewModel();
+			//For testing I'm leaving this without the from and to
+			var days = service.GetTruckSchedule(urlslug);
+			//var days = service.GetTruckSchedule(urlslug, from, to);
+			List<DailyScheduleViewModel> daysInSchedule = new List<DailyScheduleViewModel>();
+			foreach (ScheduleDay d in days)
+			{
+				daysInSchedule.Add(new DailyScheduleViewModel()
+				{
+					Day = d.Day,
+					Entries = mapper.Map<IEnumerable<ScheduleEntryDetailsViewModel>>(d.Entries)
+				});
+			}
+
+			//var daysInSchedule = mapper.Map<IEnumerable<DailyScheduleViewModel>>(days);
+
+			vm.Days = daysInSchedule;
+
+			return PartialView(vm);
 		}
 	}
 }

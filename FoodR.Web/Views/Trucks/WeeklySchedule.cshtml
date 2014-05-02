@@ -1,0 +1,7 @@
+﻿@model WeeklyScheduleViewModel
+<div class="week">
+    @foreach (var day in Model.Days)
+    {
+        @Html.Partial("DailySchedule", day)
+    }
+</div>

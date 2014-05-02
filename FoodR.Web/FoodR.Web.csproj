@@ -185,6 +185,7 @@
     <Compile Include="App_Start\TypeMapConfig.cs" />
     <Compile Include="Controllers\ActionResults\JsonNetResult.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Controllers\Filters\SlugToIdAttribute.cs" />
     <Compile Include="Controllers\Filters\TruckSlugToIdAttribute.cs" />
@@ -196,9 +197,12 @@
     <Compile Include="ViewModels\AreaDetailViewModel.cs" />
     <Compile Include="Services\TruckService.cs" />
     <Compile Include="ViewModels\LocationEditViewModel.cs" />
+    <Compile Include="ViewModels\ScheduleEntryDetailsViewModel.cs" />
+    <Compile Include="ViewModels\ScheduleEntryEditViewModel.cs" />
     <Compile Include="ViewModels\TruckDetailsViewModel.cs" />
     <Compile Include="ViewModels\TruckEditViewModel.cs" />
-    <Compile Include="ViewModels\TruckViewModel.cs" />
+    <Compile Include="ViewModels\TruckListDetailViewModel.cs" />
+    <Compile Include="ViewModels\WeeklyScheduleViewModel.cs" />
     <Content Include="App\app.js" />
     <Content Include="App\css\schedule.css">
       <DependentUpon>schedule.less</DependentUpon>
@@ -278,6 +282,11 @@
     <Content Include="Views\Trucks\Create.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\TruckListEdit.cshtml" />
+    <Content Include="Views\Schedule\Create.cshtml" />
+    <Content Include="Views\Schedule\Edit.cshtml" />
+    <Content Include="Views\Trucks\WeeklySchedule.cshtml" />
+    <Content Include="Views\Shared\DailySchedule.cshtml" />
+    <Content Include="Views\Shared\ScheduleEntryDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
