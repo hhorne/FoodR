@@ -82,7 +82,7 @@
     <Compile Include="Configuration\EntityConfig\BadgeConfig.cs" />
     <Compile Include="Configuration\EntityConfig\CityConfig.cs" />
     <Compile Include="Configuration\EntityConfig\EarnedBadgeConfig.cs" />
-    <Compile Include="Configuration\EntityConfig\EventConfig.cs" />
+    <Compile Include="Configuration\EntityConfig\ScheduleEntryConfig.cs" />
     <Compile Include="Configuration\EntityConfig\FoodTruckConfig.cs" />
     <Compile Include="Configuration\EntityConfig\LocationConfig.cs" />
     <Compile Include="Configuration\EntityConfig\LogMessageConfig.cs" />

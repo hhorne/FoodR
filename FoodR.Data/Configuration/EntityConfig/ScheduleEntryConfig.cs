@@ -2,9 +2,9 @@
 
 namespace FoodR.Data.Configuration.EntityConfig
 {
-	public class EventConfig : EntityConfig<ScheduleEntry>
+	public class ScheduleEntryConfig : EntityConfig<ScheduleEntry>
 	{
-		public EventConfig()
+		public ScheduleEntryConfig()
 		{
 			Property(s => s.ModifiedComments).
 				HasMaxLength(500);
