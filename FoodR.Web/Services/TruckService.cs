@@ -86,34 +86,23 @@ namespace FoodR.Web.Services
 		{
 			FoodTruck truck = GetTruckByUrl(urlslug);
 			IEnumerable<ScheduleEntry> entries;
+			
 			if (fromDay.HasValue && toDay.HasValue)
 				entries = repository.Where<ScheduleEntry>(e => e.FoodTruckId == truck.Id && e.From >= fromDay && e.To <= toDay);
 			else
 				entries = repository.Where<ScheduleEntry>(e => e.FoodTruckId == truck.Id);
 
-			var days = new Dictionary<DateTime, List<ScheduleEntry>>();
-			foreach (ScheduleEntry e in entries)
-			{
-				DateTime entryDay = e.From.Date;
-				
-				if (!days.ContainsKey(entryDay))
-				{
-
-					days.Add(entryDay, new List<ScheduleEntry>() { e });
-				}
-				else
-					days[entryDay].Add(e);
-			}
-
+			var groups = entries.GroupBy(e => e.From.Date);
 			var scheduleDays = new List<ScheduleDay>();
-			foreach(var d in days)
+			foreach(var g in groups)
 			{
 				scheduleDays.Add(new ScheduleDay()
 				{
-					Day = d.Key,
-					Entries = d.Value
+					Day = g.Key,
+					Entries = g
 				});
 			}
+
 			return scheduleDays.ToArray();
 		}
 
