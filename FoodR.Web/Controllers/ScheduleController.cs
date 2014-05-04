@@ -34,6 +34,7 @@ namespace FoodR.Web.Controllers
 			return View(vm);
         }
 
+		[Authorize]
 		[HttpGet]
 		[Route("schedule/create")]
 		public ActionResult Create()
@@ -42,6 +43,7 @@ namespace FoodR.Web.Controllers
 			return View(vm);
 		}
 
+		[Authorize]
 		[HttpPost]
 		[Route("schedule/create/{truckurlslug}")]
 		public ActionResult Create(ScheduleEntryEditViewModel vm, string truckurlslug)
@@ -53,6 +55,7 @@ namespace FoodR.Web.Controllers
 			return RedirectToAction("Details", "Trucks", new { slug = truckurlslug });
 		}
 
+		[Authorize]
 		[HttpGet]
 		[Route("schedule/edit/{id}")]
 		public ActionResult Edit(int id)
@@ -64,12 +67,14 @@ namespace FoodR.Web.Controllers
 			return View(vm);
 		}
 
+		[Authorize]
 		[HttpPost]
 		[Route("schedule/cancel/{id}")]
-		public ActionResult Cancel(int id)
+		public JsonResult Cancel(int id)
 		{
-			var vm = new WeeklyScheduleViewModel();
-			return PartialView(vm);
+			//Do stuff
+
+			return Json(new { Status = "Success"});
 		}
 
 		[HttpGet]

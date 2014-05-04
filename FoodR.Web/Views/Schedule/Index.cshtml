@@ -6,3 +6,22 @@
 
 @{ Html.RenderAction("Weekly", "Schedule", new { urlslug = ViewBag.UrlSlug }); }
 
+@section scripts {
+    <script type="text/javascript">
+        $(function(){
+            $("button.cancel").click(function (e) {
+                var btn = $(this);
+                e.preventDefault();
+                btn.button('loading')
+                var id = btn.closest(".entry").find("#scheduleid").val();
+                $.post("/schedule/cancel/" + id, null, function () {
+                    var modal = btn.closest("#cancelModal");
+                    modal.modal('hide');
+                    })
+                    .always(function () {
+                        btn.button('reset');
+                    });
+            });
+        });
+    </script>
+}

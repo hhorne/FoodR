@@ -10,9 +10,25 @@
     </div>
     @if (ViewBag.UserName != "Anonymous")
     {
+        <input type="hidden" id="scheduleid" value="@Model.Id" />
         <div class="entry-controls">
             <a href="/schedule/edit/@Model.Id" class="btn btn-info btn-sm">Edit</a>
-            <a href="/schedule/cancel/@Model.Id" class="btn btn-danger btn-sm">Cancel This</a>
+            <button data-toggle="modal" data-target="#cancelModal" data-keyboard="true" data-backdrop="static" class="btn btn-warning btn-sm">Cancel This</button>
+        </div>
+        
+        <!-- Modal -->
+        <div class="modal" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Aure you sure you want to cancel this stop?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success cancel" data-loading-text="Canceling...">Cancel Stop</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Do Not Cancel</button>
+                    </div>
+                </div>
+            </div>
         </div>
     }
     <div class="clearfix"></div>

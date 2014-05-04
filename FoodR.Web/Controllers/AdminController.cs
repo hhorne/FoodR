@@ -20,6 +20,8 @@ namespace FoodR.Web.Controllers
 		    this.mapper = mapper;
 	    }
 
+		//[Authorize(Roles = "Admin")]
+		[Authorize]
         public ActionResult Index()
         {
 			var trucks = truckService.GetTrucks();
