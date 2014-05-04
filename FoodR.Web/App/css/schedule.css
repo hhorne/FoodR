@@ -76,11 +76,13 @@
   float: right;
   padding: 2px;
 }
-.day .entry-controls button {
+.day .entry-controls button,
+.day .entry-controls a {
   height: 34px;
   opacity: 0.2;
 }
-.day .entry-controls button:hover {
+.day .entry-controls button:hover,
+.day .entry-controls a:hover {
   opacity: 1;
 }
 .day .entry {
@@ -89,4 +91,3 @@
 .day .entry:last-child {
   border: 0;
 }
-/*# sourceMappingURL=schedule.css.map */

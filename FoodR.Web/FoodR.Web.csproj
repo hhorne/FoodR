@@ -243,6 +243,7 @@
     <Content Include="App\css\styles.less" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="Scripts\button.js" />
     <Content Include="Scripts\modal.js" />
     <Content Include="Scripts\tab.js" />
     <Content Include="Views\Home\MapAng.cshtml" />

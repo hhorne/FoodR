@@ -43,6 +43,7 @@ namespace FoodR.Web.Controllers
 			return View(viewModel);
 		}
 		
+		[Authorize]
 		[HttpGet]
 		[Route("trucks/create")]
 		public ActionResult Create()
@@ -50,6 +51,7 @@ namespace FoodR.Web.Controllers
 			return View(new TruckEditViewModel());
 		}
 
+		[Authorize]
 		[HttpPost]
 		[Route("trucks/create")]
 		public ActionResult Create(TruckEditViewModel vm)
@@ -79,6 +81,7 @@ namespace FoodR.Web.Controllers
 			return RedirectToAction("Index", "Admin");
 		}
 
+		[Authorize]
 		[HttpGet]
 		[Route("trucks/edit/{slug}")]
 		public ActionResult Edit(string slug)
@@ -95,6 +98,7 @@ namespace FoodR.Web.Controllers
 			return View(vm);
 		}
 
+		[Authorize]
 		[HttpPost]
 		[Route("trucks/edit/{slug}")]
 		public ActionResult Edit(TruckEditViewModel model, string slug)
