@@ -7,6 +7,7 @@ namespace FoodR.Web.ViewModels
 {
 	public class ScheduleEntryDetailsViewModel
 	{
+		public int Id { get; set; }
 		public DateTime From { get; set; }
 		public DateTime To { get; set; }
 		public DateTime LastModifiedOn { get; set; }

@@ -123,38 +123,5 @@ namespace FoodR.Web.Controllers
 			}
 			return View(model);
 		}
-
-		[HttpGet]
-		public ActionResult WeeklySchedule(string urlslug)
-		{
-
-			DateTime from = DateTime.Now.Date.AddDays(-1);
-			DateTime to = from.AddDays(7);
-			
-
-
-			//For testing I'm leaving this without the from and to
-			var days = service.GetTruckSchedule(urlslug);
-			//var days = service.GetTruckSchedule(urlslug, from, to);
-
-
-
-			List<DailyScheduleViewModel> daysInSchedule = new List<DailyScheduleViewModel>();
-			foreach (ScheduleDay d in days)
-			{
-				daysInSchedule.Add(new DailyScheduleViewModel()
-				{
-					Day = d.Day,
-					Entries = mapper.Map<IEnumerable<ScheduleEntryDetailsViewModel>>(d.Entries)
-				});
-			}
-
-			//var daysInSchedule = mapper.Map<IEnumerable<DailyScheduleViewModel>>(days);
-			var vm = new WeeklyScheduleViewModel();
-
-			vm.Days = daysInSchedule;
-
-			return PartialView(vm);
-		}
 	}
 }

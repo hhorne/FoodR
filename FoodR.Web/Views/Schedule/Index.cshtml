@@ -1,0 +1,8 @@
+﻿@model WeeklyScheduleViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ Html.RenderAction("Weekly", "Schedule", new { urlslug = ViewBag.UrlSlug }); }
+
