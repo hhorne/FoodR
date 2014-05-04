@@ -1,2 +1,13 @@
 ﻿@model ScheduleEntryEditViewModel
 Create
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.EditorFor(model => model)
+
+    <div class="row">
+        <button type="submit" class="btn btn-success btn-lg">Save</button>
+    </div>
+}

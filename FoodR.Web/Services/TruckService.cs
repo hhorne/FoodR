@@ -18,9 +18,9 @@ namespace FoodR.Web.Services
 			repository = repo;
 		}
 
-		public TruckResult CreateTruck(FoodTruck truck)
+		public ServiceCallResult CreateTruck(FoodTruck truck)
 		{
-			TruckResult result = new TruckResult() { Success = false };
+			ServiceCallResult result = new ServiceCallResult() { Success = false };
 
 			try
 			{
@@ -39,9 +39,9 @@ namespace FoodR.Web.Services
 			return result;
 		}
 
-		public TruckResult EditTruck(FoodTruck truck)
+		public ServiceCallResult EditTruck(FoodTruck truck)
 		{
-			TruckResult result = new TruckResult() { Success = false };
+			ServiceCallResult result = new ServiceCallResult() { Success = false };
 
 			try
 			{
@@ -106,6 +106,40 @@ namespace FoodR.Web.Services
 			return scheduleDays.ToArray();
 		}
 
+		public ScheduleEntry GetScheduleEntryById(int id)
+		{
+			return repository.Find<ScheduleEntry>(id);
+		}
+
+		public ServiceCallResult EditScheduleEntry(ScheduleEntry entry)
+		{
+			ServiceCallResult result = new ServiceCallResult() { Success = false };
+
+			repository.SaveChanges();
+			result.Success = true;
+
+			return result;
+		}
+
+		public ServiceCallResult CreateScheduleEntry(ScheduleEntry entry)
+		{
+			ServiceCallResult result = new ServiceCallResult() { Success = false };
+
+			try
+			{
+				repository.Add<ScheduleEntry>(entry);
+				repository.SaveChanges();
+				result.Success = true;
+			}
+			catch (Exception ex)
+			{
+				string[] errors = new[] { ex.Message };
+				result.Errors = errors;
+				result.Success = false;
+			}
+			return result;
+		}
+
 		private string GenerateUrlSlug(string name)
 		{
 			const char REPLACECHAR = '-';
@@ -127,15 +161,18 @@ namespace FoodR.Web.Services
 
 	public interface ITruckService
 	{
-		TruckResult CreateTruck(FoodTruck truck);
-		TruckResult EditTruck(FoodTruck truck);
+		ServiceCallResult CreateTruck(FoodTruck truck);
+		ServiceCallResult EditTruck(FoodTruck truck);
 		IEnumerable<FoodTruck> GetTrucks(DateTime? day = null);
 		FoodTruck GetTruckByUrl(string name);
 		FoodTruck GetTruckById(int id);
 		IEnumerable<ScheduleDay> GetTruckSchedule(string urlslug, DateTime? fromDay = null, DateTime? toDay = null);
+		ScheduleEntry GetScheduleEntryById(int id);
+		ServiceCallResult EditScheduleEntry(ScheduleEntry entry);
+		ServiceCallResult CreateScheduleEntry(ScheduleEntry entry);
 	}
 
-	public class TruckResult
+	public class ServiceCallResult
 	{
 		public bool Success { get; set; }
 		public IEnumerable<string> Errors { get; set; }

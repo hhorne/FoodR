@@ -243,6 +243,7 @@
     <Content Include="App\css\styles.less" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="Scripts\modal.js" />
     <Content Include="Scripts\tab.js" />
     <Content Include="Views\Home\MapAng.cshtml" />
     <Content Include="Views\Home\Today.cshtml" />
@@ -252,7 +253,6 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Badges.cshtml" />
     <Content Include="Views\Profile\Manage.cshtml" />
-    <Content Include="Views\Shared\ManageSchedule.cshtml" />
     <Content Include="App\css\schedule.less" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="App\css\styles.css.map">
@@ -284,9 +284,10 @@
     <Content Include="Views\Shared\TruckListEdit.cshtml" />
     <Content Include="Views\Schedule\Create.cshtml" />
     <Content Include="Views\Schedule\Edit.cshtml" />
-    <Content Include="Views\Trucks\WeeklySchedule.cshtml" />
+    <Content Include="Views\Schedule\Weekly.cshtml" />
     <Content Include="Views\Shared\DailySchedule.cshtml" />
     <Content Include="Views\Shared\ScheduleEntryDetail.cshtml" />
+    <Content Include="Views\Schedule\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -25,7 +25,8 @@ namespace FoodR.Web
 			Mapper.CreateMap<ScheduleDay, DailyScheduleViewModel>();
 			Mapper.CreateMap<IEnumerable<ScheduleDay>, IEnumerable<DailyScheduleViewModel>>();
 			Mapper.CreateMap<ScheduleEntry, ScheduleEntryDetailsViewModel>();
-			
+			Mapper.CreateMap<ScheduleEntry, ScheduleEntryEditViewModel>();
+			Mapper.CreateMap<ScheduleEntryEditViewModel, ScheduleEntry>();
 			
 			Mapper.CreateMap<Location, LocationDetailViewModel>();
 			
