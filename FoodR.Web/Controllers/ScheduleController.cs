@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FoodR.Data;
 using FoodR.Data.Models;
 using FoodR.Web.Services;
 using FoodR.Web.ViewModels;
@@ -12,11 +13,13 @@ namespace FoodR.Web.Controllers
 {
 	public class ScheduleController : FoodRController
     {
+		private readonly IRepository repository;
 		private readonly ITruckService service;
 		private readonly IMappingEngine mapper;
 
-		public ScheduleController(ITruckService service, IMappingEngine mapper)
+		public ScheduleController(IRepository repository, ITruckService service, IMappingEngine mapper)
 	    {
+			this.repository = repository;
 		    this.service = service;
 		    this.mapper = mapper;
 	    }
@@ -57,10 +60,10 @@ namespace FoodR.Web.Controllers
 		[Route("schedule/edit/{id}")]
 		public ActionResult Edit(int id)
 		{
-			//ScheduleEntryEditViewModel vm = new ScheduleEntryEditViewModel();
 			ScheduleEntry entry = service.GetScheduleEntryById(id);
 
-			ScheduleEntryEditViewModel vm = mapper.Map<ScheduleEntryEditViewModel>(entry);
+			var vm = mapper.Map<ScheduleEntryEditViewModel>(entry);
+			vm.Locations = mapper.Map<IEnumerable<SelectListItem>>(repository.GetAll<Location>());
 			return View(vm);
 		}
 

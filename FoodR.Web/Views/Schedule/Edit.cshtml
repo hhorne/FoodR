@@ -7,6 +7,9 @@
     
     @Html.EditorFor(model => model)
 
+    @Html.LabelFor(m => m.Locations)
+    @Html.DropDownListFor(m => m.Locations, Model.Locations);
+
     <div class="row">
         <button type="submit" class="btn btn-success btn-lg">Save</button>
     </div>
