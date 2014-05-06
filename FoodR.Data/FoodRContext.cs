@@ -18,7 +18,8 @@ namespace FoodR.Data
 		public DbSet<EarnedBadge> EarnedBadges { get; set; }
 		public DbSet<FoodTruck> FoodTrucks { get; set; }
 		public DbSet<Location> Locations { get; set; }
-		public DbSet<ScheduleEntry> Events { get; set; }
+		public DbSet<ScheduleEntry> ScheduleEntries { get; set; }
+		public DbSet<RecurringStop> RecurringStops { get; set; }
 		public DbSet<Menu> Menus { get; set; }
 		public DbSet<City> Cities { get; set; }
 		public DbSet<State> States { get; set; }
