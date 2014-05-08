@@ -5772,6 +5772,19 @@ button.close {
     display: none !important;
   }
 }
+.btn-twitter {
+  background-color: #4099ff !important;
+}
+.btn-facebook {
+  background-color: #3b5998 !important;
+}
+.btn-google {
+  background-color: #dd4b39 !important;
+}
+.navbar-text {
+  margin-top: 7px !important;
+  margin-bottom: 7px !important;
+}
 .center {
   text-align: center;
 }
@@ -5837,8 +5850,8 @@ body {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 .footer .container {
-  width: auto;
-  max-width: 680px;
+  /*width: auto;
+  max-width: 680px;*/
   padding: 0 15px;
 }
 .footer .container .text-muted {
@@ -5861,7 +5874,6 @@ body {
   float: left;
 }
 .vendor .vendor-actions {
-  /*float:right;*/
   margin-top: 15px;
   width: 110px;
 }
@@ -5869,7 +5881,6 @@ body {
   padding: 5px;
   display: inline;
   float: right;
-  /*background-color: #ccc;*/
 }
 .vendor .schedule-entry li {
   padding: 5px;
@@ -5882,7 +5893,6 @@ body {
 .vendor .schedule-entry .schedule-when {
   border: 1px solid #000;
   border-radius: 2px;
-  /*background-color: #5bc0de;*/
   padding: 2px 5px 2px 5px;
   display: block;
   width: 200px;
