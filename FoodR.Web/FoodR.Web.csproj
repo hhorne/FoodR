@@ -204,10 +204,11 @@
     <Compile Include="ViewModels\TruckListDetailViewModel.cs" />
     <Compile Include="ViewModels\WeeklyScheduleViewModel.cs" />
     <Content Include="App\app.js" />
-    <Content Include="App\css\schedule.css">
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\schedule.css">
       <DependentUpon>schedule.less</DependentUpon>
     </Content>
-    <Content Include="App\css\schedule.min.css">
+    <Content Include="Content\schedule.min.css">
       <DependentUpon>schedule.css</DependentUpon>
     </Content>
     <Compile Include="App_Start\InjectionModules\ServiceModule.cs" />
@@ -215,37 +216,23 @@
     <Compile Include="Services\UserService.cs" />
     <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Content Include="App\css\styles.css">
+    <Content Include="Content\styles.css">
       <DependentUpon>styles.less</DependentUpon>
     </Content>
-    <Content Include="App\css\styles.min.css">
+    <Content Include="Content\styles.min.css">
       <DependentUpon>styles.css</DependentUpon>
     </Content>
-    <Content Include="App\css\styles2.css">
-      <DependentUpon>styles.less</DependentUpon>
-    </Content>
-    <Content Include="App\css\styles2.min.css">
-      <DependentUpon>styles2.css</DependentUpon>
-    </Content>
-    <Content Include="App\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="App\map.js" />
-    <Content Include="App\css\bootstrap-theme.css" />
-    <Content Include="App\css\bootstrap-theme.min.css" />
-    <Content Include="App\css\bootstrap.css" />
-    <Content Include="App\css\bootstrap.min.css" />
     <Content Include="App\schedule.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="packages.config" />
-    <Content Include="App\css\bootstrap-theme.css.map" />
-    <Content Include="App\css\bootstrap.css.map" />
-    <Content Include="App\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="App\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="App\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="App\css\styles.less" />
+    <Content Include="Content\styles.less" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Content Include="Scripts\button.js" />
-    <Content Include="Scripts\modal.js" />
-    <Content Include="Scripts\tab.js" />
+    <Content Include="Scripts\bootstrap\button.js" />
+    <Content Include="Scripts\bootstrap\modal.js" />
+    <Content Include="Scripts\bootstrap\tab.js" />
     <Content Include="Views\Home\MapAng.cshtml" />
     <Content Include="Views\Home\Today.cshtml" />
     <Content Include="Views\Profile\Login.cshtml" />
@@ -254,14 +241,11 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Badges.cshtml" />
     <Content Include="Views\Profile\Manage.cshtml" />
-    <Content Include="App\css\schedule.less" />
+    <Content Include="Content\schedule.less" />
     <Content Include="Views\Auth\Login.cshtml" />
-    <Content Include="App\css\styles.css.map">
-      <DependentUpon>styles.css</DependentUpon>
-    </Content>
     <Content Include="Views\Auth\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Auth\ExternalLoginFailure.cshtml" />
-    <Content Include="App\css\schedule.css.map">
+    <Content Include="Content\schedule.css.map">
       <DependentUpon>schedule.css</DependentUpon>
     </Content>
     <Content Include="Views\Home\ListAng.cshtml" />
@@ -289,6 +273,52 @@
     <Content Include="Views\Shared\DailySchedule.cshtml" />
     <Content Include="Views\Shared\ScheduleEntryDetail.cshtml" />
     <Content Include="Views\Schedule\Index.cshtml" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\less\bootstrap.less" />
+    <Content Include="Content\less\.csscomb.json" />
+    <Content Include="Content\less\.csslintrc" />
+    <Content Include="Content\less\alerts.less" />
+    <Content Include="Content\less\badges.less" />
+    <Content Include="Content\less\breadcrumbs.less" />
+    <Content Include="Content\less\button-groups.less" />
+    <Content Include="Content\less\buttons.less" />
+    <Content Include="Content\less\carousel.less" />
+    <Content Include="Content\less\close.less" />
+    <Content Include="Content\less\code.less" />
+    <Content Include="Content\less\component-animations.less" />
+    <Content Include="Content\less\dropdowns.less" />
+    <Content Include="Content\less\forms.less" />
+    <Content Include="Content\less\glyphicons.less" />
+    <Content Include="Content\less\grid.less" />
+    <Content Include="Content\less\input-groups.less" />
+    <Content Include="Content\less\jumbotron.less" />
+    <Content Include="Content\less\labels.less" />
+    <Content Include="Content\less\list-group.less" />
+    <Content Include="Content\less\media.less" />
+    <Content Include="Content\less\mixins.less" />
+    <Content Include="Content\less\modals.less" />
+    <Content Include="Content\less\navbar.less" />
+    <Content Include="Content\less\navs.less" />
+    <Content Include="Content\less\normalize.less" />
+    <Content Include="Content\less\pager.less" />
+    <Content Include="Content\less\pagination.less" />
+    <Content Include="Content\less\panels.less" />
+    <Content Include="Content\less\popovers.less" />
+    <Content Include="Content\less\print.less" />
+    <Content Include="Content\less\progress-bars.less" />
+    <Content Include="Content\less\responsive-utilities.less" />
+    <Content Include="Content\less\scaffolding.less" />
+    <Content Include="Content\less\tables.less" />
+    <Content Include="Content\less\theme.less" />
+    <Content Include="Content\less\thumbnails.less" />
+    <Content Include="Content\less\tooltip.less" />
+    <Content Include="Content\less\type.less" />
+    <Content Include="Content\less\utilities.less" />
+    <Content Include="Content\less\variables.less" />
+    <Content Include="Content\less\wells.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -315,12 +345,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Templates\home.html" />
-    <Content Include="Templates\locate.html" />
-    <Content Include="Templates\login.html" />
-    <Content Include="Templates\map.html" />
-    <Content Include="Templates\schedule.html" />
-    <Content Include="Templates\vendor.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -350,9 +374,7 @@
     <Compile Include="Services\SmsService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App\js\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\FoodR.Data\FoodR.Data.csproj">
       <Project>{7092f683-7685-403f-8179-79f41bb541a2}</Project>

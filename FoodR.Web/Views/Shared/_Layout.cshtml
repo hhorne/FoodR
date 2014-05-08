@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="/App/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/App/css/styles.css" rel="stylesheet">
-    <link href="/App/css/schedule.css" rel="stylesheet">
+    <link href="/Content/styles.css" rel="stylesheet" />
+    <link href="/Content/schedule.css" rel="stylesheet" />
+    <link href="/Content/bootstrap-theme.css" rel="stylesheet" />
     @RenderSection("styles", required: false)
     
 </head>
@@ -71,11 +71,9 @@
         <script src="/Scripts/jquery-2.1.0.min.js"></script>
 		<script src="/Scripts/jquery.validate.js"></script>
 		<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
-        @*<script src="/Scripts/angular.js"></script>
-        <script src="/Scripts/angular-route.js"></script>*@
-        <script src="/Scripts/bootstrap.min.js"></script>
-        <script src="/Scripts/modal.js"></script>
-        <script src="/Scripts/button.js"></script>
+        <script src="/Scripts/bootstrap.js"></script>
+        <script src="/Scripts/bootstrap/modal.js"></script>
+        <script src="/Scripts/bootstrap/button.js"></script>
         @RenderSection("scripts", required: false)
 </body>
 </html>
