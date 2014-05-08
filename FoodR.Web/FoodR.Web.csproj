@@ -203,7 +203,6 @@
     <Compile Include="ViewModels\TruckEditViewModel.cs" />
     <Compile Include="ViewModels\TruckListDetailViewModel.cs" />
     <Compile Include="ViewModels\WeeklyScheduleViewModel.cs" />
-    <Content Include="App\app.js" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\schedule.css">
       <DependentUpon>schedule.less</DependentUpon>
@@ -222,8 +221,6 @@
     <Content Include="Content\styles.min.css">
       <DependentUpon>styles.css</DependentUpon>
     </Content>
-    <Content Include="App\map.js" />
-    <Content Include="App\schedule.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="packages.config" />
@@ -233,10 +230,8 @@
     <Content Include="Scripts\bootstrap\button.js" />
     <Content Include="Scripts\bootstrap\modal.js" />
     <Content Include="Scripts\bootstrap\tab.js" />
-    <Content Include="Views\Home\MapAng.cshtml" />
     <Content Include="Views\Home\Today.cshtml" />
     <Content Include="Views\Profile\Login.cshtml" />
-    <Content Include="Views\Home\Truck.cshtml" />
     <Content Include="Views\Home\Locate.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Badges.cshtml" />
@@ -248,7 +243,6 @@
     <Content Include="Content\schedule.css.map">
       <DependentUpon>schedule.css</DependentUpon>
     </Content>
-    <Content Include="Views\Home\ListAng.cshtml" />
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Home\Map.cshtml" />
     <Content Include="Views\Trucks\Index.cshtml" />
@@ -374,7 +368,9 @@
     <Compile Include="Services\SmsService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FoodR.Data\FoodR.Data.csproj">
       <Project>{7092f683-7685-403f-8179-79f41bb541a2}</Project>
