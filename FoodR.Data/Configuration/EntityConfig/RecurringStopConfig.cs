@@ -12,7 +12,8 @@ namespace FoodR.Data.Configuration.EntityConfig
 
 			HasRequired(s => s.Location).
 				WithMany().
-				HasForeignKey(s => s.LocationId);
+				HasForeignKey(s => s.LocationId).
+				WillCascadeOnDelete(false);
 		}
 	}
 }

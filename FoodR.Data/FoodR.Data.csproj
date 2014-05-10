@@ -83,7 +83,8 @@
     <Compile Include="Configuration\EntityConfig\CityConfig.cs" />
     <Compile Include="Configuration\EntityConfig\EarnedBadgeConfig.cs" />
     <Compile Include="Configuration\EntityConfig\RecurringStopConfig.cs" />
-    <Compile Include="Configuration\EntityConfig\ScheduleEntryConfig.cs" />
+    <Compile Include="Configuration\EntityConfig\RecurringStopExceptionConfig.cs" />
+    <Compile Include="Configuration\EntityConfig\ScheduledStopConfig.cs" />
     <Compile Include="Configuration\EntityConfig\FoodTruckConfig.cs" />
     <Compile Include="Configuration\EntityConfig\LocationConfig.cs" />
     <Compile Include="Configuration\EntityConfig\LogMessageConfig.cs" />
@@ -96,7 +97,8 @@
     <Compile Include="Models\EarnedBadge.cs" />
     <Compile Include="Models\LogMessage.cs" />
     <Compile Include="Models\RecurringStop.cs" />
-    <Compile Include="Models\ScheduleEntry.cs" />
+    <Compile Include="Models\RecurringStopException.cs" />
+    <Compile Include="Models\ScheduledStop.cs" />
     <Compile Include="Models\FoodRUser.cs" />
     <Compile Include="Models\FoodTruck.cs" />
     <Compile Include="Models\Location.cs" />

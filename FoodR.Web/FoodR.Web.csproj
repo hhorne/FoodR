@@ -193,6 +193,7 @@
     <Compile Include="Controllers\TrucksController.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
+    <Compile Include="Services\ScheduleService.cs" />
     <Compile Include="ViewModels\AddressViewModel.cs" />
     <Compile Include="ViewModels\AreaDetailViewModel.cs" />
     <Compile Include="Services\TruckService.cs" />

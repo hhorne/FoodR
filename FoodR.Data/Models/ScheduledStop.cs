@@ -3,20 +3,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodR.Data.Models
 {
-	public class ScheduleEntry
+	public class ScheduledStop
 	{
-		public ScheduleEntry()
+		public ScheduledStop()
 		{
 			LastModifiedOn = DateTime.Now;
 		}
 
-		[ForeignKey("FoodTruck")]
 		public int FoodTruckId { get; set; }
 		public virtual FoodTruck FoodTruck { get; set; }
 
-		[ForeignKey("Location")]
 		public int LocationId { get; set; }
 		public virtual Location Location { get; set; }
+
+		//public int RecurringStopId { get; set; }
+		//public virtual RecurringStop RecurringStop { get; set; }
 
 		public int Id { get; set; }
 

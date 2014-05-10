@@ -14,10 +14,10 @@ namespace FoodR.Web.Controllers
 	public class ScheduleController : FoodRController
     {
 		private readonly IRepository repository;
-		private readonly ITruckService service;
+		private readonly IScheduleService service;
 		private readonly IMappingEngine mapper;
 
-		public ScheduleController(IRepository repository, ITruckService service, IMappingEngine mapper)
+		public ScheduleController(IRepository repository, IScheduleService service, IMappingEngine mapper)
 	    {
 			this.repository = repository;
 		    this.service = service;
@@ -41,17 +41,17 @@ namespace FoodR.Web.Controllers
 		[Route("schedule/create")]
 		public ActionResult Create()
 		{
-			ScheduleEntryEditViewModel vm = new ScheduleEntryEditViewModel();
+			ScheduledStopEditViewModel vm = new ScheduledStopEditViewModel();
 			return View(vm);
 		}
 
 		[HttpPost]
 		[Route("schedule/create/{truckurlslug}")]
-		public ActionResult Create(ScheduleEntryEditViewModel vm, string truckurlslug)
+		public ActionResult Create(ScheduledStopEditViewModel vm, string truckurlslug)
 		{
-			ScheduleEntry entry = mapper.Map<ScheduleEntry>(vm);
+			ScheduledStop entry = mapper.Map<ScheduledStop>(vm);
 
-			ServiceCallResult result = service.CreateScheduleEntry(entry);
+			ServiceCallResult result = service.CreateScheduledStop(entry);
 
 			return RedirectToAction("Details", "Trucks", new { slug = truckurlslug });
 		}
@@ -60,14 +60,14 @@ namespace FoodR.Web.Controllers
 		[Route("schedule/edit/{id}")]
 		public ActionResult Edit(int id)
 		{
-			ScheduleEntry entry = service.GetScheduleEntryById(id);
+			ScheduledStop entry = service.GetScheduledStopById(id);
 
-			var vm = mapper.Map<ScheduleEntryEditViewModel>(entry);
+			var vm = mapper.Map<ScheduledStopEditViewModel>(entry);
 			vm.Locations = mapper.Map<IEnumerable<SelectListItem>>(repository.GetAll<Location>());
 			return View(vm);
 		}
 
-		[HttpPost]
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "id"), HttpPost]
 		[Route("schedule/cancel/{id}")]
 		public ActionResult Cancel(int id)
 		{
@@ -97,7 +97,7 @@ namespace FoodR.Web.Controllers
 				daysInSchedule.Add(new DailyScheduleViewModel()
 				{
 					Day = d.Day,
-					Entries = mapper.Map<IEnumerable<ScheduleEntryDetailsViewModel>>(d.Entries)
+					Entries = mapper.Map<IEnumerable<ScheduledStopDetailsViewModel>>(d.Entries)
 				});
 			}
 

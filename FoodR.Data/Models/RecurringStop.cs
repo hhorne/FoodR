@@ -21,8 +21,12 @@ namespace FoodR.Data.Models
 
 		public int Id { get; set; }
 		public bool Active { get; set; }
+		public bool HasEnding { get; set; }
+		//starting date
 		public DateTime Starting { get; set; } //Also stores the 'from' time component
-		public DateTime To { get; set; }
-		
+		//the ending date, if HasEnding is true, alother wise the recurring stop goes on forever
+		public DateTime Ending { get; set; } //Also stores the 'to' time compenent
+
+		public virtual IEnumerable<RecurringStopException> Exceptions { get; set; }
 	}
 }

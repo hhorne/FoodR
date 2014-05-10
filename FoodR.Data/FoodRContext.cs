@@ -18,8 +18,9 @@ namespace FoodR.Data
 		public DbSet<EarnedBadge> EarnedBadges { get; set; }
 		public DbSet<FoodTruck> FoodTrucks { get; set; }
 		public DbSet<Location> Locations { get; set; }
-		public DbSet<ScheduleEntry> ScheduleEntries { get; set; }
+		public DbSet<ScheduledStop> ScheduleEntries { get; set; }
 		public DbSet<RecurringStop> RecurringStops { get; set; }
+		public DbSet<RecurringStopException> RecurringStopExceptions { get; set; }
 		public DbSet<Menu> Menus { get; set; }
 		public DbSet<City> Cities { get; set; }
 		public DbSet<State> States { get; set; }
@@ -211,8 +212,8 @@ namespace FoodR.Data
 						Description = "Specialty Grilled Cheese Sandwiches",
 						Rating = 3,
 						Facebook = "pages/The-Happy-Grilled-Cheese/284780458300232",
-						ScheduleEntries = new [] { 
-							new ScheduleEntry
+						ScheduledStops = new [] { 
+							new ScheduledStop
 							{
 								From = new DateTime(2014, 4, 23, 11, 0, 0),
 								To = new DateTime(2014, 4, 23, 14, 0, 0),
@@ -228,15 +229,15 @@ namespace FoodR.Data
 						Description = "Sandwiches & Stuff. Available for Catering and Private Parties.",
 						Rating = 5,
 						Facebook = "Ontheflyjax",
-						ScheduleEntries = new [] { 
-							new ScheduleEntry
+						ScheduledStops = new [] { 
+							new ScheduledStop
 							{
 								From = new DateTime(2014, 4, 23, 11, 0, 0),
 								To = new DateTime(2014, 4, 23, 14, 0, 0),
 								Location = courthouse,
 								Active = true
 							},
-							new ScheduleEntry
+							new ScheduledStop
 							{
 								From = new DateTime(2014, 4, 23, 18, 0, 0),
 								To = new DateTime(2014, 4, 23, 22, 0, 0),
@@ -255,8 +256,8 @@ namespace FoodR.Data
 						Phone = "(904) 555-5555",
 						Website = "www.google.com",
 						Facebook = "TasteBudsExpress",
-						ScheduleEntries = new [] { 
-							new ScheduleEntry
+						ScheduledStops = new [] { 
+							new ScheduledStop
 							{
 								From = new DateTime(2014, 4, 23, 11, 0, 0),
 								To = new DateTime(2014, 4, 23, 14, 0, 0),

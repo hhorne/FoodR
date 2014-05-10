@@ -1,5 +1,5 @@
-﻿@model ScheduleEntryEditViewModel
-Create
+﻿@model ScheduledStopEditViewModel
+<h2>Create Scheduled Stop</h2>
 
 @using (Html.BeginForm())
 {
@@ -8,6 +8,6 @@ Create
     @Html.EditorFor(model => model)
 
     <div class="row">
-        <button type="submit" class="btn btn-success btn-lg">Save</button>
+        <button type="submit" class="btn btn-success">Create Stop</button>
     </div>
 }

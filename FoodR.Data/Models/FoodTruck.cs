@@ -33,7 +33,8 @@ namespace FoodR.Data.Models
 		public DateTime CreatedOn { get; set; }
 		public string CreatedBy { get; set; }
 
-		public virtual ICollection<ScheduleEntry> ScheduleEntries { get; set; }
+		public virtual ICollection<ScheduledStop> ScheduledStops { get; set; }
+		public virtual ICollection<RecurringStop> RecurringStops { get; set; }
 
 		public virtual ICollection<Menu> Menus { get; set; }
 	}

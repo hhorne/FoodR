@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace FoodR.Web.ViewModels
 {
-	public class ScheduleEntryEditViewModel
+	public class ScheduledStopEditViewModel
 	{
 		[DataType(DataType.DateTime)]
 		[Required(ErrorMessage = "Provide a From date")]
@@ -27,5 +27,7 @@ namespace FoodR.Web.ViewModels
 
 		[MaxLength(500)]
 		public string ModifiedComments { get; set; }
+
+		public bool Recurring { get; set; }
 	}
 }

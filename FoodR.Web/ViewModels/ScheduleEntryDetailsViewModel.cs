@@ -5,7 +5,7 @@ using System.Web;
 
 namespace FoodR.Web.ViewModels
 {
-	public class ScheduleEntryDetailsViewModel
+	public class ScheduledStopDetailsViewModel
 	{
 		public int Id { get; set; }
 		public DateTime From { get; set; }
