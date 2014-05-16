@@ -1,16 +1,189 @@
 ﻿@model ScheduledStopEditViewModel
-<h3>Edit</h3>
+<h3>Edit Stop</h3>
+<div class="col-md-4">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    @Html.EditorFor(model => model)
+        <div class="panel panel-default location-settings">
+            <div class="panel-heading">
+                <h3 class="panel-title">Place</h3>
+            </div>
+            <div class="panel-body">
+                <label for="loc">Type the address of a description of the spot</label>
+                <input type="text" id="loc" placeholder="ex. '123 Main St' or 'Main and Forsyth'" class="form-control" />
+                <p>Or</p>
+                <label>Select from a list of common spots</label>
+                @Html.DropDownListFor(m => m.LocationId, Model.Locations, new { @class = "form-control" })
+            </div>
+        </div>
 
-    @Html.LabelFor(m => m.Locations)
-    @Html.DropDownListFor(m => m.Locations, Model.Locations);
+        <div class="panel panel-default time-settings">
+            <div class="panel-heading">
+                <h3 class="panel-title">Time</h3>
+            </div>
+            <div class="panel-body">
+                <label for="day">Select date</label>
+                @Html.TextBoxFor(m => m.Day, new { @id = "day", @class = "form-control", @placeholder = "mm/dd/yyyy" })
 
-    <div class="row">
-        <button type="submit" class="btn btn-success btn-lg">Save</button>
+                <div class="from-to-controls">
+                    <label for="from">From</label>
+                    @Html.DropDownListFor(m => m.SelectedFrom, Model.From, new { @id = "from", @class = "form-control" })
+
+                    <label for="to">To</label>
+                    @Html.DropDownListFor(m => m.SelectedTo, Model.To, new { @id = "to", @class = "form-control" })
+
+                    <div class="recurring-control">
+                        <label>
+                            @Html.CheckBoxFor(m => m.Recurring, new { @id = "recurring" }) Every week
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default recurrence-settings">
+            <div class="panel-heading">
+                <h3 class="panel-title">Recurrence Settings</h3>
+            </div>
+            <div class="panel-body">
+                <label for="starting">Start Recurring On</label>
+                @Html.TextBoxFor(m => m.RecurringStart, new { @id = "starting", @class = "form-control", @placeholder = "mm/dd/yyyy" })
+
+                <label>
+                    @Html.CheckBoxFor(m => m.HasRecurringEnd, new { @id = "recurringHasEnding" }) Has end date
+                </label>
+                <div class="ending-control">
+                    <label for="ending">End On</label>
+                    @Html.TextBoxFor(m => m.RecurringEnd, new { @id = "ending", @class = "form-control", @placeholder = "mm/dd/yyyy" })
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            @if (Model.Recurring)
+            {
+                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Save</button>
+ <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Save</h4>
+            </div>
+            <div class="modal-body">
+                Save this occurence or the series?
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-default">This Occurence</button>
+                <button type="submit" class="btn btn-primary">The Series</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
     </div>
+</div>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-success btn-lg">Save</button>
+            }
+            
+        </div>
+    }
+</div>
+
+
+
+@section scripts {
+    <script>
+        $(function () {
+
+            //Location search box
+            var availableTags = [
+                "Main and Forsyth",
+                "Courthouse",
+            ];
+            $('#loc').autocomplete({
+                source: availableTags
+            });
+
+
+            //DATEPICKERS
+            $("#day").datepicker({
+                onClose: function (selectedDate) {
+                    $("#starting").datepicker("option", "minDate", selectedDate);
+                }
+            });
+            $("#day").datepicker("setDate", $("#day").val());
+
+            $('#starting').datepicker({
+                onClose: function (selectedDate) {
+                    $("#ending").datepicker("option", "minDate", selectedDate);
+                }
+            });
+            $('#starting').datepicker("setDate", $('#starting').val());
+
+            $("#ending").datepicker({
+                minDate: $('#starting').datepicker("getDate")
+            });
+            $('#ending').datepicker("setDate", $('#ending').val());
+
+            $('#day').change(function () {
+                $('#starting').datepicker("setDate", $(this).val());
+
+            });
+
+            //SECTION HIDING
+            if ($('#recurring').prop("checked") == false) {
+                $('.recurrence-settings').hide();
+            }
+            $('#recurring').change(function () {
+                if ($(this).prop("checked")) {
+                    $('.recurrence-settings').show(800);
+                } else {
+                    $('.recurrence-settings').hide(800);
+                }
+            });
+
+            if (!$('#recurringHasEnding').prop("checked")) {
+                $('.ending-control').hide();
+            }
+            $('#recurringHasEnding').change(function () {
+                if ($(this).prop("checked")) {
+                    $('.ending-control').show(800);
+                } else {
+                    $('.ending-control').hide(800);
+                }
+            });
+
+            $('#from').change(function () {
+                LoadToSelect();
+            });
+
+
+        });
+
+        var times = @Html.Raw(Json.Encode(Model.From))
+
+        function LoadToSelect() {
+            var fromItem = $("#from option:selected").text();
+            var loadTimes = false;
+            var to = $('#to');
+            to.children('option').remove();
+
+            times.forEach(function (item, index) {
+                if (loadTimes) {
+                    var opt = $("<option></option>")
+                    .text(item.Text);
+
+                    to.append(opt);
+                }
+
+                if (item.Text == fromItem)
+                    loadTimes = true;
+            });
+        }
+    </script>
 }

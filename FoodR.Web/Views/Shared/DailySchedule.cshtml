@@ -4,7 +4,7 @@
         <div class="name">@Model.Day.ToString("dddd MMMM dd")</div>
     </div>
     <ul class="events">
-        @foreach (var entry in Model.Entries)
+        @foreach (var entry in Model.Stops)
         {
             @Html.Partial("ScheduleEntryDetail", entry)
         }

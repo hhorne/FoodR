@@ -13,6 +13,7 @@ namespace FoodR.Web.InjectionModules
 			Bind<ISmsService>().To<SmsService>();
 			Bind<IUserService>().To<UserService>();
 			Bind<ITruckService>().To<TruckService>();
+			Bind<IScheduleService>().To<ScheduleService>();
 			Bind<IRepository>().To<FoodRRepository>();
 			Bind<IMappingEngine>().ToMethod(x => Mapper.Engine);
 		}

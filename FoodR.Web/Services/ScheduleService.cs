@@ -2,8 +2,10 @@
 using FoodR.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace FoodR.Web.Services
 {
@@ -21,88 +23,49 @@ namespace FoodR.Web.Services
 		public IEnumerable<ScheduleDay> GetTruckSchedule(string urlslug, DateTime? fromDay = null, DateTime? toDay = null)
 		{
 			FoodTruck truck = truckService.GetTruckByUrl(urlslug);
-			List<ScheduledStop> scheduledStops = new List<ScheduledStop>();
+			List<ScheduledStop> stops = new List<ScheduledStop>();
 
 			if (fromDay.HasValue && toDay.HasValue)
 			{
-				scheduledStops.AddRange(repository.Where<ScheduledStop>(
+				var listOfDays = GetListOfDays(fromDay.Value, toDay.Value);
+
+				var recurringStops = repository.Where<ScheduledStop>(
 					e => e.FoodTruckId == truck.Id
+					&& e.Recurring
+					&& listOfDays.Any(d => d == e.RecurringStart.Value.DayOfWeek)
+					&& e.RecurringStart.Value.TimeOfDay >= fromDay.Value.TimeOfDay
+					&& (!e.HasRecurringEnd || (e.HasRecurringEnd && e.RecurringEnd.Value.TimeOfDay <= toDay.Value.TimeOfDay))
+					//&& !(e.Exceptions.Any(ee => ee.Day.Date == fromDay.Value.Date))
+					).ToList();
+
+				recurringStops.ForEach(r => stops.AddRange(CreateRecurringInstances(r, fromDay.Value, toDay.Value)));
+
+				var schedStops = repository.Where<ScheduledStop>(
+					e => e.FoodTruckId == truck.Id
+						&& !e.Recurring
 						&& e.From >= fromDay
-						&& e.To <= toDay));
+						&& e.To <= toDay).ToList();
 
-				var recurringStops = repository.Where<RecurringStop>(
-					e => e.FoodTruckId == truck.Id
-					&& e.Starting.DayOfWeek == fromDay.Value.DayOfWeek
-					&& e.Starting.TimeOfDay >= fromDay.Value.TimeOfDay
-					&& e.Ending.TimeOfDay <= toDay.Value.TimeOfDay
-					&& !(e.Exceptions.Any(ee => ee.Day.Date == fromDay.Value.Date))
-					);
-
-
-
-				foreach (var stop in recurringStops)
-				{
-					scheduledStops.AddRange(CreateRecurringInstances(stop, fromDay.Value, toDay.Value));
-				}
+				stops.AddRange(schedStops);
 			}
 			else
 			{
-				scheduledStops.AddRange(repository.Where<ScheduledStop>(e => e.FoodTruckId == truck.Id));
+				var schedStops = repository.Where<ScheduledStop>(e => e.FoodTruckId == truck.Id).ToList();
+				stops.AddRange(schedStops);
 			}
 
-			var groups = scheduledStops.GroupBy(e => e.From.Date);
+			var groups = stops.GroupBy(e => e.From.Date);
 			var scheduleDays = new List<ScheduleDay>();
 			foreach (var g in groups)
 			{
 				scheduleDays.Add(new ScheduleDay()
 				{
 					Day = g.Key,
-					Entries = g
+					Stops = g
 				});
 			}
 
 			return scheduleDays.ToArray();
-		}
-
-		//generate instances of a recurring stop for the given time span
-		private IEnumerable<ScheduledStop> CreateRecurringInstances(RecurringStop stop, DateTime from, DateTime to)
-		{
-			var instances = new List<ScheduledStop>();
-
-			DateTime possibleStopTime = new DateTime(from.Year, from.Month, from.Day, stop.Starting.Hour, stop.Starting.Minute, stop.Starting.Second);
-			if (possibleStopTime < stop.Starting)
-				possibleStopTime = stop.Starting;
-
-			while (possibleStopTime >= from && possibleStopTime <= to)
-			{
-				while (possibleStopTime.DayOfWeek != stop.Starting.DayOfWeek)
-				{
-					possibleStopTime = possibleStopTime.AddDays(1);
-				}
-
-				if (!stop.Exceptions.Any(e => e.Day.Date == possibleStopTime.Date))
-				{
-					instances.Add(new ScheduledStop()
-					{
-						Active = true,
-						From = possibleStopTime,
-						To = CreateToDate(possibleStopTime, stop.Ending.TimeOfDay)
-					});
-				}
-
-				possibleStopTime = possibleStopTime.AddDays(1);
-			}
-
-			return instances;
-		}
-
-		private DateTime CreateToDate(DateTime from, TimeSpan to)
-		{
-			DateTime toDate = new DateTime(from.Year, from.Month, from.Day, to.Hours, to.Minutes, to.Seconds);
-			if (from.TimeOfDay > to)
-				toDate = toDate.AddDays(1);
-
-			return toDate;
 		}
 
 		public ScheduledStop GetScheduledStopById(int id)
@@ -110,23 +73,18 @@ namespace FoodR.Web.Services
 			return repository.Find<ScheduledStop>(id);
 		}
 
-		public ServiceCallResult EditScheduledStop(ScheduledStop entry)
+		public IEnumerable<Location> GetLocations()
 		{
-			ServiceCallResult result = new ServiceCallResult() { Success = false };
-
-			repository.SaveChanges();
-			result.Success = true;
-
-			return result;
+			return repository.GetAll<Location>();
 		}
 
-		public ServiceCallResult CreateScheduledStop(ScheduledStop entry)
+		public ServiceCallResult CreateStop(ScheduledStop stop)
 		{
 			ServiceCallResult result = new ServiceCallResult() { Success = false };
 
 			try
 			{
-				repository.Add<ScheduledStop>(entry);
+				repository.Add<ScheduledStop>(stop);
 				repository.SaveChanges();
 				result.Success = true;
 			}
@@ -138,19 +96,122 @@ namespace FoodR.Web.Services
 			}
 			return result;
 		}
+
+		public ServiceCallResult CreateStopException(DateTime day, int id)
+		{
+			ServiceCallResult result = new ServiceCallResult() { Success = false };
+			RecurringException exception = new RecurringException()
+			{
+				Day = day.Date,
+				ScheduledStopId = id
+			};
+			repository.Add<RecurringException>(exception);
+			repository.SaveChanges();
+
+			return result;
+		}
+
+		public ServiceCallResult EditStop(ScheduledStop stop)
+		{
+			ServiceCallResult result = new ServiceCallResult() { Success = false };
+
+			repository.SaveChanges();
+
+			return result;
+		}
+
+		public ScheduledStop GetStop(int id)
+		{
+			ScheduledStop schedStop = repository.Find<ScheduledStop>(id);
+
+			return schedStop;
+		}
+
+		#region Privates
+		private DayOfWeek[] GetListOfDays(DateTime from, DateTime to)
+		{
+			List<DayOfWeek> dow = new List<DayOfWeek>();
+			DateTime day = from;
+			while(day.Date <= to.Date)
+			{
+				dow.Add(day.DayOfWeek);
+				day = day.AddDays(1);
+			}
+
+			return dow.ToArray();
+		}
+
+		//generate instances of a recurring stop for the given time span
+		private IEnumerable<ScheduledStop> CreateRecurringInstances(ScheduledStop recurringStop, DateTime from, DateTime to)
+		{
+			var instances = new List<ScheduledStop>();
+			DateTime possibleStopTime = CombineDateAndTime(from, recurringStop.From);
+			if (possibleStopTime < recurringStop.RecurringStart.Value)
+				possibleStopTime = CombineDateAndTime(recurringStop.RecurringStart.Value, recurringStop.From);
+
+			while (possibleStopTime >= from && possibleStopTime <= to)
+			{
+				while (possibleStopTime.DayOfWeek != recurringStop.RecurringStart.Value.DayOfWeek)
+				{
+					possibleStopTime = possibleStopTime.AddDays(1);
+				}
+
+				if (possibleStopTime > to)
+					break;
+
+				DateTime possibleStopDate = possibleStopTime.Date;
+				var exceptions = repository.GetAll<RecurringException>().Where(e => e.ScheduledStopId == recurringStop.Id);
+				if (exceptions.Count() == 0 || !exceptions.Any(e => e.Day == possibleStopDate))
+				{
+
+					ScheduledStop newStop = new ScheduledStop()
+					{
+						Id = recurringStop.Id,
+						From = possibleStopTime,
+						To = CreateToDate(possibleStopTime, recurringStop.To.TimeOfDay),
+						LocationId = recurringStop.LocationId,
+						Location = recurringStop.Location,
+						Recurring = true
+					};
+					instances.Add(newStop);
+				}
+
+				possibleStopTime = possibleStopTime.AddDays(1);
+			}
+
+			return instances;
+		}
+
+		private DateTime CombineDateAndTime(DateTime date, DateTime time)
+		{
+			return new DateTime(date.Year, date.Month, date.Day, time.Hour, time.Minute, time.Second);
+		}
+
+		private DateTime CreateToDate(DateTime from, TimeSpan to)
+		{
+			DateTime toDate = new DateTime(from.Year, from.Month, from.Day, to.Hours, to.Minutes, to.Seconds);
+			if (from.TimeOfDay > to)
+				toDate = toDate.AddDays(1);
+
+			return toDate;
+		}
+		#endregion
 	}
 
 	public interface IScheduleService
 	{
 		IEnumerable<ScheduleDay> GetTruckSchedule(string urlslug, DateTime? fromDay = null, DateTime? toDay = null);
 		ScheduledStop GetScheduledStopById(int id);
-		ServiceCallResult EditScheduledStop(ScheduledStop entry);
-		ServiceCallResult CreateScheduledStop(ScheduledStop entry);
+		IEnumerable<Location> GetLocations();
+		ServiceCallResult CreateStop(ScheduledStop stop);
+		ServiceCallResult CreateStopException(DateTime day, int id);
+		ServiceCallResult EditStop(ScheduledStop stop);
+		ScheduledStop GetStop(int id);
 	}
 
 	public class ScheduleDay
 	{
 		public DateTime Day { get; set; }
-		public IEnumerable<ScheduledStop> Entries { get; set; }
+		public IEnumerable<ScheduledStop> Stops { get; set; }
 	}
 }

@@ -17,15 +17,8 @@ namespace FoodR.Data.Configuration.EntityConfig
 				WithMany().
 				HasForeignKey(s => s.LocationId).
 				WillCascadeOnDelete(false);
-			
-			//HasRequired(s => s.RecurringStop).
-			//	WithMany().
-			//	WillCascadeOnDelete(false);
 
-			//HasOptional(s => s.RecurringStop).
-			//	WithMany().
-			//	HasForeignKey(s => s.RecurringStopId).
-			//	WillCascadeOnDelete(false);
+			Property(s => s.RecurringEnd).IsOptional();
 		}
 	}
 }

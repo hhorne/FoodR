@@ -20,13 +20,17 @@ namespace FoodR.Web
 			Mapper.CreateMap<TruckEditViewModel, FoodTruck>();
 			Mapper.CreateMap<KeyValuePair<DateTime, IEnumerable<ScheduledStop>>, ScheduleDay>()
 				.ForMember(dest => dest.Day, opt => opt.MapFrom(src => src.Key))
-				.ForMember(dest => dest.Entries, opt => opt.MapFrom(src => src.Value));
+				.ForMember(dest => dest.Stops, opt => opt.MapFrom(src => src.Value));
 			
 			Mapper.CreateMap<ScheduleDay, DailyScheduleViewModel>();
-			Mapper.CreateMap<IEnumerable<ScheduleDay>, IEnumerable<DailyScheduleViewModel>>();
 			Mapper.CreateMap<ScheduledStop, ScheduledStopDetailsViewModel>();
-			Mapper.CreateMap<ScheduledStop, ScheduledStopEditViewModel>();
-			Mapper.CreateMap<ScheduledStopEditViewModel, ScheduledStop>();
+			Mapper.CreateMap<ScheduledStop, ScheduledStopEditViewModel>()
+				.ForMember(dest => dest.From, opt => opt.Ignore())
+				.ForMember(dest => dest.To, opt => opt.Ignore())
+				.ForMember(dest => dest.Day, opt => opt.MapFrom(src => src.From));
+			Mapper.CreateMap<ScheduledStopEditViewModel, ScheduledStop>()
+				.ForMember(dest => dest.From, opt => opt.Ignore())
+				.ForMember(dest => dest.To, opt => opt.Ignore());
 			
 			Mapper.CreateMap<Location, LocationDetailViewModel>();
 			

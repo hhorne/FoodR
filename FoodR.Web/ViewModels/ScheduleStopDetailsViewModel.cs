@@ -12,6 +12,8 @@ namespace FoodR.Web.ViewModels
 		public DateTime To { get; set; }
 		public DateTime LastModifiedOn { get; set; }
 		public string ModifiedComments { get; set; }
+		public bool Recurring { get; set; }
+		
 
 		public LocationDetailViewModel Location { get; set; }
 	}

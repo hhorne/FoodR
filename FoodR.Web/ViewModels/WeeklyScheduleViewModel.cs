@@ -14,6 +14,6 @@ namespace FoodR.Web.ViewModels
 	public class DailyScheduleViewModel
 	{
 		public DateTime Day { get; set; }
-		public IEnumerable<ScheduledStopDetailsViewModel> Entries { get; set; }
+		public IEnumerable<ScheduledStopDetailsViewModel> Stops { get; set; }
 	}
 }

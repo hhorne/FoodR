@@ -1,8 +1,8 @@
-﻿@model ScheduleEntryDetailsViewModel
+﻿@model ScheduledStopDetailsViewModel
 <li class="entry">
     <div class="timespan">
-        <div>@Model.From.ToString("h tt")</div>
-        <div>@Model.To.ToString("h tt")</div>
+        <div>@Model.From.ToString("h:mm tt")</div>
+        <div>@Model.To.ToString("h:mm tt")</div>
     </div>
     <div class="location">
         <h5>@Model.Location.Name</h5>

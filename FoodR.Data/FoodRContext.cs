@@ -19,8 +19,7 @@ namespace FoodR.Data
 		public DbSet<FoodTruck> FoodTrucks { get; set; }
 		public DbSet<Location> Locations { get; set; }
 		public DbSet<ScheduledStop> ScheduleEntries { get; set; }
-		public DbSet<RecurringStop> RecurringStops { get; set; }
-		public DbSet<RecurringStopException> RecurringStopExceptions { get; set; }
+		public DbSet<RecurringException> RecurringExceptions { get; set; }
 		public DbSet<Menu> Menus { get; set; }
 		public DbSet<City> Cities { get; set; }
 		public DbSet<State> States { get; set; }
@@ -215,10 +214,11 @@ namespace FoodR.Data
 						ScheduledStops = new [] { 
 							new ScheduledStop
 							{
-								From = new DateTime(2014, 4, 23, 11, 0, 0),
-								To = new DateTime(2014, 4, 23, 14, 0, 0),
+								From = new DateTime(2014, 5, 14, 11, 0, 0),
+								To = new DateTime(2014, 5, 14, 14, 0, 0),
 								Location = avMed,
-								Active = true
+								Active = true,
+								Recurring = false
 							}
 						}
 					},
@@ -232,17 +232,19 @@ namespace FoodR.Data
 						ScheduledStops = new [] { 
 							new ScheduledStop
 							{
-								From = new DateTime(2014, 4, 23, 11, 0, 0),
-								To = new DateTime(2014, 4, 23, 14, 0, 0),
+								From = new DateTime(2014, 5, 13, 11, 0, 0),
+								To = new DateTime(2014, 5, 13, 14, 0, 0),
 								Location = courthouse,
-								Active = true
+								Active = true,
+								Recurring = false
 							},
 							new ScheduledStop
 							{
-								From = new DateTime(2014, 4, 23, 18, 0, 0),
-								To = new DateTime(2014, 4, 23, 22, 0, 0),
+								From = new DateTime(2014, 5, 13, 18, 0, 0),
+								To = new DateTime(2014, 5, 13, 22, 0, 0),
 								Location = aardwolf,
-								Active = true
+								Active = true,
+								Recurring = false
 							}
 						}
 					},
@@ -259,10 +261,11 @@ namespace FoodR.Data
 						ScheduledStops = new [] { 
 							new ScheduledStop
 							{
-								From = new DateTime(2014, 4, 23, 11, 0, 0),
-								To = new DateTime(2014, 4, 23, 14, 0, 0),
+								From = new DateTime(2014, 4, 13, 11, 0, 0),
+								To = new DateTime(2014, 4, 13, 14, 0, 0),
 								Location = forsyth, 
-								Active = true
+								Active = true,
+								Recurring = false
 							}
 						}
 					}

@@ -4,5 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<a href="/schedule/create/@ViewBag.UrlSlug" class="btn btn-success">Add New Stop</a>
+
 @{ Html.RenderAction("Weekly", "Schedule", new { urlslug = ViewBag.UrlSlug }); }
 

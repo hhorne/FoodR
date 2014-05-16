@@ -67,7 +67,7 @@ namespace FoodR.Web.Controllers
 				var today = new DateTime(2014, 4, 23);
 				var tomorrow = new DateTime(2014, 4, 24);
 				var trucks = db.FoodTrucks
-					.Include("ScheduleEntries.Location")
+					.Include("ScheduledStops.Location")
 					.Include("Menus")
 					.Where(t => t.ScheduledStops.Any(e => e.From >= today && e.From < tomorrow)).ToArray();
 				return View(trucks.ToArray());
