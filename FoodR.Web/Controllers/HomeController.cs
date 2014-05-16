@@ -84,5 +84,15 @@ namespace FoodR.Web.Controllers
 		{
 			return View();
 		}
+
+		public ActionResult Trouble()
+		{
+			return View("Error");
+		}
+
+		public ActionResult Ohsnap()
+		{
+			return View();
+		}
 	}
 }
