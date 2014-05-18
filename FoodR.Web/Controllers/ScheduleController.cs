@@ -175,19 +175,21 @@ namespace FoodR.Web.Controllers
 			return RedirectToAction("Index", "Schedule", new { @name = stop.FoodTruck.UrlSlug });
 		}
 
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "id"), HttpPost]
+		[HttpPost]
 		[Route("schedule/cancel/{id}")]
 		public ActionResult Cancel(int id)
 		{
-			var vm = new WeeklyScheduleViewModel();
-			return PartialView(vm);
+			//schedService.CancelStop(id);
+			var stop = schedService.GetStop(id);
+			stop.Canceled = true;
+			schedService.EditStop(stop);
+			return RedirectToAction("Index", "Schedule", new { name = stop.FoodTruck.UrlSlug } );
 		}
 
 		[HttpGet]
 		[Route("schedule/weeklyschedule/{urlslug}")]
 		public ActionResult Weekly(string urlslug)
 		{
-
 			DateTime from = DateTime.Now.Date.AddDays(-1);
 			DateTime to = from.AddDays(7);
 

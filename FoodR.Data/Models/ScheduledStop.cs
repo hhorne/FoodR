@@ -21,6 +21,8 @@ namespace FoodR.Data.Models
 		public int Id { get; set; }
 
 		public bool Active { get; set; }
+		public bool Canceled { get; set; }
+		public bool Deleted { get; set; }
 
 		public DateTime From { get; set; }
 		public DateTime To { get; set; }

@@ -12,15 +12,6 @@ namespace FoodR.Web
 			
 			routes.MapMvcAttributeRoutes();
 			
-			//routes.MapRoute(
-			//	name: "TruckEdit",
-			//	url: "Truck/edit/{truckName}",
-			//	defaults: new
-			//	{
-			//		controller = "Trucks",
-			//		action = "Edit"
-			//	}
-			//);
 			routes.MapRoute(
 				name: "Home",
 				url: "",

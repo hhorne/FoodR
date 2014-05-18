@@ -35,7 +35,6 @@ namespace FoodR.Web.Services
 					&& listOfDays.Any(d => d == e.RecurringStart.Value.DayOfWeek)
 					&& e.RecurringStart.Value.TimeOfDay >= fromDay.Value.TimeOfDay
 					&& (!e.HasRecurringEnd || (e.HasRecurringEnd && e.RecurringEnd.Value.TimeOfDay <= toDay.Value.TimeOfDay))
-					//&& !(e.Exceptions.Any(ee => ee.Day.Date == fromDay.Value.Date))
 					).ToList();
 
 				recurringStops.ForEach(r => stops.AddRange(CreateRecurringInstances(r, fromDay.Value, toDay.Value)));
@@ -66,11 +65,6 @@ namespace FoodR.Web.Services
 			}
 
 			return scheduleDays.ToArray();
-		}
-
-		public ScheduledStop GetScheduledStopById(int id)
-		{
-			return repository.Find<ScheduledStop>(id);
 		}
 
 		public IEnumerable<Location> GetLocations()
@@ -120,11 +114,35 @@ namespace FoodR.Web.Services
 			return result;
 		}
 
+		public ServiceCallResult CancelStop(int id)
+		{
+			ServiceCallResult result = new ServiceCallResult() { Success = false };
+
+			var stop = GetStop(id);
+
+			stop.Canceled = true;
+
+			result = EditStop(stop);
+
+			return result;
+		}
+
+		public ServiceCallResult DeleteStop(int id)
+		{
+			ServiceCallResult result = new ServiceCallResult() { Success = false };
+
+			var stop = GetStop(id);
+
+			stop.Deleted = true;
+
+			result = EditStop(stop);
+
+			return result;
+		}
+
 		public ScheduledStop GetStop(int id)
 		{
-			ScheduledStop schedStop = repository.Find<ScheduledStop>(id);
-
-			return schedStop;
+			return repository.Find<ScheduledStop>(id);
 		}
 
 		#region Privates
@@ -201,11 +219,12 @@ namespace FoodR.Web.Services
 	public interface IScheduleService
 	{
 		IEnumerable<ScheduleDay> GetTruckSchedule(string urlslug, DateTime? fromDay = null, DateTime? toDay = null);
-		ScheduledStop GetScheduledStopById(int id);
 		IEnumerable<Location> GetLocations();
 		ServiceCallResult CreateStop(ScheduledStop stop);
 		ServiceCallResult CreateStopException(DateTime day, int id);
 		ServiceCallResult EditStop(ScheduledStop stop);
+		ServiceCallResult CancelStop(int id);
+		ServiceCallResult DeleteStop(int id);
 		ScheduledStop GetStop(int id);
 	}
 
