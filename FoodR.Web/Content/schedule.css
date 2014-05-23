@@ -1,4 +1,56 @@
-﻿.controls {
+﻿.panel-heading p {
+  /*color: lighten(@font-color, 20%);*/
+  font-size: 9px;
+  padding: 2px 0 0 0;
+  margin: 0;
+}
+.events {
+  padding: 0;
+  margin: 0;
+}
+.events li {
+  list-style: none;
+  display: block;
+}
+.timespan {
+  font-size: 10px;
+  /*background-color: @header-bg-color;*/
+  /*border-right: 1px solid @border-color;*/
+  float: left;
+  margin: 0;
+  padding: 3px;
+  padding-right: 12px;
+  width: 70px;
+  height: 38px;
+}
+.timespan div {
+  text-align: right;
+}
+.location {
+  padding: 2px 2px 2px 4px;
+  float: left;
+}
+.location h5 {
+  color: #333333;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+}
+.entry-controls {
+  float: right;
+  padding: 2px;
+}
+.entry-controls button,
+.entry-controls a {
+  height: 34px;
+  opacity: 0.2;
+}
+.entry-controls button:hover,
+.entry-controls a:hover {
+  opacity: 1;
+}
+.controls {
   margin: 7px;
 }
 .week {
