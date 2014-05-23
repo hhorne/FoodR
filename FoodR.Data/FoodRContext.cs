@@ -214,8 +214,8 @@ namespace FoodR.Data
 						ScheduledStops = new [] { 
 							new ScheduledStop
 							{
-								From = new DateTime(2014, 5, 14, 11, 0, 0),
-								To = new DateTime(2014, 5, 14, 14, 0, 0),
+								From = new DateTime(2014, 5, 22, 11, 0, 0),
+								To = new DateTime(2014, 5, 22, 14, 0, 0),
 								Location = avMed,
 								Active = true,
 								Recurring = false
@@ -232,16 +232,16 @@ namespace FoodR.Data
 						ScheduledStops = new [] { 
 							new ScheduledStop
 							{
-								From = new DateTime(2014, 5, 13, 11, 0, 0),
-								To = new DateTime(2014, 5, 13, 14, 0, 0),
+								From = new DateTime(2014, 5, 22, 11, 0, 0),
+								To = new DateTime(2014, 5, 22, 14, 0, 0),
 								Location = courthouse,
 								Active = true,
 								Recurring = false
 							},
 							new ScheduledStop
 							{
-								From = new DateTime(2014, 5, 13, 18, 0, 0),
-								To = new DateTime(2014, 5, 13, 22, 0, 0),
+								From = new DateTime(2014, 5, 18, 18, 0, 0),
+								To = new DateTime(2014, 5, 18, 22, 0, 0),
 								Location = aardwolf,
 								Active = true,
 								Recurring = false
@@ -261,11 +261,11 @@ namespace FoodR.Data
 						ScheduledStops = new [] { 
 							new ScheduledStop
 							{
-								From = new DateTime(2014, 4, 13, 11, 0, 0),
-								To = new DateTime(2014, 4, 13, 14, 0, 0),
+								From = new DateTime(2014, 5, 22, 11, 0, 0),
+								To = new DateTime(2014, 5, 22, 14, 0, 0),
 								Location = forsyth, 
 								Active = true,
-								Recurring = false
+								Recurring = true
 							}
 						}
 					}

@@ -20,6 +20,46 @@ namespace FoodR.Web.Services
 			this.truckService = truckService;
 		}
 
+		public IEnumerable<FoodTruck> GetSchedulesByDay(DateTime day)
+		{
+			try
+			{
+				var date = day.Date;
+
+				var trucks = repository.GetAll<FoodTruck>().ToList();
+				trucks = trucks.Select(t => new FoodTruck
+				{
+					Id = t.Id,
+					Name = t.Name,
+					Description = t.Description,
+					UrlSlug = t.UrlSlug,
+					Rating = t.Rating,
+					Menus = t.Menus,
+					ScheduledStops = t.ScheduledStops.Where(
+						s => !s.Deleted &&
+						(
+							(!s.Recurring
+							&& s.From.Year == date.Year
+							&& s.From.Month == date.Month
+							&& s.From.Day == date.Day)
+						|| (s.Recurring
+							&& s.RecurringStart.HasValue
+							&& s.RecurringStart.Value.DayOfWeek == date.DayOfWeek
+							&& s.RecurringStart.Value.Date <= date
+							&& (!s.HasRecurringEnd || (s.HasRecurringEnd && s.RecurringEnd.Value.TimeOfDay <= date.TimeOfDay)))
+						)
+					).ToList()
+
+				}).Where(t => t.ScheduledStops.Count() > 0).ToList();
+
+				return trucks;
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
 		public IEnumerable<ScheduleDay> GetTruckSchedule(string urlslug, DateTime? fromDay = null, DateTime? toDay = null)
 		{
 			FoodTruck truck = truckService.GetTruckByUrl(urlslug);
@@ -32,6 +72,7 @@ namespace FoodR.Web.Services
 				var recurringStops = repository.Where<ScheduledStop>(
 					e => e.FoodTruckId == truck.Id
 					&& e.Recurring
+					&& e.RecurringStart.HasValue
 					&& listOfDays.Any(d => d == e.RecurringStart.Value.DayOfWeek)
 					&& e.RecurringStart.Value.TimeOfDay >= fromDay.Value.TimeOfDay
 					&& (!e.HasRecurringEnd || (e.HasRecurringEnd && e.RecurringEnd.Value.TimeOfDay <= toDay.Value.TimeOfDay))
@@ -218,6 +259,7 @@ namespace FoodR.Web.Services
 
 	public interface IScheduleService
 	{
+		IEnumerable<FoodTruck> GetSchedulesByDay(DateTime day);
 		IEnumerable<ScheduleDay> GetTruckSchedule(string urlslug, DateTime? fromDay = null, DateTime? toDay = null);
 		IEnumerable<Location> GetLocations();
 		ServiceCallResult CreateStop(ScheduledStop stop);

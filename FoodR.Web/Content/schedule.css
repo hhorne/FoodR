@@ -1,11 +1,11 @@
-.controls {
+﻿.controls {
   margin: 7px;
 }
 .week {
   color: #333333;
   cursor: default;
   border: 1px solid #dddddd;
-  border-radius: 4px;
+  /*border-radius: 4px;*/
   padding: 0px;
   margin-bottom: 10px;
 }

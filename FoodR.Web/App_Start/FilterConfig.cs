@@ -6,7 +6,8 @@ namespace FoodR.Web
 	{
 		public static void RegisterGlobalFilters(GlobalFilterCollection filters)
 		{
-			filters.Add(new HandleErrorAttribute());
+			//This was block unhandled errors going to Elmah
+			//filters.Add(new HandleErrorAttribute());
 		}
 	}
 }

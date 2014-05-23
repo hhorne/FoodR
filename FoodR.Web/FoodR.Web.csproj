@@ -340,6 +340,7 @@
     <Content Include="Content\less\variables.less" />
     <Content Include="Content\less\wells.less" />
     <Content Include="Views\Home\Ohsnap.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

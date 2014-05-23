@@ -12,8 +12,13 @@ namespace FoodR.Web.Controllers
 {
     public class HomeController : FoodRController
     {
-		public HomeController()
+		private readonly IRepository repository;
+		private readonly IScheduleService schedService;
+
+		public HomeController(IRepository repository, IScheduleService schedService)
 		{
+			this.repository = repository;
+			this.schedService = schedService;
 		}
 
         public ActionResult Index()
@@ -62,16 +67,8 @@ namespace FoodR.Web.Controllers
 
 		public ActionResult Today()
 		{
-			using (FoodRContext db = new FoodRContext())
-			{
-				var today = new DateTime(2014, 4, 23);
-				var tomorrow = new DateTime(2014, 4, 24);
-				var trucks = db.FoodTrucks
-					.Include("ScheduledStops.Location")
-					.Include("Menus")
-					.Where(t => t.ScheduledStops.Any(e => e.From >= today && e.From < tomorrow)).ToArray();
-				return View(trucks.ToArray());
-			}
+			var trucks = schedService.GetSchedulesByDay(DateTime.Now);
+			return View(trucks.ToArray());
 		}
 
 		public ActionResult ListAng()
