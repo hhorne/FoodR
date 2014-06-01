@@ -80,23 +80,6 @@
             var locsFromDb = @Html.Raw(Json.Encode(Model.Locations))
             //Location search box
             var locs = @Html.Raw(Json.Encode(Model.ListLocations))
-            //var locs = [
-            //    {
-            //        value: "main-and-forsyth",
-            //        label: "Main and Forsyth",
-            //        desc: "26 W Forsyth St"
-            //    },
-            //    {
-            //        value: "courthouse",
-            //        label: "Downtown at the Corner of Adams and Jefferson",
-            //        desc: "655 W. Adams St, 32204"
-            //    },
-            //    {
-            //        value: "aardwolf",
-            //        label: "Aardwolf Brewery",
-            //        desc: "1461 Hendricks Avenue, San Marco"
-            //    }
-            //];
             
             $('#loc').autocomplete({
                 minLength: 1,
