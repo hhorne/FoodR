@@ -1,88 +1,91 @@
 ﻿<!DOCTYPE html>
 <html ng-app>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/Content/ui-lightness/jquery-ui-1.10.4.css" rel="stylesheet" />
-    <link href="/Content/styles.css" rel="stylesheet" />
-    <link href="/Content/schedule.css" rel="stylesheet" />
-    @*<link href="/Content/bootstrap-theme.css" rel="stylesheet" />*@
-    <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/yeti/bootstrap.min.css" rel="stylesheet">
-    @*<link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/cosmo/bootstrap.min.css" rel="stylesheet">*@
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    @RenderSection("styles", required: false)
-    
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="/Content/ui-lightness/jquery-ui-1.10.4.css" rel="stylesheet" />
+	<link href="/Content/styles.css" rel="stylesheet" />
+	<link href="/Content/schedule.css" rel="stylesheet" />
+	@*<link href="/Content/bootstrap-theme.css" rel="stylesheet" />*@
+	<link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/yeti/bootstrap.min.css" rel="stylesheet">
+	@*<link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/cosmo/bootstrap.min.css" rel="stylesheet">*@
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	@RenderSection("styles", required: false)
+
 </head>
 <body>
-    <nav class="navbar navbar-default nav-static-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Munch Easier</a>
-            </div>
+	<nav class="navbar navbar-default nav-static-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">Munch Easier</a>
+			</div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	            <ul class="nav navbar-nav navbar-left">
-                    <li>
-                        <a href="/trucks/">Trucks</a>
-                    </li>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-left">
+					<li>
+						@Html.ActionLink("Trucks", string.Empty, "Trucks")
+					</li>
 					<li>
 						@Html.ActionLink("Map", "Map", "Home")
 					</li>
-                    @*@if (ViewBag.IsAdmin)*@
-                    @if (true)
-                    {
-                    <li>
-                        <a href="/admin/">Admin</a>
-                    </li>
-                    }
+					<li>
+						@Html.ActionLink("Locations", string.Empty, "Locations")
+					</li>
+					@*@if (ViewBag.IsAdmin)*@
+					@if (true)
+					{
+						<li>
+							<a href="/admin/">Admin</a>
+						</li>
+					}
 				</ul>
-                
-                @if (ViewBag.UserName == "Anonymous")
-                {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                        @Html.ActionLink("Login", "Login", "Auth")
-                        </li>
-                    </ul>
-                }
-                else
-                {
-                    using (Html.BeginForm("Logout", "Auth", FormMethod.Post, new { id = "logoutForm", @class = "navbar-form navbar-right" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <p class="navbar-text">@ViewBag.UserName</p>
-                        <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-default btn-xs">Log off</a>
-                    }
-                }
-                    
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-    <div class="container">
-        @RenderBody()
-    </div> <!-- /container -->
-    <div class="footer">
-        <div class="container">
-            <p class="text-muted">&copy; Munch Easier 2014</p>
-        </div>
-    </div>
 
-        <script src="/Scripts/jquery-2.1.0.min.js"></script>
-		<script src="/Scripts/jquery.validate.js"></script>
-		<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
-        <script src="/Scripts/jquery-ui-1.10.4.js"></script>
-        <script src="/Scripts/bootstrap.js"></script>
-        <script src="/Scripts/bootstrap/modal.js"></script>
-        <script src="/Scripts/bootstrap/button.js"></script>
-        @RenderSection("scripts", required: false)
+				@if (ViewBag.UserName == "Anonymous")
+				{
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							@Html.ActionLink("Login", "Login", "Auth")
+						</li>
+					</ul>
+				}
+				else
+				{
+					using (Html.BeginForm("Logout", "Auth", FormMethod.Post, new { id = "logoutForm", @class = "navbar-form navbar-right" }))
+					{
+						@Html.AntiForgeryToken()
+						<p class="navbar-text">@ViewBag.UserName</p>
+						<a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-default btn-xs">Log off</a>
+					}
+				}
+
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div class="container">
+		@RenderBody()
+	</div> <!-- /container -->
+	<div class="footer">
+		<div class="container">
+			<p class="text-muted">&copy; Munch Easier 2014</p>
+		</div>
+	</div>
+
+	<script src="/Scripts/jquery-2.1.0.min.js"></script>
+	<script src="/Scripts/jquery.validate.js"></script>
+	<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+	<script src="/Scripts/jquery-ui-1.10.4.js"></script>
+	<script src="/Scripts/bootstrap.js"></script>
+	<script src="/Scripts/bootstrap/modal.js"></script>
+	<script src="/Scripts/bootstrap/button.js"></script>
+	@RenderSection("scripts", required: false)
 </body>
 </html>

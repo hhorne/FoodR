@@ -341,6 +341,7 @@
     <Content Include="Content\less\wells.less" />
     <Content Include="Views\Home\Ohsnap.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Locations\Map.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

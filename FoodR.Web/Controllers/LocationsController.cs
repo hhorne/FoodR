@@ -112,6 +112,24 @@ namespace FoodR.Web.Controllers
 		    return View(viewModel);
 	    }
 
+		[HttpGet]
+		[Route("locations/map")]
+		public ActionResult Map()
+		{
+			MapViewModel m = new MapViewModel();
+
+			using (FoodRContext db = new FoodRContext())
+			{
+				//Find all the trucks out right now.
+				//TODO: Prolly want to expand this to check for trucks that will be out with in an hour from now, maybe.
+				//TESTING: this date should be changed to now, but for testing im leaving it like this
+				var myDate = new DateTime(2014, 4, 23, 11, 15, 0);
+				m.Trucks = db.FoodTrucks.Where(t => t.ScheduledStops.Any(e => e.From < myDate && e.To > myDate)).ToArray();
+			}
+
+			return View(m);
+		}
+
 	    private IEnumerable<AreaDetailViewModel> GetAreaViewModels()
 		{
 			var areas = repository.GetAll<Area>().ToArray();

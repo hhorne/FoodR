@@ -1,0 +1,97 @@
+﻿@model MapViewModel
+@{
+    ViewBag.Title = " FoodR - Map";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h3>Map</h3>
+    <form class="form-inline" role="form" ng-submit="search()">
+        <div class="form-group">
+            <label class="sr-only" for="address">Enter a location</label>
+            <input type="text" class="form-control" id="address" placeholder="Address or Zipcode" value="">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+    </form>
+
+    <div class="row">
+        <div class="pull-left" id="map-canvas" style="height: 600px; width: 900px;"></div>
+        <div class="list-group pull-right">
+            <h4>Trucks near you</h4>
+            @foreach (FoodTruck truck in Model.Trucks)
+            {
+                @Html.ActionLink(truck.Name, "Details", "Trucks", new { truckName = truck.UrlSlug }, new { @class = "list-group-item" })
+            }
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+@section scripts {
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+    <script type="text/javascript">
+        var geocoder = new google.maps.Geocoder();
+        var map = {};
+        function initialize() {
+            var latlng = new google.maps.LatLng(30.332, -81.655); //center of jacksonville
+            var mapOptions = {
+                zoom: 11,
+                center: latlng,
+                streetViewControl: false
+            }
+            map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+            $.getJSON("json", function (data) {
+                var items = [];
+                $.each(data, function (vendor) {
+                    var latlng = new google.maps.LatLng(vendor.lat, vendor.lng);
+                        var marker = new google.maps.Marker({
+                            position: latlng,
+                            title: vendor.name,
+                            map: map
+                        });
+
+                        google.maps.event.addListener(marker, 'click', function () {
+                            var infoWindow = new google.maps.InfoWindow({
+                                content: '<a href="truck"><b>' + vendor.name + '</b></a><br />From: ' + vendor.from + '<br />To: ' + vendor.to
+                            });
+
+                            infoWindow.open(map, marker);
+                        });
+                });
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+        
+        //angular.forEach($scope.vendors, function (vendor) {
+        //    var latlng = new google.maps.LatLng(vendor.lat, vendor.lng);
+        //    var marker = new google.maps.Marker({
+        //        position: latlng,
+        //        title: vendor.name,
+        //        map: $scope.map
+        //    });
+
+        //    google.maps.event.addListener(marker, 'click', function () {
+        //        var infoWindow = new google.maps.InfoWindow({
+        //            content: '<a href="truck"><b>' + vendor.name + '</b></a><br />From: ' + vendor.from + '<br />To: ' + vendor.to
+        //        });
+
+        //        infoWindow.open($scope.map, marker);
+        //    });
+        //});
+
+        function search() {
+            var address = document.getElementById("address").value;
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    map.setZoom(12);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                }
+            });
+        }
+    </script>
+}
