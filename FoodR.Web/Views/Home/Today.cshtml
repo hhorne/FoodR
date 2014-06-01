@@ -8,47 +8,54 @@
 }
 
 <h2>Trucks out today</h2>
-@if (!Model.Any())
-{
-	<div class="alert alert-danger">No Trucks out today, sorry :(</div>
-}
-@foreach (FoodTruck t in Model)
-{
-	<div class="truckSchedule panel panel-primary">
-		<div class="panel-heading">
-			<div class="truckIcon @t.UrlSlug"></div>
-			<div class="info">
-				<h3 class="panel-title">
-					@Html.ActionLink(t.Name, "Details", "Trucks", new { name = t.UrlSlug }, null)
-				</h3>
-				<p>@t.Description</p>
+<div id="todaysListing">
+	@if (!Model.Any())
+	{
+		<div class="alert alert-danger">No Trucks out today, sorry :(</div>
+	}
+	@foreach (FoodTruck t in Model)
+	{
+		<div class="truckSchedule panel panel-primary">
+			<div class="panel-heading">
+				<div class="truckIcon @t.UrlSlug"></div>
+				<div class="info">
+					<h3 class="panel-title">
+						@Html.ActionLink(t.Name, "Details", "Trucks", new { name = t.UrlSlug }, null)
+					</h3>
+					<p>@t.Description</p>
+				</div>
+			</div>
+			<div class="panel-body">
+				<ul class="events">
+					@foreach (ScheduledStop e in t.ScheduledStops)
+					{
+						<li class="entry">
+							<div class="timespan">
+								<div>@e.From.ToString("h tt")</div>
+								<div>@e.To.ToString("h tt")</div>
+							</div>
+							<div class="location">
+								<h5>@e.Location.Name</h5>
+								<p>@e.Location.StreetAddress</p>
+							</div>
+							<div class="entry-controls">
+								<button class="btn btn-success btn-sm">I'm Going!</button>
+								<button class="btn btn-info btn-sm">On Map</button>
+								<button class="btn btn-danger btn-sm">Report Problem</button>
+							</div>
+							<div class="clearfix"></div>
+						</li>
+					}
+				</ul>
 			</div>
 		</div>
-		<div class="panel-body">
-			<ul class="events">
-				@foreach (ScheduledStop e in t.ScheduledStops)
-				{
-					<li class="entry">
-						<div class="timespan">
-							<div>@e.From.ToString("h tt")</div>
-							<div>@e.To.ToString("h tt")</div>
-						</div>
-						<div class="location">
-							<h5>@e.Location.Name</h5>
-							<p>@e.Location.StreetAddress</p>
-						</div>
-						<div class="entry-controls">
-							<button class="btn btn-success btn-sm">I'm Going!</button>
-							<button class="btn btn-info btn-sm">On Map</button>
-							<button class="btn btn-danger btn-sm">Report Problem</button>
-						</div>
-						<div class="clearfix"></div>
-					</li>
-				}
-			</ul>
-		</div>
-	</div>
-}
+	}
+</div>
+<div class="truckMap">
+	<h2>Map</h2>
+</div>
+
+<div class="clearfix"></div>
 @section scripts {
 	<script type="text/javascript">
 		$('.rating a').mouseover(function (e) {

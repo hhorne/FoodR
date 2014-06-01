@@ -1,4 +1,4 @@
-/*! normalize.css v3.0.0 | MIT License | git.io/normalize */
+﻿/*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -5959,5 +5959,18 @@ body {
 }
 .truckIcon.On_The_Fly {
   background-image: url('/Content/truckons/onthefly.png');
+}
+.truckMap,
+#todaysListing {
+  float: left;
+}
+#todaysListing {
+  margin-right: 24px;
+  width: 500px;
+}
+.truckMap {
+  height: 400px;
+  width: 500px;
+  background-color: #008cba;
 }
 /*# sourceMappingURL=styles.css.map */
