@@ -201,6 +201,7 @@ namespace FoodR.Data
 			var avMed = context.Locations.Single(l => l.UrlSlug.Equals("AvMed", StringComparison.OrdinalIgnoreCase));
 			var courthouse = context.Locations.Single(l => l.UrlSlug.Equals("Courthouse", StringComparison.OrdinalIgnoreCase));
 			var forsyth = context.Locations.Single(l => l.UrlSlug.Equals("Forsyth_and_Main", StringComparison.OrdinalIgnoreCase));
+            var today = DateTime.Now.Date;
 
 			context.FoodTrucks.AddOrUpdate(t => t.Name, new[]
 				{
@@ -214,8 +215,8 @@ namespace FoodR.Data
 						ScheduledStops = new [] { 
 							new ScheduledStop
 							{
-								From = new DateTime(2014, 5, 22, 11, 0, 0),
-								To = new DateTime(2014, 5, 22, 14, 0, 0),
+								From = new DateTime(today.Year, today.Month, today.Day, 11, 0, 0),
+								To = new DateTime(today.Year, today.Month, today.Day, 14, 0, 0),
 								Location = avMed,
 								Active = true,
 								Recurring = false
@@ -232,16 +233,16 @@ namespace FoodR.Data
 						ScheduledStops = new [] { 
 							new ScheduledStop
 							{
-								From = new DateTime(2014, 5, 22, 11, 0, 0),
-								To = new DateTime(2014, 5, 22, 14, 0, 0),
+								From = new DateTime(today.Year, today.Month, today.Day, 11, 0, 0),
+								To = new DateTime(today.Year, today.Month, today.Day, 14, 0, 0),
 								Location = courthouse,
 								Active = true,
 								Recurring = false
 							},
 							new ScheduledStop
 							{
-								From = new DateTime(2014, 5, 18, 18, 0, 0),
-								To = new DateTime(2014, 5, 18, 22, 0, 0),
+								From = new DateTime(today.Year, today.Month, today.Day, 18, 0, 0),
+								To = new DateTime(today.Year, today.Month, today.Day, 22, 0, 0),
 								Location = aardwolf,
 								Active = true,
 								Recurring = false
@@ -261,8 +262,8 @@ namespace FoodR.Data
 						ScheduledStops = new [] { 
 							new ScheduledStop
 							{
-								From = new DateTime(2014, 5, 22, 11, 0, 0),
-								To = new DateTime(2014, 5, 22, 14, 0, 0),
+								From = new DateTime(today.Year, today.Month, today.Day, 11, 0, 0),
+								To = new DateTime(today.Year, today.Month, today.Day, 14, 0, 0),
 								Location = forsyth, 
 								Active = true,
 								Recurring = true
