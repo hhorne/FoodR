@@ -54,9 +54,9 @@ namespace FoodR.Web.Services
 
 				return trucks;
 			}
-			catch (Exception ex)
+			catch
 			{
-				throw ex;
+				throw;
 			}
 		}
 
