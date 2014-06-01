@@ -5937,4 +5937,27 @@ body {
 .rating li a:hover {
   color: #f0ad4e;
 }
+.truckSchedule .panel-heading {
+  margin: 0;
+  padding: 0;
+  display: table;
+  border-collapse: separate;
+  border-spacing: 12px;
+  width: 100%;
+}
+.truckSchedule .truckIcon {
+  display: table-cell;
+  height: 32px;
+  width: 32px;
+  background-color: #f2dede;
+}
+.truckSchedule .info {
+  display: table-cell;
+}
+.truckIcon.Happy_Grilled_Cheese {
+  background-image: url('/Content/truckons/happygrilledcheese.png');
+}
+.truckIcon.On_The_Fly {
+  background-image: url('/Content/truckons/onthefly.png');
+}
 /*# sourceMappingURL=styles.css.map */

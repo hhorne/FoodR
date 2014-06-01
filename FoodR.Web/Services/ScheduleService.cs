@@ -50,7 +50,7 @@ namespace FoodR.Web.Services
 						)
 					).ToList()
 
-				}).Where(t => t.ScheduledStops.Count() > 0).ToList();
+				}).Where(t => t.ScheduledStops.Any()).ToList();
 
 				return trucks;
 			}

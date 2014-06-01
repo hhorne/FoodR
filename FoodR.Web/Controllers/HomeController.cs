@@ -10,21 +10,19 @@ using System.Web.Mvc;
 
 namespace FoodR.Web.Controllers
 {
-    public class HomeController : FoodRController
-    {
-		private readonly IRepository repository;
+	public class HomeController : FoodRController
+	{
 		private readonly IScheduleService schedService;
 
-		public HomeController(IRepository repository, IScheduleService schedService)
+		public HomeController(IScheduleService schedService)
 		{
-			this.repository = repository;
 			this.schedService = schedService;
 		}
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+		public ActionResult Index()
+		{
+			return View();
+		}
 
 		public ActionResult Map()
 		{
