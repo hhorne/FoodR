@@ -7,27 +7,20 @@
 
         <div class="panel panel-default location-settings">
             <div class="panel-heading">
-                <h3 class="panel-title">Pick the place</h3>
+                <h3 class="panel-title">Place</h3>
             </div>
             <div class="panel-body">
-                <label>Quick find</label>
-                @Html.DropDownListFor(m => m.LocationId, Model.ListLocations, new { id = "quickFind", @class = "form-control" })
-
-                <!-- Thanks http://stackoverflow.com/a/2812830 -->
-                <div class="fancy-hr">
-                    <span>Or</span>
-                </div>
-                <label for="loc">By address</label>
-                <input type="text" id="loc" placeholder="ex. '26 W Forsyth St' or 'Main and Forsyth'" class="form-control" />
-                <input type="hidden" id="loc-id">
-                <hr />
-                <p id="loc-description"></p>
+                <label for="loc">Type the address of a description of the spot</label>
+                <input type="text" id="loc" placeholder="ex. '123 Main St' or 'Main and Forsyth'" class="form-control" />
+                <p>Or</p>
+                <label>Select from a list of common spots</label>
+                @Html.DropDownListFor(m => m.LocationId, Model.Locations, new { @class = "form-control" })
             </div>
         </div>
 
         <div class="panel panel-default time-settings">
             <div class="panel-heading">
-                <h3 class="panel-title">Set the time</h3>
+                <h3 class="panel-title">Time</h3>
             </div>
             <div class="panel-body">
                 <label for="day">Select date</label>
@@ -77,55 +70,16 @@
 @section scripts {
     <script>
         $(function () {
-            var locsFromDb = @Html.Raw(Json.Encode(Model.Locations))
+
             //Location search box
-            var locs = @Html.Raw(Json.Encode(Model.ListLocations))
-            //var locs = [
-            //    {
-            //        value: "main-and-forsyth",
-            //        label: "Main and Forsyth",
-            //        desc: "26 W Forsyth St"
-            //    },
-            //    {
-            //        value: "courthouse",
-            //        label: "Downtown at the Corner of Adams and Jefferson",
-            //        desc: "655 W. Adams St, 32204"
-            //    },
-            //    {
-            //        value: "aardwolf",
-            //        label: "Aardwolf Brewery",
-            //        desc: "1461 Hendricks Avenue, San Marco"
-            //    }
-            //];
-            
+            var availableTags = [
+                "Main and Forsyth",
+                "Courthouse",
+            ];
             $('#loc').autocomplete({
-                minLength: 1,
-                source: locs,
-                focus: function (event, ui) {
-                    $("#loc").val(ui.item.Text);
-                    return false;
-                },
-                select: function (event, ui) {
-                    $("#loc").val(ui.item.Text);
-                    $("#loc-id").val(ui.item.Value);
-                    $("#loc-description").html(ui.item.desc);
-
-                    return false;
-                }
-            })
-            .data("ui-autocomplete")._renderItem = function (ul, item) {
-                return $("<li>")
-                  .append("<a>" + item.Text + "<br>" + item.desc + "</a>")
-                  .appendTo(ul);
-            };
-
-            $('#quickFind').change(function (data) {
-                var id = $('#quickFind option:selected').first().value;
-
-                locsFromDb
-
-                $("#loc-description").html(ui.item.desc);
+                source: availableTags
             });
+
 
             //DATEPICKERS
             $("#day").datepicker({

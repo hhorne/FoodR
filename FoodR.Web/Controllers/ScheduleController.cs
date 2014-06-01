@@ -47,8 +47,7 @@ namespace FoodR.Web.Controllers
 		{
 			ScheduledStopEditViewModel vm = new ScheduledStopEditViewModel();
 			var locations = schedService.GetLocations();
-			vm.Locations = mapper.Map <IEnumerable<LocationDetailViewModel>>(locations);
-			vm.ListLocations = mapper.Map<IEnumerable<SelectListItem>>(locations);
+			vm.Locations = mapper.Map<IEnumerable<SelectListItem>>(locations);
 
 			var timeSlots = CreateTimeSlots();
 			vm.From = timeSlots;
@@ -130,7 +129,7 @@ namespace FoodR.Web.Controllers
 			vm.From = timeSlots;
 			vm.To = timeSlots;
 			var locations = schedService.GetLocations();
-			vm.ListLocations = mapper.Map<IEnumerable<SelectListItem>>(locations);
+			vm.Locations = mapper.Map<IEnumerable<SelectListItem>>(locations);
 
 			return View(vm);
 		}
