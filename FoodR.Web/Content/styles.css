@@ -1,4 +1,4 @@
-﻿/*! normalize.css v3.0.0 | MIT License | git.io/normalize */
+/*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -5772,6 +5772,19 @@ button.close {
     display: none !important;
   }
 }
+.fancy-hr {
+  height: 1px;
+  background-color: #dddddd;
+  text-align: center;
+  margin-top: 21px;
+  margin-bottom: 21px;
+  font-size: 16px;
+}
+.fancy-hr span {
+  background-color: white;
+  position: relative;
+  top: -0.6em;
+}
 .btn-twitter {
   background-color: #4099ff !important;
 }
@@ -5924,3 +5937,4 @@ body {
 .rating li a:hover {
   color: #f0ad4e;
 }
+/*# sourceMappingURL=styles.css.map */

@@ -23,7 +23,9 @@ namespace FoodR.Web.ViewModels
 		public IEnumerable<SelectListItem> To { get; set; }
 
 		public int LocationId { get; set; }
-		public IEnumerable<SelectListItem> Locations { get; set; }
+		public IEnumerable<LocationDetailViewModel> Locations { get; set; }
+		public IEnumerable<SelectListItem> ListLocations { get; set; }
+		
 
 		[Editable(allowEdit: false)]
 		public DateTime LastModifiedOn { get; set; }
