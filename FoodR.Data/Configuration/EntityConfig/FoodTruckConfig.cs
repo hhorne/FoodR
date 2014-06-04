@@ -1,4 +1,6 @@
-﻿using FoodR.Data.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure.Annotations;
+using FoodR.Data.Models;
 
 namespace FoodR.Data.Configuration.EntityConfig
 {

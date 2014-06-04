@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.WebPages.Html;
 
 namespace FoodR.Web.ViewModels
 {
@@ -38,6 +39,11 @@ namespace FoodR.Web.ViewModels
 
 		[ScaffoldColumn(false)]
 		public IEnumerable<string> EditErrors { get; set; }
+
+		public IEnumerable<SelectListItem> Categories { get; set; }
+
+		[ScaffoldColumn(false)]
+		public int CategoryId { get; set; }
 	}
 
 	public enum TruckDetailsPageState

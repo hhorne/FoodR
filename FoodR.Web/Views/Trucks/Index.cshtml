@@ -1,9 +1,16 @@
 ﻿@model IEnumerable<TruckListDetailViewModel>
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Index";
 }
 
 <h2>Trucks!</h2>
+<form action="/trucks" id="categorySearch" method="post" novalidate="novalidate">
+
+	@Html.AntiForgeryToken()
+	<div class="editor-field">
+		<label for="category" class="editor-label">Category: </label>@Html.DropDownList("category", new SelectList(ViewBag.Categories, "Value", "Text", ViewBag.CategoryId), new { @class = "select", onchange = "document.getElementById('categorySearch').submit();" })
+	</div>
+</form>
 
 @foreach (var truck in Model)
 {

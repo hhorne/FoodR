@@ -17,6 +17,7 @@ namespace FoodR.Data
 		public IQueryable<T> GetAll<T>() where T : class
 		{
 			var result = context.Set<T>();
+			var sql = result.ToString();
 			return result;
 		}
 
@@ -32,9 +33,15 @@ namespace FoodR.Data
 			return result;
 		}
 
-		public IEnumerable<T> Where<T>(Func<T, bool> predicate) where T : class
+		public IEnumerable<T> Where<T>(Func<T, bool> predicate, string include = "") where T : class
 		{
-			return context.Set<T>().Where(predicate);
+			if (string.IsNullOrWhiteSpace(include))
+			{
+				return context.Set<T>().Where(predicate);
+			}
+			{
+				return context.Set<T>().Include(include).Where(predicate);
+			}
 		}
 
 		public void Delete<T>(T entity) where T : class
@@ -45,6 +52,11 @@ namespace FoodR.Data
 		public void Add<T>(T entity) where T : class
 		{
 			context.Set<T>().Add(entity);
+		}
+
+		public void Attach<T>(T entity) where T : class
+		{
+			context.Set<T>().Attach(entity);
 		}
 
 		public void SaveChanges()
@@ -75,9 +87,10 @@ namespace FoodR.Data
 		IQueryable<T> GetAll<T>() where T : class;
 		T Find<T>(int id) where T : class;
 		T Find<T>(object[] keyValues) where T : class;
-		IEnumerable<T> Where<T>(Func<T, bool> predicate) where T : class;
+		IEnumerable<T> Where<T>(Func<T, bool> predicate, string include = "") where T : class;
 		void Delete<T>(T entity) where T : class;
 		void Add<T>(T entity) where T : class;
+		void Attach<T>(T entity) where T : class;
 		void SaveChanges();
 	}
 }

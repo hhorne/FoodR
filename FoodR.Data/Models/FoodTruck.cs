@@ -37,5 +37,6 @@ namespace FoodR.Data.Models
 		//public virtual ICollection<RecurringStop> RecurringStops { get; set; }
 
 		public virtual ICollection<Menu> Menus { get; set; }
+		public virtual ICollection<Category> Categories { get; set; }
 	}
 }

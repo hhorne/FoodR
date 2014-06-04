@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using FoodR.Data.Models;
+using FoodR.Data.Configuration.EntityConfig;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -15,6 +16,7 @@ namespace FoodR.Data
 	{
 		public DbSet<Area> Areas { get; set; }
 		public DbSet<Badge> Badges { get; set; }
+		public DbSet<Category> Categories { get; set; }
 		public DbSet<EarnedBadge> EarnedBadges { get; set; }
 		public DbSet<FoodTruck> FoodTrucks { get; set; }
 		public DbSet<Location> Locations { get; set; }
@@ -202,6 +204,9 @@ namespace FoodR.Data
 			var courthouse = context.Locations.Single(l => l.UrlSlug.Equals("Courthouse", StringComparison.OrdinalIgnoreCase));
 			var forsyth = context.Locations.Single(l => l.UrlSlug.Equals("Forsyth_and_Main", StringComparison.OrdinalIgnoreCase));
 
+			Category bbq = new Category { Name = "BBQ" };
+			Category burger = new Category { Name = "Burger" };
+
 			context.FoodTrucks.AddOrUpdate(t => t.Name, new[]
 				{
 					new FoodTruck
@@ -220,7 +225,8 @@ namespace FoodR.Data
 								Active = true,
 								Recurring = false
 							}
-						}
+						},
+						Categories = new List<Category>() {bbq}
 					},
 					new FoodTruck
 					{
@@ -246,7 +252,8 @@ namespace FoodR.Data
 								Active = true,
 								Recurring = false
 							}
-						}
+						},
+						Categories = new List<Category>() {burger}
 					},
 					new FoodTruck
 					{
